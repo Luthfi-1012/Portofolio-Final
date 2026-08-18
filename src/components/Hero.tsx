@@ -50,9 +50,12 @@ export const Hero: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // GSAP Entrance Timeline (with fromTo to guarantee 100% visibility)
+  // GSAP Entrance & Subtle Exit Parallax Timeline
   useEffect(() => {
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const ctx = gsap.context(() => {
+      // 1. Entrance animation
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.fromTo(
@@ -67,6 +70,37 @@ export const Hero: React.FC = () => {
         { opacity: 1, y: 0, duration: 0.9, stagger: 0.1 },
         '-=0.8'
       );
+
+      // 2. Subtle Exit Parallax (only if not reduced motion)
+      if (!isReducedMotion && heroRef.current) {
+        // Move headline slightly upward and fade subtly
+        gsap.to('.hero-content-wrapper', {
+          yPercent: -18,
+          opacity: 0.35,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.8,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // Ambient background scale slightly & light shift
+        gsap.to('.hero-bg-media', {
+          scale: 1.06,
+          yPercent: 6,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.8,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -79,7 +113,7 @@ export const Hero: React.FC = () => {
       className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-transparent text-center px-6"
     >
       {/* Background Ambient Glow + HLS Video */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="hero-bg-media absolute inset-0 overflow-hidden pointer-events-none z-0 will-change-transform">
         {/* Subtle radial ambient atmosphere */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-b from-purple-950/20 via-blue-950/15 to-transparent blur-3xl rounded-full" />
 
@@ -98,7 +132,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Hero Content (centered, z-10) */}
-      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center pt-24 md:pt-32 pb-16">
+      <div className="hero-content-wrapper relative z-10 max-w-4xl mx-auto flex flex-col items-center pt-24 md:pt-32 pb-16 will-change-transform">
         
         {/* Eyebrow */}
         <p className="blur-in text-xs text-muted uppercase tracking-[0.3em] mb-8 font-medium">

@@ -1,21 +1,107 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import type { Project } from '../data/portfolioData';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export const SelectedWorks: React.FC = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+
+    const ctx = gsap.context(() => {
+      // 1. Header reveal
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // 2. Staggered card reveal
+      const validCards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
+      if (validCards.length > 0) {
+        gsap.fromTo(
+          validCards,
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // 3. Gentle image-only parallax inside overflow-hidden container (desktop only, no reduced motion)
+      if (!isReducedMotion && isDesktop) {
+        imagesRef.current.forEach((img, i) => {
+          const card = cardsRef.current[i];
+          if (!img || !card) return;
+
+          gsap.fromTo(
+            img,
+            { yPercent: -8, scale: 1.12 },
+            {
+              yPercent: 8,
+              scale: 1.12,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.8,
+              },
+            }
+          );
+        });
+      }
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="work" className="bg-bg/70 backdrop-blur-sm py-16 md:py-24 relative z-10 border-t border-stroke/40">
+    <section
+      id="work"
+      ref={sectionRef}
+      className="bg-bg/70 backdrop-blur-sm py-16 md:py-24 relative z-10 border-t border-stroke/40"
+    >
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
         
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+        <div
+          ref={headerRef}
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6"
+          style={{ opacity: 0 }}
         >
           <div>
             {/* Eyebrow */}
@@ -50,29 +136,30 @@ export const SelectedWorks: React.FC = () => {
               </span>
             </a>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
           {PROJECTS.map((project: Project, index: number) => (
-            <motion.div
+            <div
               key={project.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-              className={`${project.colSpan} group relative rounded-3xl overflow-hidden border border-stroke bg-surface cursor-pointer ${project.aspectRatio || 'aspect-[16/10]'}`}
+              ref={(el) => { cardsRef.current[index] = el; }}
+              className={`${project.colSpan} group relative rounded-3xl overflow-hidden border border-stroke bg-surface cursor-pointer will-change-transform ${project.aspectRatio || 'aspect-[16/10]'}`}
+              style={{ opacity: 0 }}
             >
-              {/* Background Image */}
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                loading="lazy"
-              />
+              {/* Parallax Background Image Container */}
+              <div className="w-full h-full overflow-hidden">
+                <img
+                  ref={(el) => { imagesRef.current[index] = el; }}
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out will-change-transform"
+                  loading="lazy"
+                />
+              </div>
 
               {/* Default Content gradient shadow at bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 md:p-8 flex flex-col justify-end transition-opacity duration-300 group-hover:opacity-0">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 md:p-8 flex flex-col justify-end transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
                 <span className="text-xs text-muted uppercase tracking-widest font-medium mb-1">
                   {project.category}
                 </span>
@@ -83,7 +170,6 @@ export const SelectedWorks: React.FC = () => {
 
               {/* Hover Backdrop Overlay */}
               <div className="absolute inset-0 bg-bg/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-lg flex flex-col items-center justify-center p-6 text-center">
-                
                 <span className="text-xs text-muted uppercase tracking-[0.25em] mb-4">
                   {project.category}
                 </span>
@@ -98,9 +184,8 @@ export const SelectedWorks: React.FC = () => {
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </div>
-
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

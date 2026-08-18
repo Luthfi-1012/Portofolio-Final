@@ -27,47 +27,52 @@ export const Explorations: React.FC = () => {
 
     if (!section || !pinnedContent || !col1 || !col2) return;
 
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const ctx = gsap.context(() => {
-      // 1. Pin center text content throughout the section scroll
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: pinnedContent,
-        pinSpacing: false,
-        anticipatePin: 1,
-      });
+      if (isDesktop && !isReducedMotion) {
+        // 1. Pin center text content throughout the section scroll (Desktop only)
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top top',
+          end: 'bottom bottom',
+          pin: pinnedContent,
+          pinSpacing: false,
+          anticipatePin: 1,
+        });
 
-      // 2. Parallax scroll effect for Column 1 & Column 2
-      gsap.fromTo(
-        col1,
-        { y: '0%' },
-        {
-          y: '-25%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        }
-      );
+        // 2. Parallax scroll effect for Column 1 & Column 2
+        gsap.fromTo(
+          col1,
+          { y: '0%' },
+          {
+            y: '-25%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          }
+        );
 
-      gsap.fromTo(
-        col2,
-        { y: '15%' },
-        {
-          y: '-35%',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2,
-          },
-        }
-      );
+        gsap.fromTo(
+          col2,
+          { y: '15%' },
+          {
+            y: '-35%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            },
+          }
+        );
+      }
     }, section);
 
     return () => ctx.revert();

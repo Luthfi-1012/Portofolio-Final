@@ -10,7 +10,7 @@ interface ScrollStackItemProps {
 
 export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
   ({ project, index, totalCards }, ref) => {
-    // Dynamic sticky top offset to create luxury card deck layering effect
+    // Dynamic sticky top offset for luxury card deck layering effect
     const stickyTop = `${6.5 + index * 1.25}rem`;
 
     return (
@@ -20,9 +20,9 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
           top: stickyTop,
           zIndex: index + 10,
         }}
-        className="sticky mb-12 sm:mb-16 w-full max-w-[1100px] mx-auto transition-transform duration-300"
+        className="scroll-stack-card sticky mb-12 sm:mb-16 w-full max-w-[1100px] mx-auto"
       >
-        <div className="group relative w-full rounded-3xl overflow-hidden border border-white/10 bg-[#121218]/95 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.85)] hover:border-white/20 transition-all duration-300">
+        <div className="scroll-stack-inner group relative w-full rounded-3xl overflow-hidden border border-white/10 bg-[#121218]/95 backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.85)] hover:border-white/20 transition-all duration-300 will-change-transform origin-top">
           {/* Subtle top card glow line */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 

@@ -1,16 +1,87 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SIDE_PROJECTS } from '../data/portfolioData';
 import { ScrollStackItem } from './ScrollStackItem';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export const ScrollStack: React.FC = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const deckRef = useRef<HTMLDivElement | null>(null);
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current;
+    const deck = deckRef.current;
+    if (!section || !deck) return;
+
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+
+    const ctx = gsap.context(() => {
+      // 1. Header reveal
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // 2. Animate scale and opacity of inactive cards as next card comes up (CSS sticky retained, NO GSAP PIN)
+      if (!isReducedMotion && isDesktop) {
+        const cardElements = deck.querySelectorAll<HTMLElement>('.scroll-stack-card');
+
+        cardElements.forEach((cardEl, idx) => {
+          if (idx === cardElements.length - 1) return; // last card doesn't need to scale down
+          const nextCardEl = cardElements[idx + 1];
+          const innerEl = cardEl.querySelector<HTMLElement>('.scroll-stack-inner');
+
+          if (innerEl && nextCardEl) {
+            gsap.fromTo(
+              innerEl,
+              { scale: 1, opacity: 1 },
+              {
+                scale: 0.95,
+                opacity: 0.72,
+                ease: 'power1.out',
+                scrollTrigger: {
+                  trigger: nextCardEl,
+                  start: 'top 65%',
+                  end: 'top 20%',
+                  scrub: true,
+                  invalidateOnRefresh: true,
+                },
+              }
+            );
+          }
+        });
+      }
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="side-projects"
+      ref={sectionRef}
       className="relative z-10 py-20 md:py-28 border-t border-stroke/40"
     >
       <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10 lg:px-16">
         {/* Section Header */}
-        <div className="mb-14 md:mb-20">
+        <div ref={headerRef} className="mb-14 md:mb-20" style={{ opacity: 0 }}>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-px bg-stroke" />
             <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
@@ -28,7 +99,7 @@ export const ScrollStack: React.FC = () => {
         </div>
 
         {/* Sticky Stacked Cards Deck */}
-        <div className="relative w-full pb-12">
+        <div ref={deckRef} className="relative w-full pb-12">
           {SIDE_PROJECTS.map((project, index) => (
             <ScrollStackItem
               key={project.id}

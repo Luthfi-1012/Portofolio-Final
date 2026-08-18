@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SmoothScrollProvider } from './components/SmoothScrollProvider';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -65,38 +66,40 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-text-primary font-body antialiased selection:bg-stroke selection:text-text-primary relative">
-      {/* Global Interactive Ripple Grid Canvas Backdrop */}
-      <RippleGridCanvas
-        spacing={26}
-        radius={220}
-        baseColor="rgba(175, 195, 255, 0.42)"
-        speed={0.0038}
-        amplitude={10}
-        backgroundColor="#0a0a0f"
-        globalTracking={true}
-        className="fixed inset-0 z-0"
-      />
+    <SmoothScrollProvider>
+      <div className="min-h-screen bg-[#0a0a0f] text-text-primary font-body antialiased selection:bg-stroke selection:text-text-primary relative">
+        {/* Global Interactive Ripple Grid Canvas Backdrop */}
+        <RippleGridCanvas
+          spacing={26}
+          radius={220}
+          baseColor="rgba(175, 195, 255, 0.42)"
+          speed={0.0038}
+          amplitude={10}
+          backgroundColor="#0a0a0f"
+          globalTracking={true}
+          className="fixed inset-0 z-0"
+        />
 
-      {/* Main Portfolio Layout */}
-      <div className="relative z-10">
-        <Navbar />
-        <main>
-          <Hero />
-          <AboutSection {...ABOUT_DATA} />
-          <SelectedWorks />
-          <ScrollStack />
-          <Explorations />
-          <Certifications />
-          <CareerTimeline milestones={CAREER_MILESTONES} />
-        </main>
-        <ContactFooter />
+        {/* Main Portfolio Layout */}
+        <div className="relative z-10">
+          <Navbar />
+          <main>
+            <Hero />
+            <AboutSection {...ABOUT_DATA} />
+            <SelectedWorks />
+            <ScrollStack />
+            <Explorations />
+            <Certifications />
+            <CareerTimeline milestones={CAREER_MILESTONES} />
+          </main>
+          <ContactFooter />
+        </div>
+
+        {/* Loading Screen Curtain Overlay */}
+        {isLoading && (
+          <LoadingScreen onComplete={() => setIsLoading(false)} />
+        )}
       </div>
-
-      {/* Loading Screen Curtain Overlay */}
-      {isLoading && (
-        <LoadingScreen onComplete={() => setIsLoading(false)} />
-      )}
-    </div>
+    </SmoothScrollProvider>
   );
 }
