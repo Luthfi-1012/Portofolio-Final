@@ -5,7 +5,7 @@ interface LoadingScreenProps {
   onComplete: () => void;
 }
 
-const WORDS = ["Design", "Create", "Inspire", "Elevate"];
+const WORDS = ["Develop", "Build", "Innovate", "Lead"];
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const [count, setCount] = useState<number>(0);
@@ -16,7 +16,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   // Counter using requestAnimationFrame with smooth acceleration
   useEffect(() => {
     const startTime = performance.now();
-    const duration = 1100; // ms snappy luxury reveal
+    const duration = 2300; // Smooth, elegant pacing for full 4-word cycle
 
     let animationFrameId: number;
 
@@ -36,17 +36,17 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         // Step 1: Fade out center text & numbers
         setTimeout(() => {
           setContentFaded(true);
-        }, 120);
+        }, 180);
 
         // Step 2: Trigger curtain split animation
         setTimeout(() => {
           setIsSplitting(true);
-        }, 300);
+        }, 400);
 
         // Step 3: Complete and unmount after curtain animation
         setTimeout(() => {
           onComplete();
-        }, 1100);
+        }, 1250);
       }
     };
 
@@ -59,12 +59,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     };
   }, [onComplete]);
 
-  // Cycle words every 550ms
+  // Cycle words every 575ms (smoothly display all 4 words during 2300ms)
   useEffect(() => {
     if (contentFaded) return;
     const wordInterval = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % WORDS.length);
-    }, 550);
+    }, 575);
 
     return () => clearInterval(wordInterval);
   }, [contentFaded]);

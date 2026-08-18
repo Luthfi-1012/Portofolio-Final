@@ -7,13 +7,13 @@ export interface Project {
   aspectRatio?: string;
 }
 
-export interface JournalEntry {
+export interface Certification {
   id: string;
   title: string;
-  readTime: string;
+  issuer: string;
   date: string;
-  image: string;
-  url?: string;
+  category: 'web3' | 'development' | 'leadership' | 'ai';
+  certificateUrl: string;
 }
 
 export interface Exploration {
@@ -75,34 +75,70 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-export const JOURNAL_ENTRIES: JournalEntry[] = [
+export const CERTIFICATIONS: Certification[] = [
   {
-    id: 'journal-1',
-    title: 'Designing for the Next Generation of Spatial Interfaces',
-    readTime: '5 min read',
-    date: 'AUG 2026',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop',
+    id: 'cert-1',
+    title: 'IT Bootcamp "Software Development For Industry"',
+    issuer: 'Universitas Bina Sarana Informatika',
+    date: 'JUN 2025',
+    category: 'development',
+    certificateUrl: '/sertifikat/sertif bootcamp IT.png',
   },
   {
-    id: 'journal-2',
-    title: 'The Subtle Art of Micro-Animations in Web Performance',
-    readTime: '4 min read',
-    date: 'JUL 2026',
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=400&auto=format&fit=crop',
+    id: 'cert-2',
+    title: 'Laravel Basic Bootcamp (Speaker)',
+    issuer: 'SMK Muhammadiyah 15',
+    date: 'AUG 2025',
+    category: 'development',
+    certificateUrl: '/sertifikat/sertif laravel.png',
   },
   {
-    id: 'journal-3',
-    title: 'Building Dark Mode Systems That Don\'t Cause Eye Strain',
-    readTime: '6 min read',
-    date: 'JUN 2026',
-    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=400&auto=format&fit=crop',
+    id: 'cert-3',
+    title: 'Build On IOTA Workshop',
+    issuer: 'Rise In × IOTA',
+    date: 'DEC 2025',
+    category: 'web3',
+    certificateUrl: '/sertifikat/Sertif iota.png',
   },
   {
-    id: 'journal-4',
-    title: 'Why Typography Is 90% of Your Web Portfolio Aesthetic',
-    readTime: '3 min read',
-    date: 'MAY 2026',
-    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=400&auto=format&fit=crop',
+    id: 'cert-4',
+    title: 'Build on Algorand',
+    issuer: 'Rise In',
+    date: 'NOV 2025',
+    category: 'web3',
+    certificateUrl: '/sertifikat/Certificates-Build on Algorand-muhammad Luthfi Pratama.png',
+  },
+  {
+    id: 'cert-5',
+    title: 'Coding Camp: Intro to Software Engineering',
+    issuer: 'RevoU',
+    date: 'APR 2026',
+    category: 'development',
+    certificateUrl: '/sertifikat/codingcamp_CCSE 200426-01-1-00048.png',
+  },
+  {
+    id: 'cert-6',
+    title: 'Web3 Fundamental — Blockchain4Youth',
+    issuer: 'Bitget',
+    date: '2026',
+    category: 'web3',
+    certificateUrl: '/sertifikat/Web3 Fundamental Bitget.jpeg',
+  },
+  {
+    id: 'cert-7',
+    title: 'AI Fluency Framework & Foundations',
+    issuer: 'AI Training Program',
+    date: '2026',
+    category: 'ai',
+    certificateUrl: '/sertifikat/AI Fluency Framework & Foundations.png',
+  },
+  {
+    id: 'cert-8',
+    title: 'HIMSI Leadership Training "We Have Color to Be Leader"',
+    issuer: 'HIMSI Universitas Bina Sarana Informatika',
+    date: 'NOV 2023',
+    category: 'leadership',
+    certificateUrl: '/sertifikat/sertif himsi.png',
   },
 ];
 
@@ -211,18 +247,18 @@ export const SIDE_PROJECTS: SideProject[] = [
 
 export const STATS: StatItem[] = [
   {
-    value: '20+',
-    label: 'Years Experience',
-    subtext: 'Delivering world-class digital products and high-impact design experiences.',
+    value: '3.78',
+    label: 'Current GPA',
+    subtext: 'Actively pursuing Information Systems degree at Universitas Bina Sarana Informatika.',
   },
   {
-    value: '95+',
-    label: 'Projects Done',
-    subtext: 'Across creative direction, fullstack WebGL apps & interactive brand systems.',
+    value: '8+',
+    label: 'Certifications',
+    subtext: 'Across Web3, Laravel, software engineering, and leadership training programs.',
   },
   {
-    value: '200%',
-    label: 'Satisfied Clients',
-    subtext: 'Consistently exceeding expectations, timelines, and technical benchmarks.',
+    value: '100%',
+    label: 'Project Delivery',
+    subtext: 'Successfully led and delivered bootcamp projects on time with team coordination.',
   },
 ];

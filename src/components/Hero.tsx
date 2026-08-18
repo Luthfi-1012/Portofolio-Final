@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 import gsap from 'gsap';
 
-const ROLES = ["Creative", "Fullstack", "Founder", "Scholar"];
+const ROLES = ["Developer", "PM", "Web3", "Leader"];
 const HLS_STREAM_URL = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
 
 export const Hero: React.FC = () => {
@@ -102,12 +102,12 @@ export const Hero: React.FC = () => {
         
         {/* Eyebrow */}
         <p className="blur-in text-xs text-muted uppercase tracking-[0.3em] mb-8 font-medium">
-          COLLECTION '26
+          PORTFOLIO '26
         </p>
 
         {/* Name */}
         <h1 className="name-reveal text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6 select-none">
-          Michael Smith
+          Luthfi Pratama
         </h1>
 
         {/* Role line */}
@@ -119,12 +119,12 @@ export const Hero: React.FC = () => {
           >
             {ROLES[roleIndex]}
           </span>
-          <span> lives in Chicago.</span>
+          <span> based in Jakarta.</span>
         </div>
 
         {/* Description */}
         <p className="blur-in text-sm md:text-base text-muted max-w-md mb-12 font-normal leading-relaxed">
-          Designing seamless digital interactions by focusing on the unique nuances which bring systems to life.
+          Building robust web applications and leading teams to deliver impactful software solutions.
         </p>
 
         {/* CTA Buttons */}
@@ -143,7 +143,7 @@ export const Hero: React.FC = () => {
 
           {/* Button 2: "Reach out..." */}
           <a
-            href="mailto:hello@michaelsmith.com"
+            href="mailto:luthfipratama1012@gmail.com"
             className="group relative inline-flex items-center justify-center rounded-full p-[1.5px] transition-transform duration-300 hover:scale-105"
           >
             <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

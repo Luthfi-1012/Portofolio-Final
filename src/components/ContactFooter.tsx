@@ -100,14 +100,14 @@ export const ContactFooter: React.FC = () => {
 
           {/* Email button with gradient hover border ring */}
           <a
-            href="mailto:hello@michaelsmith.com"
+            href="mailto:luthfipratama1012@gmail.com"
             className="group relative inline-flex items-center justify-center rounded-full p-[1.5px] transition-transform duration-300 hover:scale-105"
           >
             <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
             <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             <span className="relative inline-flex items-center gap-3 rounded-full border border-white/10 bg-surface px-8 md:px-10 py-4 md:py-5 text-sm md:text-base font-medium text-text-primary backdrop-blur-md transition-colors group-hover:bg-bg">
-              hello@michaelsmith.com
+              luthfipratama1012@gmail.com
               <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </span>
           </a>
@@ -119,10 +119,9 @@ export const ContactFooter: React.FC = () => {
           {/* Social Links */}
           <div className="flex items-center gap-6">
             {[
-              { label: 'Twitter', href: 'https://twitter.com' },
-              { label: 'LinkedIn', href: 'https://linkedin.com' },
-              { label: 'Dribbble', href: 'https://dribbble.com' },
-              { label: 'GitHub', href: 'https://github.com' },
+              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/m-luthfi-pratama~-167b0a387' },
+              { label: 'GitHub', href: 'https://github.com/Luthfi-1012' },
+              { label: 'Instagram', href: 'https://www.instagram.com/luthfi.prtma' },
             ].map((link) => (
               <a
                 key={link.label}
@@ -149,7 +148,7 @@ export const ContactFooter: React.FC = () => {
 
           {/* Copyright */}
           <div>
-            © {new Date().getFullYear()} Michael Smith. All rights reserved.
+            © {new Date().getFullYear()} M. Luthfi Pratama. All rights reserved.
           </div>
 
         </div>
