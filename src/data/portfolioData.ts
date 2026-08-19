@@ -295,58 +295,53 @@ export const EXPLORATIONS = TECH_STACK_CATEGORIES;
 export const SIDE_PROJECTS: SideProject[] = [
   {
     id: 'sp-1',
-    title: 'Synthwave Radio',
+    title: 'Pelindung Satwa — Wildlife Donation UI/UX',
     description:
-      'A retro-futuristic web radio player with real-time audio visualization, built as a love letter to 80s aesthetics and modern web audio APIs.',
-    image:
-      'https://images.unsplash.com/photo-1614149162883-504ce4d13909?q=80&w=1200&auto=format&fit=crop',
-    tags: ['React', 'Web Audio API', 'Canvas', 'GSAP'],
-    link: '#',
-    category: 'Web App',
+      'A compassionate wildlife conservation and animal adoption platform designed with empathetic visual hierarchy, intuitive donation flows, and transparent campaign tracking.',
+    image: '/Gambar side projects/Figma Project Donasi Pelindung Satwa.png',
+    tags: ['Figma', 'UI/UX Design', 'Design System', 'Prototyping'],
+    link: 'https://github.com/Luthfi-1012',
+    category: 'Figma UI/UX Design',
   },
   {
     id: 'sp-2',
-    title: 'Terrain Generator',
+    title: 'WanderLust — Travel Discovery & Booking App',
     description:
-      'Procedural terrain engine running entirely in the browser. Uses layered Perlin noise, hydraulic erosion simulation, and custom GLSL shaders.',
-    image:
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Three.js', 'GLSL', 'TypeScript', 'WebGL'],
-    link: '#',
-    category: 'Creative Tech',
+      'A modern travel discovery and itinerary planning application featuring curated destination guides, interactive booking cards, and seamless navigation architectures.',
+    image: '/Gambar side projects/Figma Project Travel App.png',
+    tags: ['Figma', 'Mobile UI/UX', 'User Journey', 'Visual Design'],
+    link: 'https://github.com/Luthfi-1012',
+    category: 'Figma UI/UX Design',
   },
   {
     id: 'sp-3',
-    title: 'Markdown Atelier',
+    title: 'Norva Studio — Scandinavian Furniture Store',
     description:
-      'A minimal, distraction-free markdown editor with live preview, syntax highlighting, and local-first storage. Designed for writers who think in plain text.',
-    image:
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Next.js', 'MDX', 'IndexedDB', 'Tailwind'],
-    link: '#',
-    category: 'Developer Tool',
+      'An elegant, high-performance furniture e-commerce experience with minimalist aesthetics, fluid product showcases, and interactive 3D spatial previews.',
+    image: '/Gambar side projects/Norva Furniture Shop.png',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'E-Commerce'],
+    link: 'https://github.com/Luthfi-1012',
+    category: 'Web Application',
   },
   {
     id: 'sp-4',
-    title: 'Motion Palette',
+    title: 'Lumière Glow — Organic Skincare & Wellness',
     description:
-      'An interactive gallery of curated micro-animations and transition patterns. Copy-paste ready code snippets for Framer Motion, CSS, and GSAP.',
-    image:
-      'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Framer Motion', 'GSAP', 'React', 'Storybook'],
-    link: '#',
-    category: 'Design Resource',
+      'A clean, luxury skincare storefront designed for seamless product discovery with personalized skin regimen builders, ingredient transparency, and responsive cart flows.',
+    image: '/Gambar side projects/Skincare app hero.png',
+    tags: ['React', 'Tailwind CSS', 'GSAP Motion', 'UI Architecture'],
+    link: 'https://github.com/Luthfi-1012',
+    category: 'Web Application',
   },
   {
     id: 'sp-5',
-    title: 'Night Owl CLI',
+    title: 'DeFund — Web3 Decentralized Crowdfunding',
     description:
-      'A terminal-based productivity dashboard for developers. Pomodoro timer, git stats, Spotify integration, and weather — all without leaving the terminal.',
-    image:
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop',
-    tags: ['Rust', 'TUI', 'REST APIs', 'CLI'],
-    link: '#',
-    category: 'CLI Tool',
+      'A decentralized crowdfunding platform powered by EVM smart contracts, featuring transparent milestone escrow releases, wallet authentication, and real-time funding metrics.',
+    image: '/Gambar side projects/web3 crowdfund.png',
+    tags: ['Solidity', 'EVM Chains', 'ethers.js', 'React', 'Smart Contracts'],
+    link: 'https://github.com/Luthfi-1012',
+    category: 'Web3 & dApp',
   },
 ];
 

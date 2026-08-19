@@ -39,27 +39,28 @@ export const ScrollStack: React.FC = () => {
         );
       }
 
-      // 2. Animate scale and opacity of inactive cards as next card comes up (CSS sticky retained, NO GSAP PIN)
+      // 2. Animate scale, dim, and blur of inactive cards as next card comes up
       if (!isReducedMotion && isDesktop) {
         const cardElements = deck.querySelectorAll<HTMLElement>('.scroll-stack-card');
 
         cardElements.forEach((cardEl, idx) => {
-          if (idx === cardElements.length - 1) return; // last card doesn't need to scale down
+          if (idx === cardElements.length - 1) return; // last card stays at 100%
           const nextCardEl = cardElements[idx + 1];
           const innerEl = cardEl.querySelector<HTMLElement>('.scroll-stack-inner');
 
           if (innerEl && nextCardEl) {
             gsap.fromTo(
               innerEl,
-              { scale: 1, opacity: 1 },
+              { scale: 1, opacity: 1, filter: 'brightness(1)' },
               {
-                scale: 0.95,
-                opacity: 0.72,
-                ease: 'power1.out',
+                scale: 0.93,
+                opacity: 0,
+                filter: 'brightness(0.4)',
+                ease: 'power2.out',
                 scrollTrigger: {
                   trigger: nextCardEl,
-                  start: 'top 65%',
-                  end: 'top 20%',
+                  start: 'top 85%',
+                  end: 'top 30%',
                   scrub: true,
                   invalidateOnRefresh: true,
                 },
