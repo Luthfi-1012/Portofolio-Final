@@ -142,50 +142,155 @@ export const CERTIFICATIONS: Certification[] = [
   },
 ];
 
-export const EXPLORATIONS: Exploration[] = [
+export interface TechSkillItem {
+  name: string;
+  tag?: string;
+}
+
+export interface TechCategory {
+  id: string;
+  title: string;
+  category: string;
+  tagline: string;
+  accent: string;
+  badge: string;
+  rotation: string;
+  skills: TechSkillItem[];
+  highlight: string;
+  description: string;
+  projectsUsed: string[];
+}
+
+export const TECH_STACK_CATEGORIES: TechCategory[] = [
   {
-    id: 'exp-1',
-    title: 'Chrono Sphere',
-    category: 'Interactive 3D Shaders',
-    image: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=800&auto=format&fit=crop',
+    id: 'tech-1',
+    title: 'Core Frontend & UI Architecture',
+    category: 'Frontend Engineering',
+    tagline: 'Modern, reactive, and accessible user interfaces',
+    accent: '#38bdf8',
+    badge: 'Component Systems',
+    rotation: '-2.5deg',
+    skills: [
+      { name: 'React.js', tag: 'Core' },
+      { name: 'TypeScript', tag: 'Language' },
+      { name: 'Tailwind CSS', tag: 'Styling' },
+      { name: 'JavaScript (ES6+)', tag: 'Core' },
+      { name: 'GSAP & Lenis', tag: 'Motion' },
+      { name: 'HTML5 / Modern CSS', tag: 'Semantic' },
+    ],
+    highlight: 'Building pixel-perfect, interactive frontend applications with smooth micro-animations.',
+    description:
+      'Proficient in building component-driven architectures, responsive interfaces, and interactive user experiences with React, TypeScript, and modern styling solutions.',
+    projectsUsed: ['Personal Portfolio System', 'SiGaji Payroll Frontend', 'Bootcamp Web Application'],
+  },
+  {
+    id: 'tech-2',
+    title: 'Backend & Server Architecture',
+    category: 'Backend Development',
+    tagline: 'Robust MVC architecture & RESTful API endpoints',
+    accent: '#f43f5e',
+    badge: 'Server Architecture',
+    rotation: '2.5deg',
+    skills: [
+      { name: 'Laravel (PHP)', tag: 'Framework' },
+      { name: 'RESTful APIs', tag: 'Architecture' },
+      { name: 'MVC Design Pattern', tag: 'Pattern' },
+      { name: 'Auth (Sanctum/JWT)', tag: 'Security' },
+      { name: 'Eloquent ORM', tag: 'ORM' },
+      { name: 'CRUD Logic', tag: 'Core' },
+    ],
+    highlight: 'Speaker & trainer at Laravel Basic Bootcamp with hands-on CRUD and API implementation.',
+    description:
+      'Experienced in designing and delivering Laravel-powered web backends, secure authentication flows, database migrations, and clean RESTful API integration.',
+    projectsUsed: ['SiGaji Employee Payroll System', 'Laravel Basic Bootcamp Workshop'],
+  },
+  {
+    id: 'tech-3',
+    title: 'Web3 & Decentralized Tech',
+    category: 'Blockchain Exploration',
+    tagline: 'Smart contracts, EVM chains, and dApp protocols',
+    accent: '#818cf8',
+    badge: 'Web3 & Blockchain',
     rotation: '-3deg',
+    skills: [
+      { name: 'Solidity', tag: 'Smart Contracts' },
+      { name: 'EVM Chains', tag: 'Ecosystem' },
+      { name: 'ethers.js / Web3.js', tag: 'Integration' },
+      { name: 'Web3 Wallets', tag: 'Authentication' },
+      { name: 'dApp Architecture', tag: 'Frontend' },
+      { name: 'IOTA & Algorand', tag: 'Certified' },
+    ],
+    highlight: 'Certified across Rise In (IOTA & Algorand) and Bitget Blockchain4Youth programs.',
+    description:
+      'Passionate about decentralized systems, smart contract execution, token standards, and bridging modern web applications to blockchain infrastructure.',
+    projectsUsed: ['Rise In IOTA Workshop', 'Build on Algorand dApp', 'Bitget Web3 Fundamentals'],
   },
   {
-    id: 'exp-2',
-    title: 'Neon Monolith',
-    category: 'Generative Architecture',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop',
-    rotation: '4deg',
-  },
-  {
-    id: 'exp-3',
-    title: 'Aura Prism',
-    category: 'Raymarching Light Experiments',
-    image: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800&auto=format&fit=crop',
-    rotation: '-2deg',
-  },
-  {
-    id: 'exp-4',
-    title: 'Kinetic Drift',
-    category: 'Physics-Based Typography',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop',
+    id: 'tech-4',
+    title: 'Databases & Data Modeling',
+    category: 'Data Management',
+    tagline: 'Relational schema design and data integrity',
+    accent: '#34d399',
+    badge: 'Database & SQL',
     rotation: '3deg',
+    skills: [
+      { name: 'MySQL', tag: 'Relational' },
+      { name: 'PostgreSQL', tag: 'Database' },
+      { name: 'ERD Modeling', tag: 'Design' },
+      { name: 'Query Optimization', tag: 'Performance' },
+      { name: 'Database Migrations', tag: 'DevOps' },
+      { name: 'Data Seeding', tag: 'Testing' },
+    ],
+    highlight: 'Structured database schemas designed for payroll calculations and organizational records.',
+    description:
+      'Skilled in relational database modeling, writing optimized SQL queries, defining relational integrity constraints, and handling automated migrations.',
+    projectsUsed: ['SiGaji Relational Schema', 'HIMSI Member Management System'],
   },
   {
-    id: 'exp-5',
-    title: 'Cyber Void',
-    category: 'Dark Horizon Visuals',
-    image: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop',
-    rotation: '-4deg',
+    id: 'tech-5',
+    title: 'Project Management & Leadership',
+    category: 'Team Delivery & Leadership',
+    tagline: 'Agile execution, team coordination, and tech mentoring',
+    accent: '#fbbf24',
+    badge: 'Leadership & PM',
+    rotation: '-2deg',
+    skills: [
+      { name: 'Agile & Scrum', tag: 'Methodology' },
+      { name: 'Team Leadership', tag: 'Project Manager' },
+      { name: 'Sprint Planning', tag: 'Management' },
+      { name: 'Technical Mentoring', tag: 'Speaker' },
+      { name: 'Public Speaking', tag: 'Bootcamp' },
+      { name: 'Organization Ops', tag: 'BPH HIMSI' },
+    ],
+    highlight: 'Led a software team to successful delivery as Project Manager at IT Bootcamp (Sentul).',
+    description:
+      'Proven experience leading cross-functional teams under tight deadlines, presenting technical workshops, and maintaining organization cohesion as a HIMSI board member.',
+    projectsUsed: ['IT Bootcamp Software Development For Industry', 'HIMSI Daily Board Management'],
   },
   {
-    id: 'exp-6',
-    title: 'Fluid Dynamics',
-    category: 'WebGL Particle Fields',
-    image: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=800&auto=format&fit=crop',
+    id: 'tech-6',
+    title: 'Modern Tooling & AI Workflow',
+    category: 'Developer Productivity',
+    tagline: 'High-velocity dev setup with AI-assisted acceleration',
+    accent: '#c084fc',
+    badge: 'Tools & Workflow',
     rotation: '2deg',
+    skills: [
+      { name: 'Git & GitHub', tag: 'VCS' },
+      { name: 'Postman', tag: 'API Testing' },
+      { name: 'Vite & npm', tag: 'Build Tools' },
+      { name: 'AI-Assisted Dev', tag: 'Cursor / Copilot' },
+      { name: 'Linux / Bash', tag: 'Environment' },
+      { name: 'Figma / UI Spec', tag: 'Design Handoff' },
+    ],
+    highlight: 'Leveraging AI-augmented engineering workflows for rapid prototyping and clean refactoring.',
+    description:
+      'Experienced in maintaining clean git branching strategies, testing API contracts via Postman, and integrating AI coding tools to optimize daily software engineering output.',
+    projectsUsed: ['All Web Repositories', 'API Integration Testing', 'Collaborative Team Git Workflows'],
   },
 ];
+
+export const EXPLORATIONS = TECH_STACK_CATEGORIES;
 
 export const SIDE_PROJECTS: SideProject[] = [
   {
