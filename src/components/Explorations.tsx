@@ -398,7 +398,7 @@ export const Explorations: React.FC = () => {
                 <CardShaderCanvas cardId={item.id} isHovered={hoveredCard === item.id} />
 
                 {/* 2. Soft Dark Vignette Overlay for Crisp Typography Contrast */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/90 via-[#0a0a0f]/25 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0c0d14]/90 via-[#0c0d14]/10 to-transparent pointer-events-none" />
 
                 {/* 3. Subtle top edge hairline glow on hover */}
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -466,7 +466,7 @@ export const Explorations: React.FC = () => {
                 <CardShaderCanvas cardId={item.id} isHovered={hoveredCard === item.id} />
 
                 {/* 2. Soft Dark Vignette Overlay for Crisp Typography Contrast */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/90 via-[#0a0a0f]/25 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0c0d14]/90 via-[#0c0d14]/10 to-transparent pointer-events-none" />
 
                 {/* 3. Subtle top edge hairline glow on hover */}
                 <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 
 interface FlameColorPalette {
-  core: [number, number, number];   // Hot glowing inner flame
+  core: [number, number, number];   // Hot glowing crest highlight
   mid: [number, number, number];    // Main burning fire body
-  base: [number, number, number];   // Surrounding aura
+  base: [number, number, number];   // Deep bottom plasma
 }
 
 export const hexToRgb01 = (hex: string): [number, number, number] => {
@@ -15,53 +15,54 @@ export const hexToRgb01 = (hex: string): [number, number, number] => {
   return [r, g, b];
 };
 
-// Vibrant Burning Purple/Violet Flame Palette (matching React Bits Pro Shader Card)
+// Rich, large burning flame palettes matching React Bits Shader Card
 export const FLAME_PALETTES: Record<string, FlameColorPalette> = {
+  // Iconic React Bits Pro Purple Flame
   'default': {
-    core: hexToRgb01('#ffffff'), // Pure hot white flame center
-    mid: hexToRgb01('#c026d3'),  // Blazing electric magenta/purple
-    base: hexToRgb01('#7e22ce'), // Deep glowing violet plasma
+    core: hexToRgb01('#e879f9'), // Luminous magenta/pink flame crest
+    mid: hexToRgb01('#7c3aed'),  // Electric vivid violet-purple
+    base: hexToRgb01('#2e1065'), // Deep royal violet bottom
   },
   'purple-flame': {
-    core: hexToRgb01('#ffffff'),
-    mid: hexToRgb01('#a855f7'),
-    base: hexToRgb01('#6b21a8'),
+    core: hexToRgb01('#f5d0fe'),
+    mid: hexToRgb01('#8b5cf6'),
+    base: hexToRgb01('#3b0764'),
   },
   'tech-1': {
-    // Sapphire & Cyan Electric Fire (Frontend)
-    core: hexToRgb01('#ffffff'),
-    mid: hexToRgb01('#00b4d8'),
-    base: hexToRgb01('#0077b6'),
+    // Sapphire & Electric Cyan Fire (Frontend)
+    core: hexToRgb01('#7dd3fc'),
+    mid: hexToRgb01('#0284c7'),
+    base: hexToRgb01('#082f49'),
   },
   'tech-2': {
-    // Ruby & Velvet Rose Fire (Backend)
-    core: hexToRgb01('#ffffff'),
-    mid: hexToRgb01('#f43f5e'),
-    base: hexToRgb01('#9f1239'),
+    // Crimson & Velvet Rose Fire (Backend)
+    core: hexToRgb01('#fda4af'),
+    mid: hexToRgb01('#e11d48'),
+    base: hexToRgb01('#4c0519'),
   },
   'tech-3': {
-    // Mystic Electric Violet Fire (Web3)
-    core: hexToRgb01('#ffffff'),
-    mid: hexToRgb01('#a855f7'),
-    base: hexToRgb01('#6b21a8'),
+    // Electric Purple & Amethyst Fire (Web3)
+    core: hexToRgb01('#e879f9'),
+    mid: hexToRgb01('#7c3aed'),
+    base: hexToRgb01('#2e1065'),
   },
   'tech-4': {
     // Emerald & Jade Ghost Fire (Databases)
-    core: hexToRgb01('#ffffff'),
-    mid: hexToRgb01('#10b981'),
-    base: hexToRgb01('#047857'),
+    core: hexToRgb01('#6ee7b7'),
+    mid: hexToRgb01('#059669'),
+    base: hexToRgb01('#022c22'),
   },
   'tech-5': {
     // Solar Amber & Gold Fire (Leadership)
-    core: hexToRgb01('#ffffff'),
-    mid: hexToRgb01('#f59e0b'),
-    base: hexToRgb01('#b45309'),
+    core: hexToRgb01('#fde68a'),
+    mid: hexToRgb01('#d97706'),
+    base: hexToRgb01('#451a03'),
   },
   'tech-6': {
-    // Cyber Magenta Fire (Tools & AI)
-    core: hexToRgb01('#ffffff'),
-    mid: hexToRgb01('#d946ef'),
-    base: hexToRgb01('#86198f'),
+    // Cyber Magenta & Violet Fire (Tools & AI)
+    core: hexToRgb01('#f0abfc'),
+    mid: hexToRgb01('#c026d3'),
+    base: hexToRgb01('#4a044e'),
   },
 };
 
@@ -101,14 +102,14 @@ const FRAGMENT_SHADER_SRC = `
     );
   }
 
-  // 4-octave FBM with upward flame drift
+  // Multi-octave FBM for organic volumetric flame crest
   float fbm(vec2 p) {
     float v = 0.0;
     float a = 0.5;
     mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
     for (int i = 0; i < 4; ++i) {
       v += a * noise(p);
-      p = rot * p * 2.1 + vec2(0.0, -u_time * 1.35); // Lively rising flame speed
+      p = rot * p * 2.05 + vec2(0.0, -u_time * 0.95); // upward rising buoyancy
       a *= 0.48;
     }
     return v;
@@ -120,46 +121,49 @@ const FRAGMENT_SHADER_SRC = `
     vec2 p = st;
     p.x *= aspect;
 
-    // Position flame blob on right side (React Bits Shader Card signature layout)
-    vec2 flameOrigin = vec2(0.68 * aspect, 0.42);
-    vec2 mouseOffset = (u_mouse - vec2(0.5)) * 0.15;
-    flameOrigin += vec2(mouseOffset.x * aspect, mouseOffset.y);
+    // Time variables
+    float t = u_time * 0.8;
 
-    float dist = length(p - flameOrigin);
-
-    // Multi-layer domain warping for turbulent licking flame dynamics
+    // Multi-layer domain warping for turbulent, lively flame tongues
     vec2 q = vec2(
-      fbm(p * 2.2 + vec2(0.0, -u_time * 0.85)),
-      fbm(p * 2.2 + vec2(5.2, 1.3) + vec2(0.0, -u_time * 1.05))
+      fbm(vec2(p.x * 2.1, p.y * 1.6 - t * 0.5)),
+      fbm(vec2(p.x * 2.1 + 5.2, p.y * 1.6 - t * 0.6))
     );
 
     vec2 r = vec2(
-      fbm(p * 2.6 + 3.0 * q + vec2(1.7, 9.2)),
-      fbm(p * 2.6 + 3.0 * q + vec2(8.3, 2.8))
+      fbm(vec2(p.x * 2.5 + 3.0 * q.x, p.y * 1.8 - t * 0.7)),
+      fbm(vec2(p.x * 2.5 + 3.0 * q.y + 3.4, p.y * 1.8 - t * 0.7))
     );
 
-    float flame = fbm(p * 3.0 + 3.8 * r);
+    float flameNoise = fbm(vec2(p.x * 2.8 + 3.6 * r.x, p.y * 2.2 - t * 0.85));
 
-    // Billowing flame silhouette
-    float upwardTendril = clamp((p.y - 0.15) * 1.5, 0.0, 1.8);
-    float shape = (flame * 0.95 + q.x * 0.45) - dist * 1.45 + upwardTendril * 0.4;
+    // Large flame height: covers bottom ~65% of the card with organic mountain-like peaks
+    // Peak rises higher on the right side (matching React Bits Shader Card reference)
+    float rightBias = smoothstep(0.0, 1.0, st.x) * 0.22;
+    float mouseLift = (1.0 - u_mouse.y) * 0.12;
+    float flameHeight = 0.56 + rightBias + flameNoise * 0.32 + q.x * 0.14 + mouseLift;
 
-    // Glowing flame intensity stages
-    float outerAura = smoothstep(-0.25, 0.42, shape);
-    float midFlame  = smoothstep(0.08, 0.52, shape);
-    float hotCore   = smoothstep(0.35, 0.72, shape);
+    // Vertical distance from flame crest (positive = inside flame, negative = above flame)
+    float dist = flameHeight - st.y;
 
-    // Color ramp: Base violet plasma -> Mid electric fire -> Hot blazing core
-    vec3 col = mix(u_color_base, u_color_mid, midFlame);
-    col = mix(col, u_color_core, hotCore);
+    // Organic flame alpha falloff at upper crest
+    float flameAlpha = smoothstep(-0.16, 0.08, dist);
 
-    // High-dynamic-range thermal bloom
-    col += u_color_mid * (outerAura * 0.5);
-    col += u_color_core * (hotCore * 0.85);
+    // Internal flame stratification (crest highlight -> vivid mid body -> deep base)
+    float crestFactor = smoothstep(-0.06, 0.18, dist);
+    float deepFactor  = smoothstep(0.22, 0.65, dist);
 
-    // Alpha: Bright and vivid on right, softly blending on edges
-    float alpha = outerAura * u_intensity;
-    alpha = clamp(alpha, 0.0, 1.0);
+    // Color ramp
+    vec3 col = mix(u_color_mid, u_color_core, smoothstep(0.0, 0.25, dist) * (1.0 - deepFactor * 0.7));
+    col = mix(col, u_color_base, deepFactor * 0.65);
+
+    // Thermal luminescent bloom on crest boundary
+    float crestGlow = exp(-abs(dist) * 9.0) * 0.6;
+    col += u_color_core * crestGlow;
+
+    // Overall alpha with intensity multiplier on hover
+    float alpha = flameAlpha * 0.96 * u_intensity;
+    alpha = clamp(alpha, 0.0, 0.98);
 
     gl_FragColor = vec4(col, alpha);
   }
@@ -179,7 +183,7 @@ export const CardShaderCanvas: React.FC<CardShaderCanvasProps> = ({
   forcePurpleTheme = false,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const mouseRef = useRef<{ x: number; y: number }>({ x: 0.7, y: 0.4 });
+  const mouseRef = useRef<{ x: number; y: number }>({ x: 0.7, y: 0.5 });
   const isVisibleRef = useRef<boolean>(true);
 
   useEffect(() => {
@@ -300,7 +304,7 @@ export const CardShaderCanvas: React.FC<CardShaderCanvasProps> = ({
         gl.uniform2f(uResolution, canvas.width, canvas.height);
         gl.uniform1f(uTime, elapsed);
         gl.uniform2f(uMouse, mouseRef.current.x, mouseRef.current.y);
-        gl.uniform1f(uIntensity, isHovered ? 1.25 : 1.0);
+        gl.uniform1f(uIntensity, isHovered ? 1.2 : 1.0);
 
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT);
@@ -329,10 +333,10 @@ export const CardShaderCanvas: React.FC<CardShaderCanvasProps> = ({
     <canvas
       ref={canvasRef}
       className={`absolute inset-0 w-full h-full pointer-events-none transition-all duration-700 ${
-        isHovered ? 'opacity-100 scale-105' : 'opacity-85'
+        isHovered ? 'opacity-100 scale-[1.03]' : 'opacity-90'
       } ${className}`}
       style={{ 
-        filter: 'blur(10px)', 
+        filter: 'blur(8px)', 
         willChange: 'transform, opacity',
       }}
     />
