@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, X, Sparkles } from 'lucide-react';
@@ -8,8 +8,7 @@ import type { Exploration } from '../data/portfolioData';
 gsap.registerPlugin(ScrollTrigger);
 
 export const Explorations: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const pinnedContentRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const col1Ref = useRef<HTMLDivElement | null>(null);
   const col2Ref = useRef<HTMLDivElement | null>(null);
 
@@ -19,56 +18,47 @@ export const Explorations: React.FC = () => {
   const col1Items = EXPLORATIONS.slice(0, 3);
   const col2Items = EXPLORATIONS.slice(3, 6);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const section = sectionRef.current;
-    const pinnedContent = pinnedContentRef.current;
     const col1 = col1Ref.current;
     const col2 = col2Ref.current;
 
-    if (!section || !pinnedContent || !col1 || !col2) return;
+    if (!section || !col1 || !col2) return;
 
     const isDesktop = window.matchMedia('(min-width: 768px)').matches;
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const ctx = gsap.context(() => {
       if (isDesktop && !isReducedMotion) {
-        // 1. Pin center text content throughout the section scroll (Desktop only)
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top top',
-          end: 'bottom bottom',
-          pin: pinnedContent,
-          pinSpacing: false,
-          anticipatePin: 1,
-        });
-
-        // 2. Parallax scroll effect for Column 1 & Column 2
+        // Parallax scrub on columns while title remains pinned via CSS sticky
         gsap.fromTo(
           col1,
-          { y: '0%' },
+          { y: 0 },
           {
-            y: '-25%',
+            y: -160,
             ease: 'none',
             scrollTrigger: {
               trigger: section,
               start: 'top bottom',
               end: 'bottom top',
               scrub: 1,
+              invalidateOnRefresh: true,
             },
           }
         );
 
         gsap.fromTo(
           col2,
-          { y: '15%' },
+          { y: 80 },
           {
-            y: '-35%',
+            y: -280,
             ease: 'none',
             scrollTrigger: {
               trigger: section,
               start: 'top bottom',
               end: 'bottom top',
-              scrub: 1.2,
+              scrub: 1.3,
+              invalidateOnRefresh: true,
             },
           }
         );
@@ -82,13 +72,10 @@ export const Explorations: React.FC = () => {
     <section
       id="explorations"
       ref={sectionRef}
-      className="relative min-h-[280vh] md:min-h-[320vh] bg-bg overflow-hidden border-t border-stroke/40"
+      className="relative min-h-[220vh] md:min-h-[280vh] bg-bg border-t border-stroke/40"
     >
-      {/* Layer 1: Pinned Center Title (z-10) */}
-      <div
-        ref={pinnedContentRef}
-        className="w-full h-screen flex flex-col items-center justify-center text-center px-6 pointer-events-none z-10"
-      >
+      {/* Layer 1: CSS Sticky Center Title (Works reliably without overflow-hidden on parent) */}
+      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center text-center px-6 pointer-events-none z-10">
         <div className="max-w-xl mx-auto pointer-events-auto">
           
           {/* Eyebrow */}
@@ -101,7 +88,7 @@ export const Explorations: React.FC = () => {
           </div>
 
           {/* Heading */}
-          <h2 className="text-5xl md:text-7xl lg:text-8xl text-text-primary font-normal tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-text-primary font-normal tracking-tight mb-4">
             Visual <span className="font-display italic font-normal">playground</span>
           </h2>
 
@@ -128,12 +115,12 @@ export const Explorations: React.FC = () => {
         </div>
       </div>
 
-      {/* Layer 2: Parallax Columns (z-20) */}
-      <div className="relative z-20 max-w-[1400px] mx-auto px-6 pt-32 pb-32 pointer-events-none">
+      {/* Layer 2: Parallax Columns (Starts alongside the sticky header via -mt-[100vh]) */}
+      <div className="relative -mt-[100vh] z-20 max-w-[1400px] mx-auto px-6 pt-24 md:pt-36 pb-36 pointer-events-none">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-40 items-start">
           
           {/* Column 1 */}
-          <div ref={col1Ref} className="flex flex-col gap-16 md:gap-28 pointer-events-auto">
+          <div ref={col1Ref} className="flex flex-col gap-20 md:gap-36 pointer-events-auto will-change-transform">
             {col1Items.map((item: Exploration) => (
               <div
                 key={item.id}
@@ -160,7 +147,7 @@ export const Explorations: React.FC = () => {
           </div>
 
           {/* Column 2 */}
-          <div ref={col2Ref} className="flex flex-col gap-16 md:gap-28 pointer-events-auto pt-12 md:pt-36">
+          <div ref={col2Ref} className="flex flex-col gap-20 md:gap-36 pointer-events-auto pt-16 md:pt-56 will-change-transform">
             {col2Items.map((item: Exploration) => (
               <div
                 key={item.id}
