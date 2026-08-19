@@ -137,11 +137,10 @@ const FRAGMENT_SHADER_SRC = `
 
     float flameNoise = fbm(vec2(p.x * 2.8 + 3.6 * r.x, p.y * 2.2 - t * 0.85));
 
-    // Large flame height: covers bottom ~65% of the card with organic mountain-like peaks
-    // Peak rises higher on the right side (matching React Bits Shader Card reference)
-    float rightBias = smoothstep(0.0, 1.0, st.x) * 0.22;
-    float mouseLift = (1.0 - u_mouse.y) * 0.12;
-    float flameHeight = 0.56 + rightBias + flameNoise * 0.32 + q.x * 0.14 + mouseLift;
+    // Refined flame height: covers bottom ~45% of the card with organic peaks on the right
+    float rightBias = smoothstep(0.0, 1.0, st.x) * 0.16;
+    float mouseLift = (1.0 - u_mouse.y) * 0.08;
+    float flameHeight = 0.38 + rightBias + flameNoise * 0.22 + q.x * 0.10 + mouseLift;
 
     // Vertical distance from flame crest (positive = inside flame, negative = above flame)
     float dist = flameHeight - st.y;
