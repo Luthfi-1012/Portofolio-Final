@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useLayoutEffect, useRef, useState, useEffect, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
@@ -6,40 +6,272 @@ import {
   X, 
   Layers, 
   Server, 
-  Coins, 
+  Globe, 
   Database, 
   Users, 
-  Cpu, 
+  Terminal, 
   CheckCircle2, 
-  Code2, 
   FolderGit2, 
   Sparkles,
-  ExternalLink
+  Cpu,
+  Workflow,
+  ShieldCheck,
+  GitBranch,
+  TableProperties
 } from 'lucide-react';
 import { TECH_STACK_CATEGORIES } from '../data/portfolioData';
 import type { TechCategory } from '../data/portfolioData';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Helper to get matching icons for categories
-const getCategoryIcon = (id: string, color: string) => {
-  const iconProps = { className: 'w-5 h-5', style: { color } };
+// Custom line-art visual module renderer for each engineering card
+const renderCardVisualSnippet = (id: string) => {
   switch (id) {
     case 'tech-1':
-      return <Layers {...iconProps} />;
+    case 'tech-frontend':
+      return (
+        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+          <div className="flex items-center justify-between text-muted mb-2">
+            <span className="text-[#89AACC] flex items-center gap-1.5 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC] animate-pulse" />
+              React 19 · TypeScript Strict
+            </span>
+            <span className="text-[10px] text-muted/80">60 FPS</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-1.5 flex-1 rounded-full bg-white/5 overflow-hidden">
+              <div className="h-full w-[85%] bg-gradient-to-r from-[#89AACC] to-[#4E85BF] rounded-full" />
+            </div>
+            <span className="text-[10px] text-text-secondary font-mono">Tailwind UI</span>
+          </div>
+        </div>
+      );
+
     case 'tech-2':
-      return <Server {...iconProps} />;
+    case 'tech-backend':
+      return (
+        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+          <div className="flex items-center justify-between text-muted mb-1.5">
+            <span className="text-emerald-400/90 font-medium">POST /api/v1/auth/sanctum</span>
+            <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">200 OK</span>
+          </div>
+          <div className="text-[10px] text-muted flex items-center justify-between">
+            <span>Laravel 11.x · Eloquent ORM</span>
+            <span className="text-text-secondary">18ms</span>
+          </div>
+        </div>
+      );
+
     case 'tech-3':
-      return <Coins {...iconProps} />;
+    case 'tech-web3':
+      return (
+        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+          <div className="flex items-center justify-between text-muted mb-1.5">
+            <span className="text-[#89AACC] font-medium truncate">EVM :: 0x71C...3a9F</span>
+            <span className="text-[10px] text-[#89AACC] bg-[#89AACC]/10 px-1.5 py-0.5 rounded border border-[#89AACC]/20">VERIFIED</span>
+          </div>
+          <div className="text-[10px] text-muted flex items-center justify-between">
+            <span>Solidity ^0.8.20 · ethers.js</span>
+            <span className="text-text-secondary">Rise In Certified</span>
+          </div>
+        </div>
+      );
+
     case 'tech-4':
-      return <Database {...iconProps} />;
+    case 'tech-database':
+      return (
+        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+          <div className="flex items-center justify-between text-muted mb-1.5">
+            <span className="text-text-primary">users.id <span className="text-[#89AACC]">➔</span> payroll.user_id</span>
+            <span className="text-[10px] text-muted bg-white/5 px-1.5 py-0.5 rounded border border-white/10">B-TREE INDEX</span>
+          </div>
+          <div className="text-[10px] text-muted flex items-center justify-between">
+            <span>MySQL 8.0 · PostgreSQL</span>
+            <span className="text-text-secondary">ACID Compliant</span>
+          </div>
+        </div>
+      );
+
     case 'tech-5':
-      return <Users {...iconProps} />;
+    case 'tech-management':
+      return (
+        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+          <div className="flex items-center justify-between text-muted mb-1.5">
+            <span className="text-amber-300/90 font-medium">Sprint Delivery: 100%</span>
+            <span className="text-[10px] text-amber-300 bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-400/20">PM BOOTCAMP</span>
+          </div>
+          <div className="text-[10px] text-muted flex items-center justify-between">
+            <span>Scrum · BPH HIMSI · Mentoring</span>
+            <span className="text-text-secondary">10+ Developers</span>
+          </div>
+        </div>
+      );
+
     case 'tech-6':
-      return <Cpu {...iconProps} />;
+    case 'tech-tools':
+      return (
+        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+          <div className="flex items-center justify-between text-muted mb-1.5">
+            <span className="text-purple-300/90">● main ─━─ ● feat/agent</span>
+            <span className="text-[10px] text-purple-300 bg-purple-400/10 px-1.5 py-0.5 rounded border border-purple-400/20">VITE HMR 42ms</span>
+          </div>
+          <div className="text-[10px] text-muted flex items-center justify-between">
+            <span>Git · Postman · AI Workflow</span>
+            <span className="text-text-secondary">Cursor / Copilot</span>
+          </div>
+        </div>
+      );
+
     default:
-      return <Code2 {...iconProps} />;
+      return null;
   }
+};
+
+/* ── Interactive Detail Modal Lightbox ── */
+const TechDetailModal: React.FC<{
+  tech: TechCategory | null;
+  onClose: () => void;
+}> = ({ tech, onClose }) => {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!tech) return;
+
+    // Lock body scroll
+    document.body.style.overflow = 'hidden';
+
+    const tl = gsap.timeline();
+    tl.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: 'power2.out' });
+    tl.fromTo(
+      cardRef.current,
+      { opacity: 0, y: 30, scale: 0.96 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'power3.out' },
+      '-=0.1'
+    );
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [tech]);
+
+  const handleClose = useCallback(() => {
+    const tl = gsap.timeline({
+      onComplete: onClose,
+    });
+    tl.to(cardRef.current, { opacity: 0, y: 20, scale: 0.97, duration: 0.2, ease: 'power2.in' });
+    tl.to(overlayRef.current, { opacity: 0, duration: 0.18, ease: 'power2.in' }, '-=0.08');
+  }, [onClose]);
+
+  if (!tech) return null;
+
+  return (
+    <div
+      ref={overlayRef}
+      className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+      onClick={handleClose}
+      style={{ opacity: 0 }}
+    >
+      <div
+        ref={cardRef}
+        className="relative max-w-2xl w-full bg-[#0d0e14] border border-stroke rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+        style={{ opacity: 0 }}
+      >
+        {/* Subtle accent gradient top line */}
+        <div className="absolute top-0 left-0 right-0 h-px accent-gradient opacity-60" />
+
+        {/* Close Button */}
+        <button
+          onClick={handleClose}
+          className="absolute top-5 right-5 z-10 w-9 h-9 rounded-full bg-surface border border-stroke flex items-center justify-center text-text-primary hover:bg-stroke/40 transition-colors"
+          aria-label="Close dialog"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
+        {/* Modal Header */}
+        <div className="mb-4 pr-10">
+          <span className="text-[10.5px] uppercase font-mono tracking-[0.25em] text-[#89AACC]">
+            {tech.badge}
+          </span>
+          <h3 className="text-2xl sm:text-3xl font-medium text-text-primary tracking-tight mt-1">
+            {tech.title}
+          </h3>
+        </div>
+
+        <p className="text-sm text-muted mb-6 leading-relaxed">
+          {tech.description}
+        </p>
+
+        {/* Key Highlight Box */}
+        <div className="p-4 rounded-2xl bg-surface/80 border border-stroke mb-6 flex items-start gap-3">
+          <CheckCircle2 className="w-4 h-4 text-[#89AACC] shrink-0 mt-0.5" strokeWidth={1.75} />
+          <p className="text-xs text-text-primary leading-relaxed font-normal">
+            {tech.highlight}
+          </p>
+        </div>
+
+        {/* Skills Matrix */}
+        <div className="mb-6">
+          <h4 className="text-[11px] uppercase font-mono tracking-[0.2em] text-muted font-medium mb-3">
+            Core Technologies & Methodologies
+          </h4>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            {tech.skills.map((skill, sIdx) => (
+              <div
+                key={sIdx}
+                className="p-2.5 rounded-xl bg-surface/60 border border-stroke flex items-center justify-between"
+              >
+                <span className="text-xs font-medium text-text-primary">
+                  {skill.name}
+                </span>
+                {skill.tag && (
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-bg border border-stroke text-muted font-mono">
+                    {skill.tag}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Associated Projects */}
+        <div className="mb-6">
+          <h4 className="text-[11px] uppercase font-mono tracking-[0.2em] text-muted font-medium mb-3">
+            Applied In Projects & Roles
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {tech.projectsUsed.map((proj, pIdx) => (
+              <span
+                key={pIdx}
+                className="text-xs px-3 py-1.5 rounded-lg bg-surface border border-stroke text-text-secondary flex items-center gap-2"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC]" />
+                {proj}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Modal Footer */}
+        <div className="flex justify-end pt-4 border-t border-stroke/60">
+          <button
+            onClick={handleClose}
+            className="px-6 py-2.5 rounded-full bg-surface border border-stroke text-xs text-text-primary hover:bg-stroke/40 transition-colors"
+          >
+            Close Window
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export const Explorations: React.FC = () => {
@@ -150,65 +382,62 @@ export const Explorations: React.FC = () => {
         </div>
       </div>
 
-      {/* Layer 2: Floating Parallax Tech Category Cards */}
+      {/* Layer 2: Bespoke Engineering Modules in Floating Parallax Deck */}
       <div className="relative -mt-[100vh] z-20 max-w-[1400px] mx-auto px-6 pt-24 md:pt-36 pb-36 pointer-events-none">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-40 items-start">
           
           {/* Column 1 */}
           <div ref={col1Ref} className="flex flex-col gap-16 md:gap-32 pointer-events-auto will-change-transform">
-            {col1Items.map((item: TechCategory) => (
+            {col1Items.map((item: TechCategory, idx: number) => (
               <div
                 key={item.id}
                 onClick={() => setSelectedTech(item)}
-                style={{ transform: `rotate(${item.rotation})` }}
-                className="group relative w-full max-w-[380px] mx-auto rounded-3xl p-6 md:p-7 border border-stroke/80 bg-surface/90 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-white/40 overflow-hidden"
+                style={{ transform: `rotate(${idx % 2 === 0 ? '-2.5deg' : '2.5deg'})` }}
+                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0d0e14]/90 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-[#89AACC]/40 overflow-hidden"
               >
-                {/* Glowing ambient background light */}
-                <div
-                  className="absolute -top-16 -right-16 w-40 h-40 rounded-full opacity-20 group-hover:opacity-40 blur-3xl transition-opacity duration-500 pointer-events-none"
-                  style={{ backgroundColor: item.accent }}
-                />
+                {/* Subtle top edge hairline glow on hover */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Top Badge & Icon */}
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-2xl bg-bg/80 border border-stroke flex items-center justify-center">
-                    {getCategoryIcon(item.id, item.accent)}
-                  </div>
-                  <span
-                    className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stroke bg-bg/60 font-medium"
-                    style={{ color: item.accent }}
-                  >
+                {/* Top Module Bar: Numbered identifier + Category Badge */}
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <span className="text-[10px] font-mono tracking-[0.2em] text-muted">
+                    0{idx + 1} // MODULE
+                  </span>
+                  <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/10 bg-white/[0.02] text-[#89AACC]">
                     {item.badge}
                   </span>
                 </div>
 
-                {/* Title & Tagline */}
-                <h3 className="text-xl font-medium text-text-primary mb-1.5 group-hover:text-white transition-colors">
+                {/* Title & One-line Summary */}
+                <h3 className="text-xl font-medium text-text-primary mb-1 tracking-tight group-hover:text-white transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-xs text-muted leading-relaxed mb-5">
+                <p className="text-xs text-muted leading-relaxed font-normal">
                   {item.tagline}
                 </p>
 
-                {/* Skill Pills */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
+                {/* Custom Engineering Visual Preview Snippet */}
+                {renderCardVisualSnippet(item.id)}
+
+                {/* Skill Stack Monospace Tags */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
                   {item.skills.map((skill, sIdx) => (
                     <span
                       key={sIdx}
-                      className="text-[11px] px-2.5 py-1 rounded-lg bg-bg/90 border border-stroke text-text-secondary group-hover:border-stroke/80 transition-colors"
+                      className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors"
                     >
                       {skill.name}
                     </span>
                   ))}
                 </div>
 
-                {/* Bottom CTA bar */}
-                <div className="flex items-center justify-between pt-3 border-t border-stroke/40 text-xs text-muted group-hover:text-text-primary transition-colors">
-                  <span className="text-[11px] flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-accent" />
-                    View Details & Projects
+                {/* Bottom Action Row */}
+                <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs text-muted group-hover:text-text-primary transition-colors">
+                  <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-muted group-hover:text-text-primary">
+                    <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
+                    Inspect Details & Roles
                   </span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-accent" />
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
                 </div>
               </div>
             ))}
@@ -216,59 +445,56 @@ export const Explorations: React.FC = () => {
 
           {/* Column 2 */}
           <div ref={col2Ref} className="flex flex-col gap-16 md:gap-32 pointer-events-auto pt-16 md:pt-56 will-change-transform">
-            {col2Items.map((item: TechCategory) => (
+            {col2Items.map((item: TechCategory, idx: number) => (
               <div
                 key={item.id}
                 onClick={() => setSelectedTech(item)}
-                style={{ transform: `rotate(${item.rotation})` }}
-                className="group relative w-full max-w-[380px] mx-auto rounded-3xl p-6 md:p-7 border border-stroke/80 bg-surface/90 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-white/40 overflow-hidden"
+                style={{ transform: `rotate(${idx % 2 === 0 ? '3deg' : '-2deg'})` }}
+                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0d0e14]/90 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-[#89AACC]/40 overflow-hidden"
               >
-                {/* Glowing ambient background light */}
-                <div
-                  className="absolute -top-16 -right-16 w-40 h-40 rounded-full opacity-20 group-hover:opacity-40 blur-3xl transition-opacity duration-500 pointer-events-none"
-                  style={{ backgroundColor: item.accent }}
-                />
+                {/* Subtle top edge hairline glow on hover */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Top Badge & Icon */}
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-2xl bg-bg/80 border border-stroke flex items-center justify-center">
-                    {getCategoryIcon(item.id, item.accent)}
-                  </div>
-                  <span
-                    className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-stroke bg-bg/60 font-medium"
-                    style={{ color: item.accent }}
-                  >
+                {/* Top Module Bar: Numbered identifier + Category Badge */}
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <span className="text-[10px] font-mono tracking-[0.2em] text-muted">
+                    0{idx + 4} // MODULE
+                  </span>
+                  <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/10 bg-white/[0.02] text-[#89AACC]">
                     {item.badge}
                   </span>
                 </div>
 
-                {/* Title & Tagline */}
-                <h3 className="text-xl font-medium text-text-primary mb-1.5 group-hover:text-white transition-colors">
+                {/* Title & One-line Summary */}
+                <h3 className="text-xl font-medium text-text-primary mb-1 tracking-tight group-hover:text-white transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-xs text-muted leading-relaxed mb-5">
+                <p className="text-xs text-muted leading-relaxed font-normal">
                   {item.tagline}
                 </p>
 
-                {/* Skill Pills */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
+                {/* Custom Engineering Visual Preview Snippet */}
+                {renderCardVisualSnippet(item.id)}
+
+                {/* Skill Stack Monospace Tags */}
+                <div className="flex flex-wrap gap-1.5 mb-4">
                   {item.skills.map((skill, sIdx) => (
                     <span
                       key={sIdx}
-                      className="text-[11px] px-2.5 py-1 rounded-lg bg-bg/90 border border-stroke text-text-secondary group-hover:border-stroke/80 transition-colors"
+                      className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors"
                     >
                       {skill.name}
                     </span>
                   ))}
                 </div>
 
-                {/* Bottom CTA bar */}
-                <div className="flex items-center justify-between pt-3 border-t border-stroke/40 text-xs text-muted group-hover:text-text-primary transition-colors">
-                  <span className="text-[11px] flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-accent" />
-                    View Details & Projects
+                {/* Bottom Action Row */}
+                <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs text-muted group-hover:text-text-primary transition-colors">
+                  <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-muted group-hover:text-text-primary">
+                    <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
+                    Inspect Details & Roles
                   </span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-accent" />
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
                 </div>
               </div>
             ))}
@@ -277,114 +503,11 @@ export const Explorations: React.FC = () => {
         </div>
       </div>
 
-      {/* Interactive Detail Modal (Lightbox) */}
-      {selectedTech && (
-        <div
-          className="fixed inset-0 z-[10000] bg-black/85 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
-          onClick={() => setSelectedTech(null)}
-        >
-          <div
-            className="relative max-w-2xl w-full bg-[#111219] border border-stroke/80 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Ambient glow in modal */}
-            <div
-              className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-20 blur-3xl pointer-events-none"
-              style={{ backgroundColor: selectedTech.accent }}
-            />
-
-            {/* Close Button */}
-            <button
-              onClick={() => setSelectedTech(null)}
-              className="absolute top-6 right-6 z-10 w-9 h-9 rounded-full bg-surface border border-stroke flex items-center justify-center text-text-primary hover:bg-stroke/40 transition-colors"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            {/* Modal Header */}
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-11 h-11 rounded-2xl bg-surface border border-stroke flex items-center justify-center">
-                {getCategoryIcon(selectedTech.id, selectedTech.accent)}
-              </div>
-              <div>
-                <span
-                  className="text-[10px] uppercase tracking-widest font-semibold"
-                  style={{ color: selectedTech.accent }}
-                >
-                  {selectedTech.category}
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-medium text-text-primary">
-                  {selectedTech.title}
-                </h3>
-              </div>
-            </div>
-
-            <p className="text-sm text-muted mb-6 leading-relaxed">
-              {selectedTech.description}
-            </p>
-
-            {/* Highlight Box */}
-            <div className="p-4 rounded-2xl bg-surface/80 border border-stroke/60 mb-6 flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-              <p className="text-xs text-text-primary leading-relaxed">
-                {selectedTech.highlight}
-              </p>
-            </div>
-
-            {/* Skills Matrix */}
-            <div className="mb-6">
-              <h4 className="text-xs uppercase tracking-widest text-muted font-medium mb-3">
-                Core Stack & Technologies
-              </h4>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                {selectedTech.skills.map((skill, sIdx) => (
-                  <div
-                    key={sIdx}
-                    className="p-2.5 rounded-xl bg-bg/80 border border-stroke/60 flex items-center justify-between"
-                  >
-                    <span className="text-xs font-medium text-text-primary">
-                      {skill.name}
-                    </span>
-                    {skill.tag && (
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-surface border border-stroke text-muted">
-                        {skill.tag}
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Related Experience / Projects */}
-            <div className="mb-6">
-              <h4 className="text-xs uppercase tracking-widest text-muted font-medium mb-3">
-                Applied In Projects & Roles
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {selectedTech.projectsUsed.map((proj, pIdx) => (
-                  <span
-                    key={pIdx}
-                    className="text-xs px-3 py-1.5 rounded-full bg-surface border border-stroke text-text-secondary flex items-center gap-1.5"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: selectedTech.accent }} />
-                    {proj}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Modal Footer */}
-            <div className="flex justify-end pt-4 border-t border-stroke/50">
-              <button
-                onClick={() => setSelectedTech(null)}
-                className="px-6 py-2.5 rounded-full bg-surface border border-stroke text-xs text-text-primary hover:bg-stroke/40 transition-colors"
-              >
-                Close Window
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Interactive Detail Modal Lightbox */}
+      <TechDetailModal
+        tech={selectedTech}
+        onClose={() => setSelectedTech(null)}
+      />
     </section>
   );
 };
