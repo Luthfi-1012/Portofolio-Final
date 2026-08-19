@@ -20,7 +20,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-1':
     case 'tech-frontend':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
+        <div className="my-4 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 font-mono text-[11px] backdrop-blur-sm">
           <div className="flex items-center justify-between text-muted mb-2">
             <span className="text-[#89AACC] flex items-center gap-1.5 font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC] animate-pulse" />
@@ -40,7 +40,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-2':
     case 'tech-backend':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
+        <div className="my-4 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 font-mono text-[11px] backdrop-blur-sm">
           <div className="flex items-center justify-between text-muted mb-1.5">
             <span className="text-emerald-400/90 font-medium">POST /api/v1/auth/sanctum</span>
             <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">200 OK</span>
@@ -55,10 +55,10 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-3':
     case 'tech-web3':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
+        <div className="my-4 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 font-mono text-[11px] backdrop-blur-sm">
           <div className="flex items-center justify-between text-muted mb-1.5">
-            <span className="text-[#89AACC] font-medium truncate">EVM :: 0x71C...3a9F</span>
-            <span className="text-[10px] text-[#89AACC] bg-[#89AACC]/10 px-1.5 py-0.5 rounded border border-[#89AACC]/20">VERIFIED</span>
+            <span className="text-[#c084fc] font-medium truncate">EVM :: 0x71C...3a9F</span>
+            <span className="text-[10px] text-[#c084fc] bg-[#c084fc]/10 px-1.5 py-0.5 rounded border border-[#c084fc]/20">VERIFIED</span>
           </div>
           <div className="text-[10px] text-muted flex items-center justify-between">
             <span>Solidity ^0.8.20 · ethers.js</span>
@@ -70,7 +70,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-4':
     case 'tech-database':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
+        <div className="my-4 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 font-mono text-[11px] backdrop-blur-sm">
           <div className="flex items-center justify-between text-muted mb-1.5">
             <span className="text-text-primary">users.id <span className="text-[#89AACC]">➔</span> payroll.user_id</span>
             <span className="text-[10px] text-muted bg-white/5 px-1.5 py-0.5 rounded border border-white/10">B-TREE INDEX</span>
@@ -85,7 +85,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-5':
     case 'tech-management':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
+        <div className="my-4 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 font-mono text-[11px] backdrop-blur-sm">
           <div className="flex items-center justify-between text-muted mb-1.5">
             <span className="text-amber-300/90 font-medium">Sprint Delivery: 100%</span>
             <span className="text-[10px] text-amber-300 bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-400/20">PM BOOTCAMP</span>
@@ -100,7 +100,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-6':
     case 'tech-tools':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
+        <div className="my-4 p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 font-mono text-[11px] backdrop-blur-sm">
           <div className="flex items-center justify-between text-muted mb-1.5">
             <span className="text-purple-300/90">● main ─━─ ● feat/agent</span>
             <span className="text-[10px] text-purple-300 bg-purple-400/10 px-1.5 py-0.5 rounded border border-purple-400/20">VITE HMR 42ms</span>
@@ -392,16 +392,16 @@ export const Explorations: React.FC = () => {
                 onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => setSelectedTech(item)}
                 style={{ transform: `rotate(${idx % 2 === 0 ? '-2.5deg' : '2.5deg'})` }}
-                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0d0e14]/85 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-white/30 overflow-hidden"
+                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0c0d14]/80 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-purple-400/40 hover:shadow-[0_0_35px_rgba(168,85,247,0.15)] overflow-hidden"
               >
-                {/* 1. Fluid WebGL Shader Canvas in Card Background (React Bits Shader Card Effect) */}
+                {/* 1. Animated Burning Purple Flame WebGL Shader (React Bits Shader Card) */}
                 <CardShaderCanvas cardId={item.id} isHovered={hoveredCard === item.id} />
 
-                {/* 2. Soft Dark Vignette Overlay for Crisp Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/90 via-[#0a0a0f]/60 to-[#0a0a0f]/35 pointer-events-none" />
+                {/* 2. Soft Dark Vignette Overlay for Crisp Typography Contrast */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/90 via-[#0a0a0f]/25 to-transparent pointer-events-none" />
 
                 {/* 3. Subtle top edge hairline glow on hover */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* 4. Foreground Content */}
                 <div className="relative z-10">
@@ -410,7 +410,7 @@ export const Explorations: React.FC = () => {
                     <span className="text-[10px] font-mono tracking-[0.2em] text-muted">
                       0{idx + 1} // MODULE
                     </span>
-                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/10 bg-black/40 text-[#89AACC] backdrop-blur-sm">
+                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/15 bg-black/40 text-[#c084fc] backdrop-blur-md">
                       {item.badge}
                     </span>
                   </div>
@@ -431,7 +431,7 @@ export const Explorations: React.FC = () => {
                     {item.skills.map((skill, sIdx) => (
                       <span
                         key={sIdx}
-                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-black/40 border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors backdrop-blur-sm"
+                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors backdrop-blur-sm"
                       >
                         {skill.name}
                       </span>
@@ -441,10 +441,10 @@ export const Explorations: React.FC = () => {
                   {/* Bottom Action Row */}
                   <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs text-muted group-hover:text-text-primary transition-colors">
                     <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-muted group-hover:text-text-primary">
-                      <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
+                      <Sparkles className="w-3.5 h-3.5 text-[#c084fc]" />
                       Inspect Details & Roles
                     </span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#c084fc]" />
                   </div>
                 </div>
               </div>
@@ -460,16 +460,16 @@ export const Explorations: React.FC = () => {
                 onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => setSelectedTech(item)}
                 style={{ transform: `rotate(${idx % 2 === 0 ? '3deg' : '-2deg'})` }}
-                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0d0e14]/85 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-white/30 overflow-hidden"
+                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0c0d14]/80 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-purple-400/40 hover:shadow-[0_0_35px_rgba(168,85,247,0.15)] overflow-hidden"
               >
-                {/* 1. Fluid WebGL Shader Canvas in Card Background (React Bits Shader Card Effect) */}
+                {/* 1. Animated Burning Purple Flame WebGL Shader (React Bits Shader Card) */}
                 <CardShaderCanvas cardId={item.id} isHovered={hoveredCard === item.id} />
 
-                {/* 2. Soft Dark Vignette Overlay for Crisp Readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/90 via-[#0a0a0f]/60 to-[#0a0a0f]/35 pointer-events-none" />
+                {/* 2. Soft Dark Vignette Overlay for Crisp Typography Contrast */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/90 via-[#0a0a0f]/25 to-transparent pointer-events-none" />
 
                 {/* 3. Subtle top edge hairline glow on hover */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* 4. Foreground Content */}
                 <div className="relative z-10">
@@ -478,7 +478,7 @@ export const Explorations: React.FC = () => {
                     <span className="text-[10px] font-mono tracking-[0.2em] text-muted">
                       0{idx + 4} // MODULE
                     </span>
-                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/10 bg-black/40 text-[#89AACC] backdrop-blur-sm">
+                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/15 bg-black/40 text-[#c084fc] backdrop-blur-md">
                       {item.badge}
                     </span>
                   </div>
@@ -499,7 +499,7 @@ export const Explorations: React.FC = () => {
                     {item.skills.map((skill, sIdx) => (
                       <span
                         key={sIdx}
-                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-black/40 border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors backdrop-blur-sm"
+                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors backdrop-blur-sm"
                       >
                         {skill.name}
                       </span>
@@ -509,10 +509,10 @@ export const Explorations: React.FC = () => {
                   {/* Bottom Action Row */}
                   <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs text-muted group-hover:text-text-primary transition-colors">
                     <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-muted group-hover:text-text-primary">
-                      <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
+                      <Sparkles className="w-3.5 h-3.5 text-[#c084fc]" />
                       Inspect Details & Roles
                     </span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#c084fc]" />
                   </div>
                 </div>
               </div>
