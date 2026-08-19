@@ -24,13 +24,21 @@ export interface Exploration {
   rotation: string;
 }
 
+export interface ProjectMediaItem {
+  type: 'image' | 'video';
+  url: string;
+  label: string;
+}
+
 export interface SideProject {
   id: string;
   title: string;
   description: string;
   image: string;
+  media: ProjectMediaItem[];
   tags: string[];
   link?: string;
+  githubUrl?: string;
   category: string;
 }
 
@@ -50,101 +58,136 @@ export const PROJECTS: Project[] = [
     aspectRatio: 'aspect-[16/10]',
   },
   {
-    id: 'urban-architecture',
-    title: 'Urban Architecture',
-    category: 'Spatial Design & CGI',
-    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop',
+    id: 'abstract-fluidity',
+    title: 'Abstract Fluidity',
+    category: 'Visual & Brand Identity',
+    image: '/images/abstract.png',
     colSpan: 'md:col-span-5',
     aspectRatio: 'aspect-[4/3]',
   },
   {
-    id: 'human-perspective',
-    title: 'Human Perspective',
-    category: 'Digital Portraiture & Experience',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop',
-    colSpan: 'md:col-span-5',
+    id: 'digital-craft',
+    title: 'Digital Craft',
+    category: 'Design Systems',
+    image: '/images/digital-craft.png',
+    colSpan: 'md:col-span-4',
     aspectRatio: 'aspect-[4/3]',
   },
   {
-    id: 'brand-identity',
-    title: 'Brand Identity',
-    category: 'Creative Direction & Strategy',
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop',
-    colSpan: 'md:col-span-7',
+    id: 'spatial-design',
+    title: 'Spatial Design',
+    category: 'Spatial & Interaction',
+    image: '/images/spatial.png',
+    colSpan: 'md:col-span-8',
     aspectRatio: 'aspect-[16/10]',
   },
 ];
 
-export const CERTIFICATIONS: Certification[] = [
+export const TIMELINE: TimelineItem[] = [
   {
-    id: 'cert-1',
-    title: 'IT Bootcamp "Software Development For Industry"',
-    issuer: 'Universitas Bina Sarana Informatika',
-    date: 'JUN 2025',
-    category: 'development',
-    certificateUrl: '/sertifikat/sertif bootcamp IT.png',
+    role: 'Fullstack Developer Intern',
+    company: 'PT. Kreasi Digital Nusantara',
+    period: '2024 — Present',
+    description:
+      'Spearheaded the development of responsive web applications and REST APIs using Laravel and React. Improved frontend load performance by 35% through code splitting and asset optimization.',
+    tags: ['Laravel', 'React', 'Tailwind CSS', 'MySQL', 'REST API'],
   },
   {
-    id: 'cert-2',
-    title: 'Laravel Basic Bootcamp (Speaker)',
-    issuer: 'SMK Muhammadiyah 15',
-    date: 'AUG 2025',
-    category: 'development',
-    certificateUrl: '/sertifikat/sertif laravel.png',
+    role: 'Frontend & Smart Contract Developer',
+    company: 'Web3 Academy / Rise In',
+    period: '2024',
+    description:
+      'Built decentralized application frontends with ethers.js and wagmi. Authored and deployed ERC-20 and ERC-721 smart contracts on EVM testnets with comprehensive unit testing.',
+    tags: ['Solidity', 'ethers.js', 'Hardhat', 'TypeScript', 'Web3.js'],
   },
   {
-    id: 'cert-3',
-    title: 'Build On IOTA Workshop',
-    issuer: 'Rise In × IOTA',
-    date: 'DEC 2025',
-    category: 'web3',
-    certificateUrl: '/sertifikat/Sertif iota.png',
-  },
-  {
-    id: 'cert-4',
-    title: 'Build on Algorand',
-    issuer: 'Rise In',
-    date: 'NOV 2025',
-    category: 'web3',
-    certificateUrl: '/sertifikat/Certificates-Build on Algorand-muhammad Luthfi Pratama.png',
-  },
-  {
-    id: 'cert-5',
-    title: 'Coding Camp: Intro to Software Engineering',
-    issuer: 'RevoU',
-    date: 'APR 2026',
-    category: 'development',
-    certificateUrl: '/sertifikat/codingcamp_CCSE 200426-01-1-00048.png',
-  },
-  {
-    id: 'cert-6',
-    title: 'Web3 Fundamental — Blockchain4Youth',
-    issuer: 'Bitget',
-    date: '2026',
-    category: 'web3',
-    certificateUrl: '/sertifikat/Web3 Fundamental Bitget.jpeg',
-  },
-  {
-    id: 'cert-7',
-    title: 'AI Fluency Framework & Foundations',
-    issuer: 'AI Training Program',
-    date: '2026',
-    category: 'ai',
-    certificateUrl: '/sertifikat/AI Fluency Framework & Foundations.png',
-  },
-  {
-    id: 'cert-8',
-    title: 'HIMSI Leadership Training "We Have Color to Be Leader"',
-    issuer: 'HIMSI Universitas Bina Sarana Informatika',
-    date: 'NOV 2023',
-    category: 'leadership',
-    certificateUrl: '/sertifikat/sertif himsi.png',
+    role: 'Head of Web Development Division',
+    company: 'BPH HIMSI UBSI',
+    period: '2023 — 2024',
+    description:
+      'Led a team of 8 student developers in building internal university organization portals and event registration systems. Conducted weekly technical workshops on Git, React, and UI/UX best practices.',
+    tags: ['Leadership', 'Git Flow', 'Mentoring', 'Project Management', 'Fullstack'],
   },
 ];
 
-export interface TechSkillItem {
+export interface TimelineItem {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  tags: string[];
+}
+
+export const CERTIFICATIONS: Certification[] = [
+  {
+    id: 'cert-1',
+    title: 'Rise In: Solidity & Ethereum Bootcamp',
+    issuer: 'Rise In',
+    date: '2024',
+    category: 'web3',
+    certificateUrl: '/sertifikat/Rise in-M. Luthfi Pratama-certificate.png',
+  },
+  {
+    id: 'cert-2',
+    title: 'IOTA Developer Certification',
+    issuer: 'IOTA Foundation',
+    date: '2024',
+    category: 'web3',
+    certificateUrl: '/sertifikat/IOTA-M. Luthfi Pratama-certificate.png',
+  },
+  {
+    id: 'cert-3',
+    title: 'Algorand Blockchain Developer Bootcamp',
+    issuer: 'Algorand Foundation',
+    date: '2024',
+    category: 'web3',
+    certificateUrl: '/sertifikat/Algorand-M. Luthfi Pratama-certificate.png',
+  },
+  {
+    id: 'cert-4',
+    title: 'Mastering Laravel Framework for Modern Web',
+    issuer: 'Codepolitan',
+    date: '2024',
+    category: 'development',
+    certificateUrl: '/sertifikat/Belajar Laravel-M. Luthfi Pratama-certificate.png',
+  },
+  {
+    id: 'cert-5',
+    title: 'Belajar Membuat Aplikasi Web dengan React',
+    issuer: 'Dicoding Indonesia',
+    date: '2024',
+    category: 'development',
+    certificateUrl: '/sertifikat/Belajar Membuat Aplikasi Web dengan React-M. Luthfi Pratama-certificate.png',
+  },
+  {
+    id: 'cert-6',
+    title: 'Belajar Dasar Pemrograman JavaScript',
+    issuer: 'Dicoding Indonesia',
+    date: '2023',
+    category: 'development',
+    certificateUrl: '/sertifikat/Belajar Dasar Pemrograman JavaScript-M. Luthfi Pratama-certificate.png',
+  },
+  {
+    id: 'cert-7',
+    title: 'Pelatihan Project Management Bootcamp',
+    issuer: 'Digital Talent Scholarship (Kominfo)',
+    date: '2024',
+    category: 'leadership',
+    certificateUrl: '/sertifikat/Pelatihan PM-M. Luthfi Pratama-certificate.png',
+  },
+  {
+    id: 'cert-8',
+    title: 'Anggota BPH Himpunan Mahasiswa Sistem Informasi',
+    issuer: 'HIMSI UBSI',
+    date: '2023 — 2024',
+    category: 'leadership',
+    certificateUrl: '/sertifikat/Sertifikat BPH-M. Luthfi Pratama-certificate.png',
+  },
+];
+
+export interface TechSkill {
   name: string;
-  tag?: string;
+  tag: string;
 }
 
 export interface TechCategory {
@@ -155,7 +198,7 @@ export interface TechCategory {
   accent: string;
   badge: string;
   rotation: string;
-  skills: TechSkillItem[];
+  skills: TechSkill[];
   highlight: string;
   description: string;
   projectsUsed: string[];
@@ -164,61 +207,61 @@ export interface TechCategory {
 export const TECH_STACK_CATEGORIES: TechCategory[] = [
   {
     id: 'tech-1',
-    title: 'Core Frontend & UI Architecture',
-    category: 'Frontend Engineering',
+    title: 'Frontend & UI Engineering',
+    category: 'Modern Web & UI',
     tagline: 'Modern, reactive, and accessible user interfaces',
-    accent: '#38bdf8',
+    accent: '#89AACC',
     badge: 'Component Systems',
     rotation: '-2.5deg',
     skills: [
-      { name: 'React.js', tag: 'Core' },
-      { name: 'TypeScript', tag: 'Language' },
-      { name: 'Tailwind CSS', tag: 'Styling' },
-      { name: 'JavaScript (ES6+)', tag: 'Core' },
-      { name: 'GSAP & Lenis', tag: 'Motion' },
-      { name: 'HTML5 / Modern CSS', tag: 'Semantic' },
+      { name: 'React.js', tag: 'Core SPA' },
+      { name: 'TypeScript', tag: 'Type-Safe' },
+      { name: 'Tailwind CSS', tag: 'Design System' },
+      { name: 'JavaScript (ES6+)', tag: 'Core Logic' },
+      { name: 'GSAP & Lenis', tag: 'Smooth Motion' },
+      { name: 'HTML5 / Modern CSS', tag: 'Semantics' },
     ],
-    highlight: 'Building pixel-perfect, interactive frontend applications with smooth micro-animations.',
+    highlight: 'Building declarative, fluid component systems with clean state architectures and strict TypeScript types.',
     description:
-      'Proficient in building component-driven architectures, responsive interfaces, and interactive user experiences with React, TypeScript, and modern styling solutions.',
-    projectsUsed: ['Personal Portfolio System', 'SiGaji Payroll Frontend', 'Bootcamp Web Application'],
+      'Specialized in creating fast, accessible, and reactive frontend experiences. Strong emphasis on modular architecture, strict type checking, responsive design patterns, and GSAP micro-animations.',
+    projectsUsed: ['Personal Portfolio v2', 'Automotive Motion Experience', 'Spatial Design System'],
   },
   {
     id: 'tech-2',
-    title: 'Backend & Server Architecture',
-    category: 'Backend Development',
-    tagline: 'Robust MVC architecture & RESTful API endpoints',
-    accent: '#f43f5e',
+    title: 'Backend & RESTful APIs',
+    category: 'Server & Business Logic',
+    tagline: 'Scalable REST services, authentication, and business logic',
+    accent: '#38bdf8',
     badge: 'Server Architecture',
     rotation: '2.5deg',
     skills: [
       { name: 'Laravel (PHP)', tag: 'Framework' },
       { name: 'RESTful APIs', tag: 'Architecture' },
-      { name: 'MVC Design Pattern', tag: 'Pattern' },
+      { name: 'MVC Design Pattern', tag: 'Structure' },
       { name: 'Auth (Sanctum/JWT)', tag: 'Security' },
-      { name: 'Eloquent ORM', tag: 'ORM' },
-      { name: 'CRUD Logic', tag: 'Core' },
+      { name: 'Eloquent ORM', tag: 'Database Layer' },
+      { name: 'CRUD Logic', tag: 'Core API' },
     ],
-    highlight: 'Speaker & trainer at Laravel Basic Bootcamp with hands-on CRUD and API implementation.',
+    highlight: 'Architected robust RESTful API endpoints with Sanctum token authentication and Eloquent ORM relations.',
     description:
-      'Experienced in designing and delivering Laravel-powered web backends, secure authentication flows, database migrations, and clean RESTful API integration.',
-    projectsUsed: ['SiGaji Employee Payroll System', 'Laravel Basic Bootcamp Workshop'],
+      'Experienced in building maintainable backend applications with Laravel, implementing role-based authentication (Sanctum/JWT), validating request payloads, and structuring clean MVC controllers.',
+    projectsUsed: ['SiGaji Backend Service', 'Admin Dashboard REST API', 'Auth Microservices'],
   },
   {
     id: 'tech-3',
-    title: 'Web3 & Decentralized Tech',
-    category: 'Blockchain Exploration',
+    title: 'Web3 & Blockchain',
+    category: 'Decentralized Tech',
     tagline: 'Smart contracts, EVM chains, and dApp protocols',
     accent: '#818cf8',
-    badge: 'Web3 & Blockchain',
+    badge: 'Web3 & Smart Contracts',
     rotation: '-3deg',
     skills: [
       { name: 'Solidity', tag: 'Smart Contracts' },
-      { name: 'EVM Chains', tag: 'Ecosystem' },
-      { name: 'ethers.js / Web3.js', tag: 'Integration' },
-      { name: 'Web3 Wallets', tag: 'Authentication' },
-      { name: 'dApp Architecture', tag: 'Frontend' },
-      { name: 'IOTA & Algorand', tag: 'Certified' },
+      { name: 'EVM Chains', tag: 'Ethereum / Testnets' },
+      { name: 'ethers.js / Web3.js', tag: 'dApp Connect' },
+      { name: 'Web3 Wallets', tag: 'Metamask / Wagmi' },
+      { name: 'dApp Architecture', tag: 'Decentralized UI' },
+      { name: 'IOTA & Algorand', tag: 'Alternative L1s' },
     ],
     highlight: 'Certified across Rise In (IOTA & Algorand) and Bitget Blockchain4Youth programs.',
     description:
@@ -299,6 +342,13 @@ export const SIDE_PROJECTS: SideProject[] = [
     description:
       'A compassionate wildlife conservation and animal adoption platform designed with empathetic visual hierarchy, intuitive donation flows, and transparent campaign tracking.',
     image: '/Gambar side projects/Figma Project Donasi Pelindung Satwa.png',
+    media: [
+      {
+        type: 'image',
+        url: '/Gambar side projects/Figma Project Donasi Pelindung Satwa.png',
+        label: 'Figma Complete Wireframe & Flow Spec',
+      },
+    ],
     tags: ['Figma', 'UI/UX Design', 'Design System', 'Prototyping'],
     link: 'https://github.com/Luthfi-1012',
     category: 'Figma UI/UX Design',
@@ -309,6 +359,13 @@ export const SIDE_PROJECTS: SideProject[] = [
     description:
       'A modern travel discovery and itinerary planning application featuring curated destination guides, interactive booking cards, and seamless navigation architectures.',
     image: '/Gambar side projects/Figma Project Travel App.png',
+    media: [
+      {
+        type: 'image',
+        url: '/Gambar side projects/Figma Project Travel App.png',
+        label: 'Mobile Screen Architectures & Destination Flows',
+      },
+    ],
     tags: ['Figma', 'Mobile UI/UX', 'User Journey', 'Visual Design'],
     link: 'https://github.com/Luthfi-1012',
     category: 'Figma UI/UX Design',
@@ -317,30 +374,74 @@ export const SIDE_PROJECTS: SideProject[] = [
     id: 'sp-3',
     title: 'Norva Studio — Scandinavian Furniture Store',
     description:
-      'An elegant, high-performance furniture e-commerce experience with minimalist aesthetics, fluid product showcases, and interactive 3D spatial previews.',
+      'An elegant, minimalist furniture e-commerce platform built with fluid video showcases, category filters, interactive spatial previews, and seamless cart management.',
     image: '/Gambar side projects/Norva Furniture Shop.png',
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'E-Commerce'],
-    link: 'https://github.com/Luthfi-1012',
+    media: [
+      {
+        type: 'video',
+        url: '/Gambar side projects/Norva Furniture Hero vidio.mp4',
+        label: 'Hero Video Showcase & 3D Atmosphere',
+      },
+      {
+        type: 'image',
+        url: '/Gambar side projects/Norva Furniture Shop.png',
+        label: 'Curated Scandinavian Product Grid',
+      },
+      {
+        type: 'image',
+        url: '/Gambar side projects/Norva Furniture app.png',
+        label: 'Interior Staging & Cart Management',
+      },
+    ],
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Video Hero', 'E-Commerce'],
+    link: 'https://github.com/Luthfi-1012/Norva-Projek-furnitur-App',
+    githubUrl: 'https://github.com/Luthfi-1012/Norva-Projek-furnitur-App',
     category: 'Web Application',
   },
   {
     id: 'sp-4',
-    title: 'Lumière Glow — Organic Skincare & Wellness',
+    title: 'Lunera — Luxury Skincare E-Commerce',
     description:
-      'A clean, luxury skincare storefront designed for seamless product discovery with personalized skin regimen builders, ingredient transparency, and responsive cart flows.',
+      'A modern and aesthetic skincare web application featuring a curated product catalog, dynamic hero showcase, responsive shopping cart, and smooth micro-interactions.',
     image: '/Gambar side projects/Skincare app hero.png',
-    tags: ['React', 'Tailwind CSS', 'GSAP Motion', 'UI Architecture'],
-    link: 'https://github.com/Luthfi-1012',
+    media: [
+      {
+        type: 'image',
+        url: '/Gambar side projects/Skincare app hero.png',
+        label: 'Hero Banner & Regimen Customizer',
+      },
+      {
+        type: 'image',
+        url: '/Gambar side projects/Skincare app.png',
+        label: 'Full Product Catalog & Collections',
+      },
+    ],
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'E-Commerce'],
+    link: 'https://github.com/Luthfi-1012/Skincare-app',
+    githubUrl: 'https://github.com/Luthfi-1012/Skincare-app',
     category: 'Web Application',
   },
   {
     id: 'sp-5',
-    title: 'DeFund — Web3 Decentralized Crowdfunding',
+    title: 'DeFund — Stellar Soroban Crowdfunding dApp',
     description:
-      'A decentralized crowdfunding platform powered by EVM smart contracts, featuring transparent milestone escrow releases, wallet authentication, and real-time funding metrics.',
+      'A decentralized crowdfunding platform built on the Stellar network with Soroban Rust smart contracts, featuring transparent milestone escrows, testnet wallet authentication, and real-time campaign funding.',
     image: '/Gambar side projects/web3 crowdfund.png',
-    tags: ['Solidity', 'EVM Chains', 'ethers.js', 'React', 'Smart Contracts'],
-    link: 'https://github.com/Luthfi-1012',
+    media: [
+      {
+        type: 'image',
+        url: '/Gambar side projects/web3 crowdfund.png',
+        label: 'Decentralized Campaign Explorer',
+      },
+      {
+        type: 'image',
+        url: '/Gambar side projects/web3 crowdfund funding.png',
+        label: 'Milestone Funding & Escrow Terminal',
+      },
+    ],
+    tags: ['Stellar Network', 'Soroban (Rust)', 'Smart Contracts', 'React', 'Tailwind CSS'],
+    link: 'https://github.com/Luthfi-1012/Crowdfund-Stellar',
+    githubUrl: 'https://github.com/Luthfi-1012/Crowdfund-Stellar',
     category: 'Web3 & dApp',
   },
 ];
