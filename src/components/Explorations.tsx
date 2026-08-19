@@ -4,23 +4,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
   ArrowUpRight, 
   X, 
-  Layers, 
-  Server, 
-  Globe, 
-  Database, 
-  Users, 
-  Terminal, 
   CheckCircle2, 
   FolderGit2, 
-  Sparkles,
-  Cpu,
-  Workflow,
-  ShieldCheck,
-  GitBranch,
-  TableProperties
+  Sparkles 
 } from 'lucide-react';
 import { TECH_STACK_CATEGORIES } from '../data/portfolioData';
 import type { TechCategory } from '../data/portfolioData';
+import { CardShaderCanvas } from './CardShaderCanvas';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,7 +20,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-1':
     case 'tech-frontend':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
           <div className="flex items-center justify-between text-muted mb-2">
             <span className="text-[#89AACC] flex items-center gap-1.5 font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC] animate-pulse" />
@@ -39,7 +29,7 @@ const renderCardVisualSnippet = (id: string) => {
             <span className="text-[10px] text-muted/80">60 FPS</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-1.5 flex-1 rounded-full bg-white/5 overflow-hidden">
+            <div className="h-1.5 flex-1 rounded-full bg-white/10 overflow-hidden">
               <div className="h-full w-[85%] bg-gradient-to-r from-[#89AACC] to-[#4E85BF] rounded-full" />
             </div>
             <span className="text-[10px] text-text-secondary font-mono">Tailwind UI</span>
@@ -50,7 +40,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-2':
     case 'tech-backend':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
           <div className="flex items-center justify-between text-muted mb-1.5">
             <span className="text-emerald-400/90 font-medium">POST /api/v1/auth/sanctum</span>
             <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">200 OK</span>
@@ -65,7 +55,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-3':
     case 'tech-web3':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
           <div className="flex items-center justify-between text-muted mb-1.5">
             <span className="text-[#89AACC] font-medium truncate">EVM :: 0x71C...3a9F</span>
             <span className="text-[10px] text-[#89AACC] bg-[#89AACC]/10 px-1.5 py-0.5 rounded border border-[#89AACC]/20">VERIFIED</span>
@@ -80,7 +70,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-4':
     case 'tech-database':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
           <div className="flex items-center justify-between text-muted mb-1.5">
             <span className="text-text-primary">users.id <span className="text-[#89AACC]">➔</span> payroll.user_id</span>
             <span className="text-[10px] text-muted bg-white/5 px-1.5 py-0.5 rounded border border-white/10">B-TREE INDEX</span>
@@ -95,7 +85,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-5':
     case 'tech-management':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
           <div className="flex items-center justify-between text-muted mb-1.5">
             <span className="text-amber-300/90 font-medium">Sprint Delivery: 100%</span>
             <span className="text-[10px] text-amber-300 bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-400/20">PM BOOTCAMP</span>
@@ -110,7 +100,7 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-6':
     case 'tech-tools':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/40 border border-white/10 font-mono text-[11px]">
+        <div className="my-4 p-3.5 rounded-2xl bg-black/50 border border-white/10 font-mono text-[11px] backdrop-blur-md">
           <div className="flex items-center justify-between text-muted mb-1.5">
             <span className="text-purple-300/90">● main ─━─ ● feat/agent</span>
             <span className="text-[10px] text-purple-300 bg-purple-400/10 px-1.5 py-0.5 rounded border border-purple-400/20">VITE HMR 42ms</span>
@@ -127,7 +117,7 @@ const renderCardVisualSnippet = (id: string) => {
   }
 };
 
-/* ── Interactive Detail Modal Lightbox ── */
+/* ── Interactive Detail Modal Lightbox with Shader Backdrop ── */
 const TechDetailModal: React.FC<{
   tech: TechCategory | null;
   onClose: () => void;
@@ -174,100 +164,106 @@ const TechDetailModal: React.FC<{
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[9999] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
       onClick={handleClose}
       style={{ opacity: 0 }}
     >
       <div
         ref={cardRef}
-        className="relative max-w-2xl w-full bg-[#0d0e14] border border-stroke rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden"
+        className="relative max-w-2xl w-full bg-[#0d0e14]/95 border border-white/15 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
         style={{ opacity: 0 }}
       >
+        {/* WebGL Fluid Shader in Modal Background */}
+        <CardShaderCanvas cardId={tech.id} isHovered={true} className="opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/90 via-[#0a0a0f]/75 to-[#0a0a0f]/50 pointer-events-none" />
+
         {/* Subtle accent gradient top line */}
-        <div className="absolute top-0 left-0 right-0 h-px accent-gradient opacity-60" />
+        <div className="absolute top-0 left-0 right-0 h-px accent-gradient opacity-80 z-20" />
 
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-5 right-5 z-10 w-9 h-9 rounded-full bg-surface border border-stroke flex items-center justify-center text-text-primary hover:bg-stroke/40 transition-colors"
+          className="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-surface/80 border border-stroke flex items-center justify-center text-text-primary hover:bg-stroke/40 transition-colors"
           aria-label="Close dialog"
         >
           <X className="w-4 h-4" />
         </button>
 
-        {/* Modal Header */}
-        <div className="mb-4 pr-10">
-          <span className="text-[10.5px] uppercase font-mono tracking-[0.25em] text-[#89AACC]">
-            {tech.badge}
-          </span>
-          <h3 className="text-2xl sm:text-3xl font-medium text-text-primary tracking-tight mt-1">
-            {tech.title}
-          </h3>
-        </div>
+        {/* Modal Foreground Content */}
+        <div className="relative z-10">
+          <div className="mb-4 pr-10">
+            <span className="text-[10.5px] uppercase font-mono tracking-[0.25em] text-[#89AACC] font-medium">
+              {tech.badge}
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-medium text-text-primary tracking-tight mt-1">
+              {tech.title}
+            </h3>
+          </div>
 
-        <p className="text-sm text-muted mb-6 leading-relaxed">
-          {tech.description}
-        </p>
-
-        {/* Key Highlight Box */}
-        <div className="p-4 rounded-2xl bg-surface/80 border border-stroke mb-6 flex items-start gap-3">
-          <CheckCircle2 className="w-4 h-4 text-[#89AACC] shrink-0 mt-0.5" strokeWidth={1.75} />
-          <p className="text-xs text-text-primary leading-relaxed font-normal">
-            {tech.highlight}
+          <p className="text-sm text-muted mb-6 leading-relaxed">
+            {tech.description}
           </p>
-        </div>
 
-        {/* Skills Matrix */}
-        <div className="mb-6">
-          <h4 className="text-[11px] uppercase font-mono tracking-[0.2em] text-muted font-medium mb-3">
-            Core Technologies & Methodologies
-          </h4>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {tech.skills.map((skill, sIdx) => (
-              <div
-                key={sIdx}
-                className="p-2.5 rounded-xl bg-surface/60 border border-stroke flex items-center justify-between"
-              >
-                <span className="text-xs font-medium text-text-primary">
-                  {skill.name}
-                </span>
-                {skill.tag && (
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-bg border border-stroke text-muted font-mono">
-                    {skill.tag}
+          {/* Key Highlight Box */}
+          <div className="p-4 rounded-2xl bg-surface/80 border border-stroke mb-6 flex items-start gap-3 backdrop-blur-md">
+            <CheckCircle2 className="w-4 h-4 text-[#89AACC] shrink-0 mt-0.5" strokeWidth={1.75} />
+            <p className="text-xs text-text-primary leading-relaxed font-normal">
+              {tech.highlight}
+            </p>
+          </div>
+
+          {/* Skills Matrix */}
+          <div className="mb-6">
+            <h4 className="text-[11px] uppercase font-mono tracking-[0.2em] text-muted font-medium mb-3">
+              Core Technologies & Methodologies
+            </h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {tech.skills.map((skill, sIdx) => (
+                <div
+                  key={sIdx}
+                  className="p-2.5 rounded-xl bg-surface/70 border border-stroke flex items-center justify-between backdrop-blur-sm"
+                >
+                  <span className="text-xs font-medium text-text-primary">
+                    {skill.name}
                   </span>
-                )}
-              </div>
-            ))}
+                  {skill.tag && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-bg border border-stroke text-muted font-mono">
+                      {skill.tag}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Associated Projects */}
-        <div className="mb-6">
-          <h4 className="text-[11px] uppercase font-mono tracking-[0.2em] text-muted font-medium mb-3">
-            Applied In Projects & Roles
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {tech.projectsUsed.map((proj, pIdx) => (
-              <span
-                key={pIdx}
-                className="text-xs px-3 py-1.5 rounded-lg bg-surface border border-stroke text-text-secondary flex items-center gap-2"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC]" />
-                {proj}
-              </span>
-            ))}
+          {/* Associated Projects */}
+          <div className="mb-6">
+            <h4 className="text-[11px] uppercase font-mono tracking-[0.2em] text-muted font-medium mb-3">
+              Applied In Projects & Roles
+            </h4>
+            <div className="flex flex-wrap gap-2">
+              {tech.projectsUsed.map((proj, pIdx) => (
+                <span
+                  key={pIdx}
+                  className="text-xs px-3 py-1.5 rounded-lg bg-surface/80 border border-stroke text-text-secondary flex items-center gap-2 backdrop-blur-sm"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC]" />
+                  {proj}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Modal Footer */}
-        <div className="flex justify-end pt-4 border-t border-stroke/60">
-          <button
-            onClick={handleClose}
-            className="px-6 py-2.5 rounded-full bg-surface border border-stroke text-xs text-text-primary hover:bg-stroke/40 transition-colors"
-          >
-            Close Window
-          </button>
+          {/* Modal Footer */}
+          <div className="flex justify-end pt-4 border-t border-stroke/60">
+            <button
+              onClick={handleClose}
+              className="px-6 py-2.5 rounded-full bg-surface/90 border border-stroke text-xs text-text-primary hover:bg-stroke/40 transition-colors"
+            >
+              Close Window
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -280,6 +276,7 @@ export const Explorations: React.FC = () => {
   const col2Ref = useRef<HTMLDivElement | null>(null);
 
   const [selectedTech, setSelectedTech] = useState<TechCategory | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   // Split the 6 tech categories into 2 columns (3 items each)
   const col1Items = TECH_STACK_CATEGORIES.slice(0, 3);
@@ -382,7 +379,7 @@ export const Explorations: React.FC = () => {
         </div>
       </div>
 
-      {/* Layer 2: Bespoke Engineering Modules in Floating Parallax Deck */}
+      {/* Layer 2: Bespoke Engineering Shader Cards in Floating Parallax Deck */}
       <div className="relative -mt-[100vh] z-20 max-w-[1400px] mx-auto px-6 pt-24 md:pt-36 pb-36 pointer-events-none">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-40 items-start">
           
@@ -391,53 +388,64 @@ export const Explorations: React.FC = () => {
             {col1Items.map((item: TechCategory, idx: number) => (
               <div
                 key={item.id}
+                onMouseEnter={() => setHoveredCard(item.id)}
+                onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => setSelectedTech(item)}
                 style={{ transform: `rotate(${idx % 2 === 0 ? '-2.5deg' : '2.5deg'})` }}
-                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0d0e14]/90 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-[#89AACC]/40 overflow-hidden"
+                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0d0e14]/85 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-white/30 overflow-hidden"
               >
-                {/* Subtle top edge hairline glow on hover */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* 1. Fluid WebGL Shader Canvas in Card Background (React Bits Shader Card Effect) */}
+                <CardShaderCanvas cardId={item.id} isHovered={hoveredCard === item.id} />
 
-                {/* Top Module Bar: Numbered identifier + Category Badge */}
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <span className="text-[10px] font-mono tracking-[0.2em] text-muted">
-                    0{idx + 1} // MODULE
-                  </span>
-                  <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/10 bg-white/[0.02] text-[#89AACC]">
-                    {item.badge}
-                  </span>
-                </div>
+                {/* 2. Soft Dark Vignette Overlay for Crisp Readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/90 via-[#0a0a0f]/60 to-[#0a0a0f]/35 pointer-events-none" />
 
-                {/* Title & One-line Summary */}
-                <h3 className="text-xl font-medium text-text-primary mb-1 tracking-tight group-hover:text-white transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-muted leading-relaxed font-normal">
-                  {item.tagline}
-                </p>
+                {/* 3. Subtle top edge hairline glow on hover */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                {/* Custom Engineering Visual Preview Snippet */}
-                {renderCardVisualSnippet(item.id)}
-
-                {/* Skill Stack Monospace Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {item.skills.map((skill, sIdx) => (
-                    <span
-                      key={sIdx}
-                      className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors"
-                    >
-                      {skill.name}
+                {/* 4. Foreground Content */}
+                <div className="relative z-10">
+                  {/* Top Module Bar: Numbered identifier + Category Badge */}
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <span className="text-[10px] font-mono tracking-[0.2em] text-muted">
+                      0{idx + 1} // MODULE
                     </span>
-                  ))}
-                </div>
+                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/10 bg-black/40 text-[#89AACC] backdrop-blur-sm">
+                      {item.badge}
+                    </span>
+                  </div>
 
-                {/* Bottom Action Row */}
-                <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs text-muted group-hover:text-text-primary transition-colors">
-                  <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-muted group-hover:text-text-primary">
-                    <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
-                    Inspect Details & Roles
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
+                  {/* Title & One-line Summary */}
+                  <h3 className="text-xl font-medium text-text-primary mb-1 tracking-tight group-hover:text-white transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-muted leading-relaxed font-normal">
+                    {item.tagline}
+                  </p>
+
+                  {/* Custom Engineering Visual Preview Snippet */}
+                  {renderCardVisualSnippet(item.id)}
+
+                  {/* Skill Stack Monospace Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {item.skills.map((skill, sIdx) => (
+                      <span
+                        key={sIdx}
+                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-black/40 border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors backdrop-blur-sm"
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Bottom Action Row */}
+                  <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs text-muted group-hover:text-text-primary transition-colors">
+                    <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-muted group-hover:text-text-primary">
+                      <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
+                      Inspect Details & Roles
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
+                  </div>
                 </div>
               </div>
             ))}
@@ -448,53 +456,64 @@ export const Explorations: React.FC = () => {
             {col2Items.map((item: TechCategory, idx: number) => (
               <div
                 key={item.id}
+                onMouseEnter={() => setHoveredCard(item.id)}
+                onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => setSelectedTech(item)}
                 style={{ transform: `rotate(${idx % 2 === 0 ? '3deg' : '-2deg'})` }}
-                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0d0e14]/90 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-[#89AACC]/40 overflow-hidden"
+                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/10 bg-[#0d0e14]/85 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-white/30 overflow-hidden"
               >
-                {/* Subtle top edge hairline glow on hover */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* 1. Fluid WebGL Shader Canvas in Card Background (React Bits Shader Card Effect) */}
+                <CardShaderCanvas cardId={item.id} isHovered={hoveredCard === item.id} />
 
-                {/* Top Module Bar: Numbered identifier + Category Badge */}
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <span className="text-[10px] font-mono tracking-[0.2em] text-muted">
-                    0{idx + 4} // MODULE
-                  </span>
-                  <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/10 bg-white/[0.02] text-[#89AACC]">
-                    {item.badge}
-                  </span>
-                </div>
+                {/* 2. Soft Dark Vignette Overlay for Crisp Readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/90 via-[#0a0a0f]/60 to-[#0a0a0f]/35 pointer-events-none" />
 
-                {/* Title & One-line Summary */}
-                <h3 className="text-xl font-medium text-text-primary mb-1 tracking-tight group-hover:text-white transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-xs text-muted leading-relaxed font-normal">
-                  {item.tagline}
-                </p>
+                {/* 3. Subtle top edge hairline glow on hover */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                {/* Custom Engineering Visual Preview Snippet */}
-                {renderCardVisualSnippet(item.id)}
-
-                {/* Skill Stack Monospace Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {item.skills.map((skill, sIdx) => (
-                    <span
-                      key={sIdx}
-                      className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors"
-                    >
-                      {skill.name}
+                {/* 4. Foreground Content */}
+                <div className="relative z-10">
+                  {/* Top Module Bar: Numbered identifier + Category Badge */}
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <span className="text-[10px] font-mono tracking-[0.2em] text-muted">
+                      0{idx + 4} // MODULE
                     </span>
-                  ))}
-                </div>
+                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/10 bg-black/40 text-[#89AACC] backdrop-blur-sm">
+                      {item.badge}
+                    </span>
+                  </div>
 
-                {/* Bottom Action Row */}
-                <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs text-muted group-hover:text-text-primary transition-colors">
-                  <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-muted group-hover:text-text-primary">
-                    <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
-                    Inspect Details & Roles
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
+                  {/* Title & One-line Summary */}
+                  <h3 className="text-xl font-medium text-text-primary mb-1 tracking-tight group-hover:text-white transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-muted leading-relaxed font-normal">
+                    {item.tagline}
+                  </p>
+
+                  {/* Custom Engineering Visual Preview Snippet */}
+                  {renderCardVisualSnippet(item.id)}
+
+                  {/* Skill Stack Monospace Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {item.skills.map((skill, sIdx) => (
+                      <span
+                        key={sIdx}
+                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-black/40 border border-white/10 text-text-secondary group-hover:border-white/20 transition-colors backdrop-blur-sm"
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Bottom Action Row */}
+                  <div className="flex items-center justify-between pt-3 border-t border-white/10 text-xs text-muted group-hover:text-text-primary transition-colors">
+                    <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-muted group-hover:text-text-primary">
+                      <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
+                      Inspect Details & Roles
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
+                  </div>
                 </div>
               </div>
             ))}
