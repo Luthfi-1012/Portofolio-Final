@@ -66,16 +66,22 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection = 'home', onNaviga
         {/* 3. Nav Links */}
         <div className="flex items-center space-x-1">
           {[
-            { id: 'home', label: 'Home' },
-            { id: 'work', label: 'Work' },
-            { id: 'journal', label: 'Resume' },
+            { id: 'home', label: 'Home', isDirectPdf: false },
+            { id: 'work', label: 'Work', isDirectPdf: false },
+            { id: 'resume', label: 'Resume', isDirectPdf: true },
           ].map((item) => {
             const isActive = currentSection === item.id;
             return (
               <a
                 key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => handleLinkClick(e, item.id)}
+                href={item.isDirectPdf ? '/Curriculum Vitae M. Luthfi P.pdf' : `#${item.id}`}
+                target={item.isDirectPdf ? '_blank' : undefined}
+                rel={item.isDirectPdf ? 'noopener noreferrer' : undefined}
+                onClick={(e) => {
+                  if (!item.isDirectPdf) {
+                    handleLinkClick(e, item.id);
+                  }
+                }}
                 className={`text-xs sm:text-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2 transition-all duration-200 font-medium ${
                   isActive
                     ? 'text-text-primary bg-stroke/60 shadow-inner'

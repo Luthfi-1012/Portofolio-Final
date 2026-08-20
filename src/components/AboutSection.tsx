@@ -188,7 +188,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
     <section
       id="about"
       ref={sectionRef}
-      className="relative z-10 py-20 md:py-28 lg:py-32 border-t border-stroke/40"
+      className="relative z-10 py-20 md:py-28 lg:py-32"
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16">
 

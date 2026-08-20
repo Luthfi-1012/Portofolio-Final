@@ -254,18 +254,24 @@ export const RippleGridCanvas: React.FC<RippleGridCanvasProps> = ({
             // 2. Modulasi Ukuran Titik
             const dotSize = baseRadius + (maxRadius - baseRadius) * envelope * (0.3 + 0.7 * crestFactor);
 
-            // 3. Warna Monokrom Abu-Putih Redup (Alpha 0.08 s/d 0.38)
-            const alpha = Math.min(0.08 + 0.32 * envelope * (0.35 + 0.65 * crestFactor), 0.45).toFixed(3);
+            // 3. Warna Pink Neon Bercahaya (Neon Pink #ff2d87 / rgba(255, 45, 135))
+            const alpha = Math.min(0.15 + 0.65 * envelope * (0.35 + 0.65 * crestFactor), 0.95).toFixed(3);
 
-            // Subtle soft glow untuk puncak gelombang
-            if (crestFactor > 0.7 && envelope > 0.4) {
-              ctx.shadowColor = `rgba(200, 210, 240, 0.4)`;
-              ctx.shadowBlur = Math.round(6 * envelope * crestFactor);
+            // Glowing Neon Pink shadow untuk puncak gelombang
+            if (crestFactor > 0.6 && envelope > 0.3) {
+              ctx.shadowColor = `rgba(255, 45, 135, 0.85)`;
+              ctx.shadowBlur = Math.round(10 * envelope * crestFactor);
             } else {
               ctx.shadowBlur = 0;
             }
 
-            ctx.fillStyle = `rgba(235, 240, 255, ${alpha})`;
+            // Gradasi warna titik: dari pink magenta lembut ke pink neon terang di puncak
+            if (crestFactor > 0.7) {
+              ctx.fillStyle = `rgba(255, 90, 180, ${alpha})`;
+            } else {
+              ctx.fillStyle = `rgba(255, 45, 135, ${alpha})`;
+            }
+
             ctx.beginPath();
             ctx.arc(renderX, renderY, dotSize, 0, TWO_PI);
             ctx.fill();

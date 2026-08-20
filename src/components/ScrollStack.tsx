@@ -39,7 +39,7 @@ export const ScrollStack: React.FC = () => {
         );
       }
 
-      // 2. Animate scale, dim, and blur of inactive cards as next card comes up
+      // 2. Animate subtle scale, dim, and brightness of inactive cards as next card stacks on top
       if (!isReducedMotion && isDesktop) {
         const cardElements = deck.querySelectorAll<HTMLElement>('.scroll-stack-card');
 
@@ -53,14 +53,14 @@ export const ScrollStack: React.FC = () => {
               innerEl,
               { scale: 1, opacity: 1, filter: 'brightness(1)' },
               {
-                scale: 0.93,
-                opacity: 0,
-                filter: 'brightness(0.4)',
+                scale: 0.95,
+                opacity: 0.5,
+                filter: 'brightness(0.6)',
                 ease: 'power2.out',
                 scrollTrigger: {
                   trigger: nextCardEl,
                   start: 'top 85%',
-                  end: 'top 30%',
+                  end: 'top 40%',
                   scrub: true,
                   invalidateOnRefresh: true,
                 },

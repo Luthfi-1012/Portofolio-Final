@@ -12,6 +12,8 @@ import { ContactFooter } from './components/ContactFooter';
 import { CareerTimeline } from './components/CareerTimeline';
 import { RippleGridCanvas } from './components/RippleGridCanvas';
 
+import { TechMarquee } from './components/TechMarquee';
+
 /* ── About Section Data ── */
 const ABOUT_DATA = {
   avatarUrl: '/Profil saya-Software Enginner.png',
@@ -85,6 +87,7 @@ export default function App() {
           <Navbar />
           <main>
             <Hero />
+            <TechMarquee />
             <AboutSection {...ABOUT_DATA} />
             <SelectedWorks />
             <ScrollStack />

@@ -459,3 +459,176 @@ export const STATS: StatItem[] = [
     subtext: 'Successfully led and delivered bootcamp projects on time with team coordination.',
   },
 ];
+
+export interface FeaturedProject {
+  id: string;
+  title: string;
+  category: string;
+  tagline: string;
+  description: string;
+  image: string;
+  screenshots: string[];
+  tags: string[];
+  roles: string[];
+  challenge: string;
+  approach: string;
+  outcome: string;
+  whatWeDid: string[];
+  githubUrl: string;
+}
+
+export const FEATURED_PROJECTS: FeaturedProject[] = [
+  {
+    id: 'fp-toko-online',
+    title: 'Toko Online Nusantara',
+    category: 'E-Commerce Platform',
+    tagline: 'Modern culinary e-commerce platform with real-time courier shipping API and automated payment gateways.',
+    description:
+      'A full-stack e-commerce web platform engineered for ordering Indonesian traditional culinary delicacies nationwide. Incorporates multi-step checkout workflows, automated courier tariff calculations via RajaOngkir API, instant multi-channel payments through Midtrans Snap popup, Google OAuth SSO authentication, and an executive administration dashboard.',
+    image: '/gambar featured projects/Tokoonline home.png',
+    screenshots: [
+      '/gambar featured projects/Tokoonline home.png',
+      '/gambar featured projects/Tokoonline checkout.png',
+      '/gambar featured projects/Tokoonline backend.png',
+    ],
+    tags: ['Laravel 10', 'PHP 8.1+', 'MySQL', 'Midtrans Gateway', 'RajaOngkir API', 'Google OAuth'],
+    roles: ['Fullstack Web Development', 'Payment Gateway Integration', 'Courier API Architecture', 'Database Engineering'],
+    challenge:
+      'Traditional Indonesian food vendors struggle with manual logistics calculation across thousands of islands, complex payment verification, and cumbersome customer checkout experiences.',
+    approach:
+      'Architected a robust Laravel 10 MVC platform integrating real-time AJAX Fetch with Komerce RajaOngkir API for dynamic destination dropdowns and Midtrans Snap for automated QRIS & Virtual Account reconciliation.',
+    outcome:
+      'Seamless 3-step checkout experience with 100% automated payment confirmation, real-time postal logistics calculation for JNE/TIKI/POS, and a comprehensive admin metric dashboard.',
+    whatWeDid: [
+      'Multi-Step Checkout with Live Subtotal & Weight Calculation',
+      'Midtrans Snap Payment Integration (QRIS, VA Bank, Credit Card)',
+      'RajaOngkir API Integration for Real-Time Shipping Rates',
+      'Google OAuth Single Sign-On with Socialite',
+      'Admin Metric Dashboard for Product & Transaction Analytics',
+    ],
+    githubUrl: 'https://github.com/Luthfi-1012/Toko-Online',
+  },
+  {
+    id: 'fp-iota-energy',
+    title: 'IOTA Smart Energy Grid',
+    category: 'Web3 & DePIN',
+    tagline: 'Decentralized peer-to-peer energy trading network powered by IOTA blockchain smart contracts.',
+    description:
+      'A revolutionary Decentralized Physical Infrastructure Network (DePIN) application built on the IOTA blockchain. Enables local microgrids and prosumers to trade renewable energy peer-to-peer or via an open decentralized marketplace with near-instant finality and minimal transaction fees.',
+    image: '/gambar featured projects/Web3 Iota Landing pages.png',
+    screenshots: [
+      '/gambar featured projects/Web3 Iota Landing pages.png',
+      '/gambar featured projects/iota dashboard.png',
+      '/gambar featured projects/Iota marketplace.png',
+      '/gambar featured projects/Iota create.png',
+    ],
+    tags: ['React 19', 'Next.js 16', 'IOTA Testnet', 'Move Smart Contracts', 'TypeScript', 'TailwindCSS'],
+    roles: ['Smart Contract Engineering', 'dApp Frontend Architecture', 'DePIN Systems Design', 'Web3 Wallet Auth'],
+    challenge:
+      'Centralized energy grids impose heavy transmission losses and lack transparent pricing mechanisms for residential solar producers wishing to sell surplus clean electricity to neighbors.',
+    approach:
+      'Leveraged IOTA DAG architecture and Move smart contracts to build feeless micro-transaction escrows, allowing peer-to-peer bidding and location-aware energy routing.',
+    outcome:
+      'A modern high-throughput dApp frontend in React 19 featuring one-click wallet onboarding, real-time kilowatt-hour telemetry charts, and automated blockchain escrow settlements.',
+    whatWeDid: [
+      'IOTA Blockchain Smart Contract Integration (Package ID 0x9187c...)',
+      'P2P Energy Marketplace with Dynamic Pricing',
+      'Location-Smart Energy Routing & Proximity Bidding',
+      'Real-Time Dashboard for Energy Production vs Consumption',
+      'One-Click Web3 Wallet Connect & Automatic Profile Creation',
+    ],
+    githubUrl: 'https://github.com/Luthfi-1012/Iota-Smart-Energy-Grid',
+  },
+  {
+    id: 'fp-health-tracker',
+    title: 'Health Tracker Mobile',
+    category: 'Mobile Application',
+    tagline: 'Cross-platform health & wellness companion with hardware pedometer telemetry and interactive charts.',
+    description:
+      'A comprehensive personal health monitoring mobile app developed in Flutter and Dart. Tracks daily physical activity with hardware pedometer sensors, sleep consistency rhythms, hydration streaks, calorie and macro nutrient logs, mood journals, and interactive visual charts powered by FL_Chart.',
+    image: '/gambar featured projects/mobile healt tracker.png',
+    screenshots: [
+      '/gambar featured projects/mobile healt tracker.png',
+      '/gambar featured projects/mobile healt tracker2.png',
+      '/gambar featured projects/mobile healt tracker3.png',
+      '/gambar featured projects/mobile healt tracker4.png',
+    ],
+    tags: ['Flutter', 'Dart', 'Hardware Pedometer', 'FL_Chart', 'Clean Architecture', 'Android / iOS'],
+    roles: ['Mobile UI/UX Engineering', 'Sensor Hardware Integration', 'State Management', 'Data Visualization'],
+    challenge:
+      'Users find health logging tedious when apps require manual step entries and offer cluttered, uninspiring metric dashboards.',
+    approach:
+      'Implemented clean architecture with sensor listeners for continuous background step counting, gamified daily streak counters (Sleep, Water, Steps), and aesthetic visual cards using Poppins typography.',
+    outcome:
+      'High-performance 60 FPS mobile experience with interactive weekly goal progress bars, real-time calorie burn calculators, and intuitive mood tracking expressions.',
+    whatWeDid: [
+      'Hardware Pedometer Sensor Stream & Real-Time Step Counter',
+      'Sleep, Hydration, and Activity Gamified Streak Systems',
+      'Daily Calorie & Food Logging with Macro Breakdown',
+      'Interactive FL_Chart Data Visualization for Weekly Metrics',
+      'Mood Journaling with Visual Emoji State Mapping',
+    ],
+    githubUrl: 'https://github.com/Luthfi-1012/Health-tracker-mobile',
+  },
+  {
+    id: 'fp-tamagochi',
+    title: 'Tamagochi.XLM',
+    category: 'Web3 & GameFi',
+    tagline: 'Nostalgic virtual pet gaming reimagined with Stellar Soroban smart contracts and token economics.',
+    description:
+      'An engaging blockchain virtual pet dApp built on the Stellar network. Inspired by classic Tamagotchi handheld games, players adopt, nourish, and train digital pets whose health, happiness, and energy states are stored immutably on-chain using Soroban Rust smart contracts.',
+    image: '/gambar featured projects/web3 Tamagochi.png',
+    screenshots: [
+      '/gambar featured projects/web3 Tamagochi.png',
+      '/gambar featured projects/web3 Tamagochi2.png',
+    ],
+    tags: ['React', 'TypeScript', 'Stellar Soroban', 'Rust Smart Contracts', 'Freighter Wallet', 'GameFi'],
+    roles: ['Soroban Smart Contracts', 'GameFi Mechanism Design', 'Frontend Web3 Integration', 'Token Economics'],
+    challenge:
+      'Traditional virtual pet games store pet states on centralized servers that can be shut down at any time, depriving players of authentic digital ownership.',
+    approach:
+      'Designed Soroban smart contracts in Rust to manage pet state lifecycle (hunger degradation, experience leveling, item inventories) with ultra-low fees and sub-second Stellar transaction times.',
+    outcome:
+      'A joyful, responsive Web3 game frontend built with React and TailwindCSS where every interaction (feeding, playing, resting) executes as a secure on-chain transaction.',
+    whatWeDid: [
+      'Soroban (Rust) Smart Contract State Machine for Pet Vitality',
+      'Freighter Wallet Authentication & Stellar Testnet Connectivity',
+      'Interactive Gamified Pet Sprite Animations & Status Bars',
+      'On-Chain Leveling System with Tokenized Achievement Rewards',
+      'Inventory System for Pet Food and Training Consumables',
+    ],
+    githubUrl: 'https://github.com/Luthfi-1012/Tamagochi.XLM',
+  },
+  {
+    id: 'fp-sigaji',
+    title: 'SiGaji Payroll System',
+    category: 'Enterprise System',
+    tagline: 'Automated web-based corporate payroll and employee management system with role-based security.',
+    description:
+      'An enterprise employee payroll and human resources management platform engineered with Laravel and MySQL. Features fine-grained role-based access control for HR administrators and employees, automated net salary computations (allowances, deductions, taxes), monthly reporting, and instant printable salary slip generation.',
+    image: '/gambar featured projects/sigaji payroll.png',
+    screenshots: [
+      '/gambar featured projects/sigaji payroll.png',
+      '/gambar featured projects/sigaji dashboard karyawan.png',
+      '/gambar featured projects/sigaji manage karyawan.png',
+      '/gambar featured projects/sigaji laporan admin.png',
+      '/gambar featured projects/sigajislip gaji karyawan.png',
+    ],
+    tags: ['Laravel', 'PHP', 'MySQL', 'Eloquent ORM', 'Role-Based Access Control', 'PDF Slip Generator'],
+    roles: ['Backend System Architecture', 'Payroll Formula Automation', 'Database Relational Modeling', 'RBAC Security'],
+    challenge:
+      'Manual payroll processing via spreadsheets leads to frequent calculation discrepancies, delayed salary slip distributions, and security vulnerabilities with sensitive employee compensation data.',
+    approach:
+      'Constructed a normalized relational database schema with Eloquent ORM relations to automate salary formulas, tax withholdings, attendance deductions, and role-based middleware guards.',
+    outcome:
+      'Accelerated monthly payroll processing by 80%, automated generation of confidential salary slips with PDF export, and provided distinct role-specific dashboards for HR admins and staff.',
+    whatWeDid: [
+      'Automated Formula Engine for Base Pay, Allowances, and Deductions',
+      'Role-Based Access Control (Admin HR vs Employee Self-Service)',
+      'Individual Salary Slip Generator with Print & Export Support',
+      'Comprehensive Monthly Payroll Ledger & Historical Audit Reports',
+      'Employee Master Data CRUD with Department & Position Mapping',
+    ],
+    githubUrl: 'https://github.com/Luthfi-1012/Sigaji-Payroll',
+  },
+];

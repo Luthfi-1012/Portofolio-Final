@@ -1,84 +1,143 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState, useCallback, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
-import { PROJECTS } from '../data/portfolioData';
-import type { Project } from '../data/portfolioData';
+import { FEATURED_PROJECTS } from '../data/portfolioData';
+import type { FeaturedProject } from '../data/portfolioData';
+import { FeaturedProjectDetail } from './FeaturedProjectDetail';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const SelectedWorks: React.FC = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const trackContainerRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
+  const mobileCardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  const [selectedProject, setSelectedProject] = useState<FeaturedProject | null>(null);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+
+  const totalProjects = FEATURED_PROJECTS.length;
+
+  const handleViewProject = useCallback((project: FeaturedProject) => {
+    setSelectedProject(project);
+    setIsDetailOpen(true);
+  }, []);
+
+  const handleCloseDetail = useCallback(() => {
+    setIsDetailOpen(false);
+    setSelectedProject(null);
+  }, []);
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
+    const track = trackRef.current;
+    const trackContainer = trackContainerRef.current;
     if (!section) return;
 
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
 
     const ctx = gsap.context(() => {
-      // 1. Header reveal
-      if (headerRef.current) {
-        gsap.fromTo(
-          headerRef.current,
-          { opacity: 0, y: 25 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      }
+      if (isDesktop && track && trackContainer) {
+        // Calculate the total horizontal distance the track needs to travel
+        const getDistance = () => {
+          return track.scrollWidth - trackContainer.clientWidth + 160;
+        };
 
-      // 2. Staggered card reveal
-      const validCards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
-      if (validCards.length > 0) {
-        gsap.fromTo(
-          validCards,
-          { opacity: 0, y: 35 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.12,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 75%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      }
+        // Pin the section and smoothly translate track horizontally
+        const horizontalTween = gsap.to(track, {
+          x: () => -getDistance(),
+          ease: 'none',
+          scrollTrigger: {
+            id: 'sw-horizontal-pin',
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${getDistance() * 1.1}`,
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
 
-      // 3. Gentle image-only parallax inside overflow-hidden container (desktop only, no reduced motion)
-      if (!isReducedMotion && isDesktop) {
-        imagesRef.current.forEach((img, i) => {
-          const card = cardsRef.current[i];
-          if (!img || !card) return;
-
+        // Header reveal on initial arrival
+        if (headerRef.current) {
           gsap.fromTo(
-            img,
-            { yPercent: -8, scale: 1.12 },
+            headerRef.current,
+            { opacity: 0, x: -30 },
             {
-              yPercent: 8,
-              scale: 1.12,
-              ease: 'none',
+              opacity: 1,
+              x: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
+
+        // Animate each card: Card 1 enters with section, Card 2..5 rise from below as they glide in
+        const validCards = cardsRef.current.filter(Boolean) as HTMLDivElement[];
+        validCards.forEach((card, index) => {
+          if (index === 0) {
+            gsap.fromTo(
+              card,
+              { opacity: 0, y: 60, scale: 0.96 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: section,
+                  start: 'top 70%',
+                  toggleActions: 'play none none none',
+                },
+              }
+            );
+          } else {
+            // Subsequent cards rise from bottom as they scroll into view horizontally
+            gsap.fromTo(
+              card,
+              { opacity: 0.2, y: 90, scale: 0.93 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                  trigger: card,
+                  containerAnimation: horizontalTween,
+                  start: 'left 92%',
+                  end: 'left 55%',
+                  scrub: true,
+                },
+              }
+            );
+          }
+        });
+      } else {
+        // Mobile / Tablet: staggered vertical reveals
+        const validMobileCards = mobileCardsRef.current.filter(Boolean) as HTMLDivElement[];
+        validMobileCards.forEach((card) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power3.out',
               scrollTrigger: {
                 trigger: card,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 0.8,
+                start: 'top 80%',
+                toggleActions: 'play none none none',
               },
             }
           );
@@ -86,124 +145,294 @@ export const SelectedWorks: React.FC = () => {
       }
     }, section);
 
-    return () => ctx.revert();
+    // Refresh ScrollTrigger after initial mount layout calculation
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
+
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
   }, []);
 
   return (
-    <section
-      id="work"
-      ref={sectionRef}
-      className="bg-bg/70 backdrop-blur-sm py-16 md:py-24 relative z-10 border-t border-stroke/40"
-    >
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
-        
-        {/* Header */}
-        <div
-          ref={headerRef}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6"
-          style={{ opacity: 0 }}
-        >
+    <>
+      <section
+        id="work"
+        ref={sectionRef}
+        className="relative z-10 bg-[#0a0a0f] border-t border-stroke/40 overflow-hidden lg:h-screen lg:flex lg:items-center py-16 lg:py-0"
+      >
+        {/* ── DESKTOP LAYOUT (1024px+): TRIONN-Style Horizontal Scroll ── */}
+        <div className="hidden lg:flex w-full h-full items-center relative">
+          {/* Left Column: Pinned Sidebar Header & CTA */}
+          <div
+            ref={headerRef}
+            className="w-[28vw] min-w-[320px] max-w-[420px] h-[72vh] flex flex-col justify-between pl-10 xl:pl-16 pr-6 flex-shrink-0 z-20"
+            style={{ opacity: 0 }}
+          >
+            <div>
+              {/* Eyebrow */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-px bg-stroke" />
+                <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
+                  Selected Work
+                </span>
+              </div>
+
+              {/* Heading */}
+              <h2 className="text-4xl xl:text-5xl 2xl:text-6xl text-text-primary font-normal tracking-tight leading-[1.08] mb-6">
+                Selected work <br />
+                <span className="font-display italic font-normal">& explorations</span>
+              </h2>
+
+              {/* Subtitle */}
+              <p className="text-sm text-muted max-w-xs leading-relaxed font-normal">
+                A selection of web applications, Web3 smart contracts, and mobile systems built from concept to launch.
+              </p>
+            </div>
+
+            {/* Bottom CTA */}
+            <div>
+              <a
+                href="#explorations"
+                className="group inline-flex items-center gap-2 text-xs uppercase tracking-widest text-text-primary hover:text-white transition-colors"
+              >
+                <span className="border-b border-white/20 pb-0.5 group-hover:border-white transition-colors">
+                  View all projects
+                </span>
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </a>
+            </div>
+          </div>
+
+          {/* Right Track Area: Horizontal Scrolling Deck */}
+          <div
+            ref={trackContainerRef}
+            className="flex-1 h-full overflow-hidden flex items-center relative"
+          >
+            <div
+              ref={trackRef}
+              className="flex flex-nowrap gap-8 xl:gap-10 pl-6 pr-40 w-max items-center py-8"
+            >
+              {FEATURED_PROJECTS.map((project, index) => (
+                <div
+                  key={project.id}
+                  ref={(el) => { cardsRef.current[index] = el; }}
+                  className="sw-card w-[50vw] min-w-[520px] max-w-[680px] flex-shrink-0 group/card cursor-pointer"
+                  onClick={() => handleViewProject(project)}
+                >
+                  <div className="rounded-3xl border border-white/[0.08] bg-[#0e0e14]/90 backdrop-blur-md p-6 xl:p-7 transition-all duration-500 hover:border-white/[0.18] hover:bg-[#12121a]/95 hover:shadow-2xl hover:shadow-black/70">
+                    {/* Project Image */}
+                    <div className={`relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/[0.06] mb-6 ${
+                      project.category.toLowerCase().includes('mobile')
+                        ? 'bg-gradient-to-tr from-[#090b10] via-[#0f1420] to-[#0a0d14] flex items-center justify-center p-3'
+                        : 'bg-black/40'
+                    }`}>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className={`transition-transform duration-700 ease-out group-hover/card:scale-[1.03] ${
+                          project.category.toLowerCase().includes('mobile')
+                            ? 'max-h-full w-auto object-contain rounded-2xl drop-shadow-[0_15px_35px_rgba(0,0,0,0.85)]'
+                            : 'w-full h-full object-cover'
+                        }`}
+                        loading="lazy"
+                      />
+                      {/* Subtle top accent gradient */}
+                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8]/50 to-transparent" />
+                      {/* Vignette */}
+                      {!project.category.toLowerCase().includes('mobile') && (
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                      )}
+                    </div>
+
+                    {/* Project Info Below Image */}
+                    <div className="flex flex-col">
+                      {/* Category + Counter */}
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-4 h-px bg-white/25" />
+                          <span className="text-[11px] text-white/50 uppercase tracking-[0.25em] font-medium">
+                            {project.category}
+                          </span>
+                        </div>
+                        <span className="text-[11px] text-white/30 tracking-widest font-mono font-medium">
+                          {String(index + 1).padStart(2, '0')} / {String(totalProjects).padStart(2, '0')}
+                        </span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-2xl xl:text-3xl text-white font-medium tracking-tight mb-2.5 group-hover/card:text-white transition-colors">
+                        {project.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-[13px] text-white/50 leading-relaxed mb-5 line-clamp-2">
+                        {project.description}
+                      </p>
+
+                      {/* Footer: Tags + Explore Button */}
+                      <div className="flex items-center justify-between pt-2 border-t border-white/[0.06]">
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-1.5">
+                          {project.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-2.5 py-0.5 text-[10px] uppercase tracking-widest font-medium text-white/60 border border-white/10 rounded-full bg-white/[0.03]"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {project.tags.length > 3 && (
+                            <span className="px-2 py-0.5 text-[10px] uppercase tracking-widest font-medium text-white/35 border border-white/8 rounded-full">
+                              +{project.tags.length - 3}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* View Action */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleViewProject(project);
+                          }}
+                          className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest font-medium text-white/80 group-hover/card:text-white group-hover/card:translate-x-1 transition-all duration-300"
+                        >
+                          <span className="border-b border-white/20 pb-0.5 group-hover/card:border-white">
+                            Explore Project
+                          </span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── MOBILE / TABLET LAYOUT (<1024px) ── */}
+        <div className="lg:hidden w-full max-w-[680px] mx-auto px-6 flex flex-col gap-8">
+          {/* Mobile Header */}
           <div>
-            {/* Eyebrow */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-px bg-stroke" />
               <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
                 Selected Work
               </span>
             </div>
 
-            {/* Heading */}
-            <h2 className="text-4xl md:text-5xl lg:text-6xl text-text-primary font-normal tracking-tight">
-              Featured <span className="font-display italic font-normal">projects</span>
+            <h2 className="text-3xl md:text-4xl text-text-primary font-normal tracking-tight">
+              Selected work <span className="font-display italic font-normal">& explorations</span>
             </h2>
 
-            {/* Subtext */}
-            <p className="text-sm md:text-base text-muted max-w-md mt-3 font-normal">
+            <p className="text-sm text-muted mt-2 font-normal">
               A selection of projects I've worked on, from concept to launch.
             </p>
           </div>
 
-          {/* View all work button (desktop only) */}
-          <div className="hidden md:inline-flex">
+          {/* Mobile Cards Stack */}
+          <div className="flex flex-col gap-6">
+            {FEATURED_PROJECTS.map((project, index) => (
+              <div
+                key={project.id}
+                ref={(el) => { mobileCardsRef.current[index] = el; }}
+                className="rounded-3xl border border-white/[0.08] bg-[#0e0e14]/90 backdrop-blur-md p-5 shadow-xl cursor-pointer"
+                onClick={() => handleViewProject(project)}
+              >
+                {/* Image */}
+                <div className={`relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/[0.06] mb-5 ${
+                  project.category.toLowerCase().includes('mobile')
+                    ? 'bg-gradient-to-tr from-[#090b10] via-[#0f1420] to-[#0a0d14] flex items-center justify-center p-3'
+                    : 'bg-black/40'
+                }`}>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className={`w-full h-full ${
+                      project.category.toLowerCase().includes('mobile')
+                        ? 'object-contain max-h-[160px] rounded-xl'
+                        : 'object-cover'
+                    }`}
+                    loading="lazy"
+                  />
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8]/50 to-transparent" />
+                </div>
+
+                {/* Info */}
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] text-white/50 uppercase tracking-[0.25em] font-medium">
+                      {project.category}
+                    </span>
+                    <span className="text-[10px] text-white/30 tracking-widest font-mono">
+                      {String(index + 1).padStart(2, '0')} / {String(totalProjects).padStart(2, '0')}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl md:text-2xl text-white font-medium tracking-tight mb-2">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-xs text-white/50 leading-relaxed mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
+                    <div className="flex flex-wrap gap-1">
+                      {project.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 text-[9px] uppercase tracking-widest font-medium text-white/60 border border-white/10 rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleViewProject(project);
+                      }}
+                      className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider text-white font-medium"
+                    >
+                      <span>Explore</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* View All Work Link */}
+          <div className="pt-2 flex justify-center">
             <a
               href="#explorations"
-              className="group relative inline-flex items-center gap-2 rounded-full p-[1.5px] transition-transform duration-300 hover:scale-105"
+              className="group relative inline-flex items-center gap-2 rounded-full p-[1.5px] transition-transform duration-300"
             >
               <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative inline-flex items-center gap-2 rounded-full border border-stroke bg-surface px-6 py-3 text-xs uppercase tracking-wider text-text-primary transition-colors group-hover:border-transparent group-hover:bg-bg">
+              <span className="relative inline-flex items-center gap-2 rounded-full border border-stroke bg-surface px-5 py-2.5 text-xs uppercase tracking-wider text-text-primary">
                 View all work
-                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </span>
             </a>
           </div>
         </div>
+      </section>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
-          {PROJECTS.map((project: Project, index: number) => (
-            <div
-              key={project.id}
-              ref={(el) => { cardsRef.current[index] = el; }}
-              className={`${project.colSpan} group relative rounded-3xl overflow-hidden border border-stroke bg-surface cursor-pointer will-change-transform ${project.aspectRatio || 'aspect-[16/10]'}`}
-              style={{ opacity: 0 }}
-            >
-              {/* Parallax Background Image Container */}
-              <div className="w-full h-full overflow-hidden">
-                <img
-                  ref={(el) => { imagesRef.current[index] = el; }}
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out will-change-transform"
-                  loading="lazy"
-                />
-              </div>
-
-              {/* Default Content gradient shadow at bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 md:p-8 flex flex-col justify-end transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
-                <span className="text-xs text-muted uppercase tracking-widest font-medium mb-1">
-                  {project.category}
-                </span>
-                <h3 className="text-2xl md:text-3xl text-text-primary font-medium tracking-tight">
-                  {project.title}
-                </h3>
-              </div>
-
-              {/* Hover Backdrop Overlay */}
-              <div className="absolute inset-0 bg-bg/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-lg flex flex-col items-center justify-center p-6 text-center">
-                <span className="text-xs text-muted uppercase tracking-[0.25em] mb-4">
-                  {project.category}
-                </span>
-
-                {/* Hover Label Pill with animated gradient border */}
-                <div className="accent-gradient-border-animated rounded-full p-[1.5px] shadow-2xl transition-transform duration-300 group-hover:scale-105">
-                  <div className="rounded-full bg-text-primary px-6 py-3 text-bg font-medium text-sm sm:text-base flex items-center gap-2">
-                    <span>View — </span>
-                    <span className="font-display italic font-normal text-lg">
-                      {project.title}
-                    </span>
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile View All Work Button */}
-        <div className="mt-10 flex justify-center md:hidden">
-          <a
-            href="#explorations"
-            className="group relative inline-flex items-center gap-2 rounded-full p-[1.5px] transition-transform duration-300"
-          >
-            <span className="absolute inset-0 rounded-full accent-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative inline-flex items-center gap-2 rounded-full border border-stroke bg-surface px-6 py-3 text-xs uppercase tracking-wider text-text-primary">
-              View all work
-              <ArrowUpRight className="w-4 h-4" />
-            </span>
-          </a>
-        </div>
-
-      </div>
-    </section>
+      {/* Fullscreen Detail Modal */}
+      {selectedProject && (
+        <FeaturedProjectDetail
+          project={selectedProject}
+          isOpen={isDetailOpen}
+          onClose={handleCloseDetail}
+          onSelectProject={(proj) => setSelectedProject(proj)}
+        />
+      )}
+    </>
   );
 };
