@@ -23,11 +23,15 @@ export const ContactFooter: React.FC = () => {
       });
       hls.loadSource(HLS_STREAM_URL);
       hls.attachMedia(video);
+      video.muted = true;
+      video.volume = 0;
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
         video.play().catch(() => {});
       });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = HLS_STREAM_URL;
+      video.muted = true;
+      video.volume = 0;
       video.addEventListener('loadedmetadata', () => {
         video.play().catch(() => {});
       });
@@ -78,11 +82,11 @@ export const ContactFooter: React.FC = () => {
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center">
         
-        {/* GSAP Marquee */}
-        <div className="w-full overflow-hidden mb-12 md:mb-20 py-3 select-none">
+        {/* GSAP Marquee (Refined, architectural ticker font & size) */}
+        <div className="w-full overflow-hidden mb-12 md:mb-16 py-2.5 select-none border-y border-white/[0.06]">
           <div
             ref={marqueeRef}
-            className="inline-block whitespace-nowrap text-5xl md:text-7xl lg:text-9xl font-bold text-text-primary/15 tracking-tight"
+            className="inline-block whitespace-nowrap text-lg sm:text-xl md:text-2xl font-mono uppercase tracking-[0.35em] font-light text-white/30"
           >
             {marqueeText}
           </div>

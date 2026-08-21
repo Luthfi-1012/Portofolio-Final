@@ -367,62 +367,33 @@ export const Certifications: React.FC = () => {
                   key={cert.id}
                   ref={(el) => { cardsRef.current[index] = el; }}
                   onClick={() => setSelectedCert(cert)}
-                  className="group relative flex flex-col sm:flex-row items-stretch gap-4 p-4 sm:p-5 rounded-2xl border border-white/[0.08] bg-surface/40 hover:bg-surface/70 hover:border-[#89AACC]/40 cursor-pointer transition-all duration-300 overflow-hidden"
+                  className="group relative flex flex-col sm:flex-row items-center gap-5 p-4 sm:p-5 rounded-2xl border border-white/10 bg-surface/30 hover:bg-surface/60 hover:border-white/20 transition-all duration-300 cursor-pointer"
                 >
-                  {/* Left: Certificate Screenshot Thumbnail */}
-                  <div className="relative w-full sm:w-44 h-36 sm:h-auto shrink-0 flex items-center justify-center">
-                    <img
-                      src={cert.certificateUrl}
-                      alt={cert.title}
-                      className="w-full h-full object-cover object-center rounded-xl transition-opacity duration-300 group-hover:opacity-90"
-                      loading="lazy"
-                    />
-                    
-                    {/* Subtle gradient vignette overlay */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-transparent to-black/10 opacity-70 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none" />
-
-                    {/* Magnifier / Quick View pill overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                      <span className="inline-flex items-center gap-1.5 text-white text-xs font-medium">
-                        <Maximize2 className="w-3.5 h-3.5 text-[#89AACC]" />
-                        Inspect
+                  <img
+                    src={cert.certificateUrl}
+                    alt={cert.title}
+                    className="w-full sm:w-40 h-32 sm:h-28 object-cover rounded-xl transition-opacity duration-300 group-hover:opacity-90 shrink-0"
+                    loading="lazy"
+                  />
+                  <div className="flex-1 min-w-0 w-full">
+                    <div className="flex items-center justify-between gap-2 mb-1.5">
+                      <span className="text-xs font-medium text-[#89AACC] uppercase tracking-wider flex items-center gap-1.5">
+                        <IconComp className="w-3.5 h-3.5" />
+                        {config.label}
+                      </span>
+                      <span className="font-mono text-xs text-muted">
+                        {cert.date}
                       </span>
                     </div>
-                  </div>
-
-                  {/* Right: Content details */}
-                  <div className="relative z-10 flex-1 flex flex-col justify-between py-1 min-w-0">
-                    <div>
-                      {/* Category Badge & Date */}
-                      <div className="flex items-center justify-between gap-2 mb-2">
-                        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#89AACC]">
-                          <IconComp className="w-3.5 h-3.5" />
-                          {config.label}
-                        </span>
-
-                        <span className="font-mono text-xs text-muted">
-                          {cert.date}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h3 className="text-lg font-medium text-text-primary group-hover:text-white transition-colors duration-300 leading-snug line-clamp-2">
-                        {cert.title}
-                      </h3>
-
-                      {/* Issuer */}
-                      <p className="text-sm text-muted mt-1.5 line-clamp-1">
-                        {cert.issuer}
-                      </p>
-                    </div>
-
-                    {/* Bottom CTA row */}
-                    <div className="flex items-center justify-between pt-3 mt-2 border-t border-white/5">
-                      <span className="text-xs text-muted/70 group-hover:text-text-primary transition-colors inline-flex items-center gap-1">
-                        Click to preview
-                      </span>
-                      <Maximize2 className="w-3.5 h-3.5 text-muted group-hover:text-text-primary transition-all duration-300 group-hover:scale-110" />
-                    </div>
+                    <h3 className="text-base sm:text-lg font-medium text-text-primary group-hover:text-white transition-colors duration-300 leading-snug line-clamp-2 mb-1">
+                      {cert.title}
+                    </h3>
+                    <p className="text-xs text-muted line-clamp-1 mb-2.5">
+                      {cert.issuer}
+                    </p>
+                    <span className="text-xs text-muted/80 group-hover:text-text-primary transition-colors inline-flex items-center gap-1.5 font-medium">
+                      Preview Certificate <Maximize2 className="w-3 h-3 text-[#89AACC]" />
+                    </span>
                   </div>
                 </div>
               );

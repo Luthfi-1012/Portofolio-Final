@@ -321,6 +321,7 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
                     src={currentMedia.url}
                     controls
                     autoPlay
+                    muted
                     loop
                     className="max-h-[60vh] w-auto max-w-full rounded-xl object-contain shadow-2xl"
                   />
