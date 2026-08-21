@@ -149,7 +149,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
               exit={{ y: -30, opacity: 0, filter: 'blur(4px)' }}
               transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-              className="text-4xl md:text-6xl lg:text-7xl font-display italic text-text-primary/90 tracking-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-text-primary/90 tracking-tight"
             >
               {WORDS[wordIndex]}
             </motion.span>

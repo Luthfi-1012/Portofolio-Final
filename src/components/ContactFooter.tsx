@@ -82,7 +82,7 @@ export const ContactFooter: React.FC = () => {
         <div className="w-full overflow-hidden mb-16 md:mb-24 py-4 select-none">
           <div
             ref={marqueeRef}
-            className="inline-block whitespace-nowrap text-5xl md:text-7xl lg:text-9xl font-display italic text-text-primary/15 tracking-tight"
+            className="inline-block whitespace-nowrap text-5xl md:text-7xl lg:text-9xl font-bold text-text-primary/15 tracking-tight"
           >
             {marqueeText}
           </div>
@@ -95,7 +95,7 @@ export const ContactFooter: React.FC = () => {
           </p>
           <h2 className="text-4xl md:text-6xl lg:text-7xl text-text-primary font-normal tracking-tight mb-8">
             Have an idea? <br />
-            Let's <span className="font-display italic">build together.</span>
+            Let's <span className="font-semibold text-text-primary">build together.</span>
           </h2>
 
           {/* Email button with gradient hover border ring */}

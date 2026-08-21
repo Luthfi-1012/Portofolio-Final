@@ -9,10 +9,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* ── Category Configuration ── */
 const CATEGORY_CONFIG: Record<Certification['category'], { label: string; icon: React.ElementType; color: string; bgGlow: string }> = {
-  web3: { label: 'Web3', icon: Globe, color: '#6ee7b7', bgGlow: 'rgba(110, 231, 183, 0.12)' },
-  development: { label: 'Development', icon: Code2, color: '#93c5fd', bgGlow: 'rgba(147, 197, 253, 0.12)' },
-  leadership: { label: 'Leadership', icon: Award, color: '#fbbf24', bgGlow: 'rgba(251, 191, 36, 0.12)' },
-  ai: { label: 'AI', icon: Brain, color: '#c4b5fd', bgGlow: 'rgba(196, 181, 253, 0.12)' },
+  web3: { label: 'Web3', icon: Globe, color: '#89AACC', bgGlow: 'rgba(137, 170, 204, 0.12)' },
+  development: { label: 'Development', icon: Code2, color: '#89AACC', bgGlow: 'rgba(137, 170, 204, 0.12)' },
+  leadership: { label: 'Leadership', icon: Award, color: '#89AACC', bgGlow: 'rgba(137, 170, 204, 0.12)' },
+  ai: { label: 'AI', icon: Brain, color: '#89AACC', bgGlow: 'rgba(137, 170, 204, 0.12)' },
 };
 
 type FilterKey = 'all' | Certification['category'];
@@ -162,7 +162,7 @@ const CertificateModal: React.FC<{
             {config.label}
           </span>
           <span className="text-[11px] text-muted/60 font-mono flex items-center gap-1.5">
-            <Sparkles className="w-3 h-3 text-[#a0aadc]" />
+            <Sparkles className="w-3 h-3 text-[#89AACC]" />
             Verified Credential
           </span>
         </div>
@@ -320,21 +320,9 @@ export const Certifications: React.FC = () => {
             style={{ opacity: 0 }}
           >
             <div>
-              {/* Eyebrow with counter */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-px bg-stroke" />
-                <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-                  Certifications
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#a0aadc]/60" />
-                <span className="text-xs font-mono text-[#a0aadc] font-medium">
-                  <span ref={counterRef}>0</span>+
-                </span>
-              </div>
-
               {/* Heading */}
               <h2 className="text-4xl md:text-5xl lg:text-6xl text-text-primary font-normal tracking-tight">
-                Earned <span className="font-display italic font-normal">credentials</span>
+                Earned <span className="font-semibold text-text-primary">credentials</span>
               </h2>
 
               {/* Subtext */}
@@ -356,7 +344,7 @@ export const Certifications: React.FC = () => {
                         ? 'text-bg border-transparent shadow-lg shadow-white/10'
                         : 'bg-transparent text-muted border-stroke hover:text-text-primary hover:border-white/30'
                     }`}
-                    style={isActive ? { background: 'linear-gradient(135deg, #a0aadc, #7b8ecf)' } : {}}
+                    style={isActive ? { background: 'linear-gradient(135deg, #89AACC, #4E85BF)' } : {}}
                   >
                     {f.label}
                     {isActive && (
@@ -418,7 +406,7 @@ export const Certifications: React.FC = () => {
                     {/* Magnifier / Quick View pill overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white text-[11px] font-medium shadow-xl">
-                        <Maximize2 className="w-3 h-3 text-[#a0aadc]" />
+                        <Maximize2 className="w-3 h-3 text-[#89AACC]" />
                         Inspect
                       </span>
                     </div>

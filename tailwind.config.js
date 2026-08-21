@@ -8,8 +8,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        display: ['Instrument Serif', 'serif'],
+        sans: ['Geist', 'sans-serif'],
+        body: ['Geist', 'sans-serif'],
+        display: ['Geist', 'sans-serif'],
+        heroSignature: ['"Instrument Serif"', 'serif'],
       },
       colors: {
         bg: "hsl(var(--bg))",

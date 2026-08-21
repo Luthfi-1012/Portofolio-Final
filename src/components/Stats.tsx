@@ -18,7 +18,7 @@ export const Stats: React.FC = () => {
               className="flex flex-col justify-between p-8 bg-surface/40 rounded-3xl border border-stroke/60 hover:border-stroke transition-all duration-300 hover:bg-surface/70 group"
             >
               <div>
-                <div className="text-5xl md:text-6xl lg:text-7xl font-display italic text-text-primary tracking-tight mb-4 group-hover:text-white transition-colors">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary tracking-tight mb-4 group-hover:text-white transition-colors">
                   {stat.value}
                 </div>
                 <h3 className="text-lg md:text-xl font-medium text-text-primary mb-2">

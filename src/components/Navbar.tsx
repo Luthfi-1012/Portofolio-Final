@@ -54,7 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection = 'home', onNaviga
         >
           <div className="absolute inset-0 rounded-full accent-gradient transition-all duration-500 group-hover:rotate-180" />
           <div className="relative w-9 h-9 rounded-full bg-bg flex items-center justify-center">
-            <span className="font-display italic text-[13px] font-semibold text-text-primary tracking-tighter">
+            <span className="text-[13px] font-bold text-text-primary tracking-tight">
               LP
             </span>
           </div>

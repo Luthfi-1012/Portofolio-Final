@@ -115,7 +115,7 @@ export const Hero: React.FC = () => {
       {/* Background Ambient Glow + HLS Video */}
       <div className="hero-bg-media absolute inset-0 overflow-hidden pointer-events-none z-0 will-change-transform">
         {/* Subtle radial ambient atmosphere */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-b from-purple-950/20 via-blue-950/15 to-transparent blur-3xl rounded-full" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#89AACC]/10 blur-3xl rounded-full" />
 
         <video
           ref={videoRef}
@@ -134,13 +134,8 @@ export const Hero: React.FC = () => {
       {/* Hero Content (centered, z-10) */}
       <div className="hero-content-wrapper relative z-10 max-w-4xl mx-auto flex flex-col items-center pt-24 md:pt-32 pb-16 will-change-transform">
         
-        {/* Eyebrow */}
-        <p className="blur-in text-xs text-muted uppercase tracking-[0.3em] mb-8 font-medium">
-          PORTFOLIO '26
-        </p>
-
-        {/* Name */}
-        <h1 className="name-reveal text-6xl md:text-8xl lg:text-9xl font-display italic leading-[0.9] tracking-tight text-text-primary mb-6 select-none">
+        {/* Name (Signature Instrument Serif Italic) */}
+        <h1 className="name-reveal text-6xl md:text-8xl lg:text-9xl font-heroSignature italic leading-[0.9] tracking-tight text-text-primary mb-6 select-none">
           Luthfi Pratama
         </h1>
 
@@ -149,7 +144,7 @@ export const Hero: React.FC = () => {
           <span>A </span>
           <span
             key={roleIndex}
-            className="font-display italic text-text-primary animate-role-fade-in inline-block underline decoration-stroke/60 underline-offset-4"
+            className="font-semibold text-text-primary animate-role-fade-in inline-block underline decoration-stroke/60 underline-offset-4"
           >
             {ROLES[roleIndex]}
           </span>

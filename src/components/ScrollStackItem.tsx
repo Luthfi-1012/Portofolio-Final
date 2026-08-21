@@ -29,12 +29,12 @@ interface ScrollStackItemProps {
 
 const getCategoryIcon = (category: string) => {
   if (category.toLowerCase().includes('figma')) {
-    return <PenTool className="w-3.5 h-3.5 text-[#e879f9]" />;
+    return <PenTool className="w-3.5 h-3.5 text-[#89AACC]" />;
   }
   if (category.toLowerCase().includes('web3')) {
-    return <Globe className="w-3.5 h-3.5 text-[#38bdf8]" />;
+    return <Globe className="w-3.5 h-3.5 text-[#89AACC]" />;
   }
-  return <Code2 className="w-3.5 h-3.5 text-[#4ade80]" />;
+  return <Code2 className="w-3.5 h-3.5 text-[#89AACC]" />;
 };
 
 export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
@@ -127,7 +127,7 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
                   <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/75 border border-white/20 text-[11px] font-mono font-medium text-white backdrop-blur-md shadow-lg">
                       {currentMedia.type === 'video' ? (
-                        <Play className="w-3 h-3 text-[#38bdf8] fill-[#38bdf8]" />
+                        <Play className="w-3 h-3 text-[#89AACC] fill-[#89AACC]" />
                       ) : (
                         <Maximize2 className="w-3 h-3 text-[#89AACC]" />
                       )}
@@ -371,7 +371,7 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
                             : 'bg-white/[0.04] border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10'
                         }`}
                       >
-                        {item.type === 'video' ? <Play className="w-3 h-3 text-[#38bdf8]" /> : null}
+                        {item.type === 'video' ? <Play className="w-3 h-3 text-[#89AACC]" /> : null}
                         {item.label}
                       </button>
                     ))}

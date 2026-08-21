@@ -83,15 +83,8 @@ export const ScrollStack: React.FC = () => {
       <div className="max-w-[1200px] w-full mx-auto px-6 md:px-10 lg:px-16">
         {/* Section Header */}
         <div ref={headerRef} className="mb-14 md:mb-20" style={{ opacity: 0 }}>
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-8 h-px bg-stroke" />
-            <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-              Personal Work
-            </span>
-          </div>
-          
           <h2 className="text-4xl md:text-5xl lg:text-6xl text-text-primary font-normal tracking-tight">
-            Side <span className="font-display italic font-normal">projects</span>
+            Side <span className="font-semibold text-text-primary">projects</span>
           </h2>
           
           <p className="text-sm md:text-base text-muted max-w-lg mt-3 font-normal leading-relaxed">

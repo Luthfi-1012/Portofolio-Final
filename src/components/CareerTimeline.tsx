@@ -26,12 +26,11 @@ export interface CareerTimelineProps {
 export const CareerTimeline: React.FC<CareerTimelineProps> = ({
   milestones,
   lineColor = 'rgba(255,255,255,0.07)',
-  dotColor = '#a0aadc',
-  accentColor = '#a0aadc',
+  dotColor = '#89AACC',
+  accentColor = '#89AACC',
   className = '',
 }) => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const headerRef = useRef<HTMLDivElement | null>(null);
   const lineRef = useRef<HTMLDivElement | null>(null);
   const milestonesRef = useRef<(HTMLDivElement | null)[]>([]);
   const dotsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -41,25 +40,6 @@ export const CareerTimeline: React.FC<CareerTimelineProps> = ({
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      /* ── Header entrance ── */
-      if (headerRef.current) {
-        gsap.fromTo(
-          headerRef.current,
-          { opacity: 0, y: 14 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 82%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      }
-
       /* ── Center line grow-down ── */
       if (lineRef.current) {
         gsap.fromTo(
@@ -178,19 +158,6 @@ export const CareerTimeline: React.FC<CareerTimelineProps> = ({
       className={`career-timeline-section ${className}`}
     >
       <div className="ct-container">
-        {/* ── Section Header ── */}
-        <div ref={headerRef} className="ct-header">
-          <span className="ct-header-num" style={{ color: accentColor }}>
-            (05)
-          </span>
-          <span className="ct-header-label">CAREER</span>
-          <span
-            className="ct-header-dot"
-            style={{ borderColor: `${accentColor}60` }}
-          />
-          <div className="ct-header-line" />
-        </div>
-
         {/* ── Timeline ── */}
         <div className="ct-timeline">
           {/* Center vertical line */}

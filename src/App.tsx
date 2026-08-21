@@ -29,7 +29,7 @@ const ABOUT_DATA = {
     { value: 8, suffix: '+', label: 'CERTIFICATIONS' },
     { value: 5, suffix: '+', label: 'PROJECTS DONE' },
   ],
-  accentColor: 'rgba(160, 170, 220, 0.75)',
+  accentColor: '#89AACC',
 };
 
 const CAREER_MILESTONES = [

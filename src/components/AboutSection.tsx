@@ -24,13 +24,13 @@ export interface AboutSectionProps {
 
 /* ── Helpers ── */
 function renderParagraph(text: string): React.ReactNode {
-  // Split on **...** and render highlighted keywords using serif italic typography & full white contrast
+  // Split on **...** and render highlighted keywords using semibold typography & full white contrast
   const parts = text.split(/\*\*(.+?)\*\*/g);
   return parts.map((part, i) =>
     i % 2 === 1 ? (
       <span
         key={i}
-        className="font-display italic text-[1.12em] text-text-primary tracking-normal font-normal inline-block px-0.5"
+        className="font-semibold text-text-primary tracking-normal inline-block px-0.5"
       >
         {part}
       </span>
@@ -47,10 +47,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   paragraphs,
   sideLabel = 'EST. 2017 — BANDUNG',
   stats,
-  accentColor = 'rgba(160, 170, 220, 0.75)',
+  accentColor = '#89AACC',
 }) => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const headerRef = useRef<HTMLDivElement | null>(null);
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const parasRef = useRef<HTMLDivElement | null>(null);
   const photoWrapRef = useRef<HTMLDivElement | null>(null);
@@ -63,26 +62,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      // 1. Header "(01) ABOUT" fade in
-      if (headerRef.current) {
-        gsap.fromTo(
-          headerRef.current,
-          { opacity: 0, y: 12 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      }
-
-      // 2. Heading slide-up + fade
+      // 1. Heading slide-up + fade
       if (headingRef.current) {
         gsap.fromTo(
           headingRef.current,
@@ -91,7 +71,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             opacity: 1,
             y: 0,
             duration: 0.9,
-            delay: 0.15,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: section,
@@ -192,20 +171,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16">
 
-        {/* ── Section Header ── */}
-        <div ref={headerRef} className="flex items-center gap-3 mb-14 md:mb-20 opacity-0">
-          <span
-            className="font-mono text-xs font-medium tracking-wider text-[#a0aadc]"
-          >
-            (01)
-          </span>
-          <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-            ABOUT
-          </span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#a0aadc]/60" />
-          <div className="flex-1 h-px bg-stroke/50" />
-        </div>
-
         {/* ── Two-Column Layout ── */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 lg:gap-12 items-start">
 
@@ -232,7 +197,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 showUserInfo={false}
                 name=""
                 title=""
-                behindGlowColor="rgba(160, 170, 220, 0.4)"
+                behindGlowColor="rgba(137, 170, 204, 0.35)"
                 behindGlowSize="45%"
                 innerGradient="linear-gradient(145deg, rgba(15,15,25,0.9) 0%, rgba(60,65,100,0.25) 100%)"
                 enableTilt={true}
@@ -281,7 +246,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                     0
                   </span>
                   {stat.suffix && (
-                    <span className="text-[#a0aadc] ml-0.5">{stat.suffix}</span>
+                    <span className="text-[#89AACC] ml-0.5">{stat.suffix}</span>
                   )}
                 </div>
                 <span className="text-[10px] sm:text-xs text-muted uppercase tracking-[0.2em] font-medium">

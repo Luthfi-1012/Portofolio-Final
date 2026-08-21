@@ -116,9 +116,9 @@
 /* Active dot — ring pulse */
 .ct-dot-active {
   box-shadow:
-    0 0 12px rgba(160, 170, 220, 0.5),
-    0 0 0 4px rgba(160, 170, 220, 0.15),
-    0 0 0 8px rgba(160, 170, 220, 0.06) !important;
+    0 0 12px rgba(137, 170, 204, 0.5),
+    0 0 0 4px rgba(137, 170, 204, 0.15),
+    0 0 0 8px rgba(137, 170, 204, 0.06) !important;
   transform: translate(-50%, 0) scale(1.2) !important;
 }
 
@@ -147,7 +147,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: 'Inter', monospace;
+  font-family: 'Geist', monospace;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.15em;

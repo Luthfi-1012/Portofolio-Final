@@ -23,14 +23,14 @@ const renderCardVisualSnippet = (id: string) => {
         <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
           <div className="flex items-center justify-between mb-2">
             <span className="text-white flex items-center gap-1.5 font-semibold tracking-tight">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC] animate-pulse" />
               React 19 · TypeScript Strict
             </span>
             <span className="text-[10px] text-white/90 font-mono font-medium">60 FPS</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-1.5 flex-1 rounded-full bg-white/20 overflow-hidden">
-              <div className="h-full w-[85%] bg-gradient-to-r from-[#38bdf8] to-[#818cf8] rounded-full" />
+              <div className="h-full w-[85%] bg-gradient-to-r from-[#89AACC] to-[#4E85BF] rounded-full" />
             </div>
             <span className="text-[10px] text-white font-mono font-semibold">Tailwind UI</span>
           </div>
@@ -42,8 +42,8 @@ const renderCardVisualSnippet = (id: string) => {
       return (
         <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-emerald-300 font-bold tracking-tight">POST /api/v1/auth/sanctum</span>
-            <span className="text-[10px] text-emerald-200 bg-emerald-500/25 px-1.5 py-0.5 rounded border border-emerald-400/40 font-semibold">200 OK</span>
+            <span className="text-[#89AACC] font-bold tracking-tight">POST /api/v1/auth/sanctum</span>
+            <span className="text-[10px] text-white bg-white/15 px-1.5 py-0.5 rounded border border-white/25 font-semibold">200 OK</span>
           </div>
           <div className="text-[11px] text-white flex items-center justify-between font-medium">
             <span>Laravel 11.x · Eloquent ORM</span>
@@ -57,8 +57,8 @@ const renderCardVisualSnippet = (id: string) => {
       return (
         <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-purple-300 font-bold truncate tracking-tight">EVM :: 0x71C...3a9F</span>
-            <span className="text-[10px] text-purple-200 bg-purple-500/30 px-1.5 py-0.5 rounded border border-purple-400/40 font-semibold">VERIFIED</span>
+            <span className="text-[#89AACC] font-bold truncate tracking-tight">EVM :: 0x71C...3a9F</span>
+            <span className="text-[10px] text-[#89AACC] bg-[#89AACC]/20 px-1.5 py-0.5 rounded border border-[#89AACC]/40 font-semibold">VERIFIED</span>
           </div>
           <div className="text-[11px] text-white flex items-center justify-between font-medium">
             <span>Solidity ^0.8.20 · ethers.js</span>
@@ -72,7 +72,7 @@ const renderCardVisualSnippet = (id: string) => {
       return (
         <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-white font-bold tracking-tight">users.id <span className="text-[#38bdf8]">➔</span> payroll.user_id</span>
+            <span className="text-white font-bold tracking-tight">users.id <span className="text-[#89AACC]">➔</span> payroll.user_id</span>
             <span className="text-[10px] text-white bg-white/15 px-1.5 py-0.5 rounded border border-white/30 font-semibold">B-TREE INDEX</span>
           </div>
           <div className="text-[11px] text-white flex items-center justify-between font-medium">
@@ -87,8 +87,8 @@ const renderCardVisualSnippet = (id: string) => {
       return (
         <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-amber-300 font-bold tracking-tight">Sprint Delivery: 100%</span>
-            <span className="text-[10px] text-amber-200 bg-amber-500/30 px-1.5 py-0.5 rounded border border-amber-400/40 font-semibold">PM BOOTCAMP</span>
+            <span className="text-[#89AACC] font-bold tracking-tight">Sprint Delivery: 100%</span>
+            <span className="text-[10px] text-white bg-white/15 px-1.5 py-0.5 rounded border border-white/25 font-semibold">PM BOOTCAMP</span>
           </div>
           <div className="text-[11px] text-white flex items-center justify-between font-medium">
             <span>Scrum · BPH HIMSI · Mentoring</span>
@@ -102,8 +102,8 @@ const renderCardVisualSnippet = (id: string) => {
       return (
         <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-fuchsia-300 font-bold tracking-tight">● main ─━─ ● feat/agent</span>
-            <span className="text-[10px] text-fuchsia-200 bg-fuchsia-500/30 px-1.5 py-0.5 rounded border border-fuchsia-400/40 font-semibold">VITE HMR 42ms</span>
+            <span className="text-[#89AACC] font-bold tracking-tight">● main ─━─ ● feat/agent</span>
+            <span className="text-[10px] text-white bg-white/15 px-1.5 py-0.5 rounded border border-white/25 font-semibold">VITE HMR 42ms</span>
           </div>
           <div className="text-[11px] text-white flex items-center justify-between font-medium">
             <span>Git · Postman · AI Workflow</span>
@@ -342,18 +342,9 @@ export const Explorations: React.FC = () => {
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center text-center px-6 pointer-events-none z-10">
         <div className="max-w-xl mx-auto pointer-events-auto">
           
-          {/* Eyebrow */}
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-px bg-stroke" />
-            <span className="text-xs text-muted uppercase tracking-[0.3em] font-medium">
-              Engineering Arsenal
-            </span>
-            <div className="w-8 h-px bg-stroke" />
-          </div>
-
           {/* Heading */}
           <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-text-primary font-normal tracking-tight mb-4">
-            Tech & <span className="font-display italic font-normal">capabilities</span>
+            Tech & <span className="font-semibold text-text-primary">capabilities</span>
           </h2>
 
           {/* Subtext */}
@@ -392,16 +383,16 @@ export const Explorations: React.FC = () => {
                 onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => setSelectedTech(item)}
                 style={{ transform: `rotate(${idx % 2 === 0 ? '-2.5deg' : '2.5deg'})` }}
-                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/15 bg-[#0c0d14]/90 shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-purple-400/40 hover:shadow-[0_0_35px_rgba(168,85,247,0.18)] overflow-hidden antialiased [backface-visibility:hidden]"
+                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/15 bg-[#0c0d14]/90 shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-[#89AACC]/40 hover:shadow-[0_0_35px_rgba(137,170,204,0.18)] overflow-hidden antialiased [backface-visibility:hidden]"
               >
-                {/* 1. Animated Burning Purple Flame WebGL Shader (React Bits Shader Card) */}
+                {/* 1. Animated WebGL Shader */}
                 <CardShaderCanvas cardId={item.id} isHovered={hoveredCard === item.id} />
 
                 {/* 2. Soft Dark Vignette Overlay for Crisp Typography Contrast */}
                 <div className="absolute inset-0 bg-gradient-to-b from-[#0c0d14]/90 via-[#0c0d14]/15 to-transparent pointer-events-none" />
 
                 {/* 3. Subtle top edge hairline glow on hover */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* 4. Foreground Content */}
                 <div className="relative z-10">
@@ -410,7 +401,7 @@ export const Explorations: React.FC = () => {
                     <span className="text-[10px] font-mono tracking-[0.2em] text-zinc-300 font-medium">
                       0{idx + 1} // MODULE
                     </span>
-                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/20 bg-black/60 text-[#d8b4fe] font-semibold">
+                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/20 bg-black/60 text-[#89AACC] font-semibold">
                       {item.badge}
                     </span>
                   </div>
@@ -441,10 +432,10 @@ export const Explorations: React.FC = () => {
                   {/* Bottom Action Row */}
                   <div className="flex items-center justify-between pt-3 border-t border-white/15 text-xs text-zinc-300 group-hover:text-white transition-colors">
                     <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-white font-medium">
-                      <Sparkles className="w-3.5 h-3.5 text-[#c084fc]" />
+                      <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
                       Inspect Details & Roles
                     </span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#c084fc]" />
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
                   </div>
                 </div>
               </div>
@@ -460,16 +451,16 @@ export const Explorations: React.FC = () => {
                 onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => setSelectedTech(item)}
                 style={{ transform: `rotate(${idx % 2 === 0 ? '3deg' : '-2deg'})` }}
-                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/15 bg-[#0c0d14]/90 shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-purple-400/40 hover:shadow-[0_0_35px_rgba(168,85,247,0.18)] overflow-hidden antialiased [backface-visibility:hidden]"
+                className="group relative w-full max-w-[400px] mx-auto rounded-3xl p-6 md:p-7 border border-white/15 bg-[#0c0d14]/90 shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:rotate-0 hover:z-30 cursor-pointer hover:border-[#89AACC]/40 hover:shadow-[0_0_35px_rgba(137,170,204,0.18)] overflow-hidden antialiased [backface-visibility:hidden]"
               >
-                {/* 1. Animated Burning Purple Flame WebGL Shader (React Bits Shader Card) */}
+                {/* 1. Animated WebGL Shader */}
                 <CardShaderCanvas cardId={item.id} isHovered={hoveredCard === item.id} />
 
                 {/* 2. Soft Dark Vignette Overlay for Crisp Typography Contrast */}
                 <div className="absolute inset-0 bg-gradient-to-b from-[#0c0d14]/90 via-[#0c0d14]/15 to-transparent pointer-events-none" />
 
                 {/* 3. Subtle top edge hairline glow on hover */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c084fc]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#89AACC]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* 4. Foreground Content */}
                 <div className="relative z-10">
@@ -478,7 +469,7 @@ export const Explorations: React.FC = () => {
                     <span className="text-[10px] font-mono tracking-[0.2em] text-zinc-300 font-medium">
                       0{idx + 4} // MODULE
                     </span>
-                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/20 bg-black/60 text-[#d8b4fe] font-semibold">
+                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/20 bg-black/60 text-[#89AACC] font-semibold">
                       {item.badge}
                     </span>
                   </div>
@@ -509,10 +500,10 @@ export const Explorations: React.FC = () => {
                   {/* Bottom Action Row */}
                   <div className="flex items-center justify-between pt-3 border-t border-white/15 text-xs text-zinc-300 group-hover:text-white transition-colors">
                     <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-white font-medium">
-                      <Sparkles className="w-3.5 h-3.5 text-[#c084fc]" />
+                      <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
                       Inspect Details & Roles
                     </span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#c084fc]" />
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[#89AACC]" />
                   </div>
                 </div>
               </div>

@@ -284,46 +284,46 @@ export const FeaturedProjectDetail: React.FC<FeaturedProjectDetailProps> = ({
             className="absolute inset-0 z-20 flex flex-col items-center justify-center p-8"
           >
             {/* Subtle Ambient Center Glow */}
-            <div className="absolute w-[520px] h-[520px] rounded-full bg-gradient-to-tr from-[#ff2d87]/15 via-[#818cf8]/15 to-[#38bdf8]/15 blur-[130px] pointer-events-none" />
+            <div className="absolute w-[520px] h-[520px] rounded-full bg-[#89AACC]/10 blur-[130px] pointer-events-none" />
 
             {/* 4 Architectural Corner Marks */}
             <div className="minimal-corner absolute top-8 left-8 flex items-center gap-2.5 text-white/30 font-mono text-xs">
-              <span className="text-sm font-light text-[#38bdf8]">+</span>
+              <span className="text-sm font-light text-[#89AACC]">+</span>
               <span className="tracking-[0.25em] text-[10px] text-white/35">0{currentIndex + 1}</span>
             </div>
 
             <div className="minimal-corner absolute top-8 right-8 flex items-center gap-2.5 text-white/30 font-mono text-xs">
               <span className="tracking-[0.25em] text-[10px] text-white/35">0{FEATURED_PROJECTS.length}</span>
-              <span className="text-sm font-light text-[#38bdf8]">+</span>
+              <span className="text-sm font-light text-[#89AACC]">+</span>
             </div>
 
             <div className="minimal-corner absolute bottom-8 left-8 flex items-center gap-2.5 text-white/30 font-mono text-xs">
-              <span className="text-sm font-light text-[#ff2d87]">+</span>
+              <span className="text-sm font-light text-[#89AACC]">+</span>
               <span className="tracking-[0.25em] text-[10px] text-white/35">SELECTED WORK</span>
             </div>
 
             <div className="minimal-corner absolute bottom-8 right-8 flex items-center gap-2.5 text-white/30 font-mono text-xs">
               <span className="tracking-[0.25em] text-[10px] text-white/35">CASE STUDY</span>
-              <span className="text-sm font-light text-[#ff2d87]">+</span>
+              <span className="text-sm font-light text-[#89AACC]">+</span>
             </div>
 
             {/* Center Luxury Typography Deck */}
             <div className="relative z-10 text-center max-w-3xl px-6">
               {/* Category Eyebrow */}
               <div className="minimal-eyebrow flex items-center justify-center gap-3 mb-4">
-                <span className="w-5 h-px bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent" />
-                <span className="text-[11px] text-[#38bdf8] font-mono tracking-[0.3em] uppercase font-medium">
+                <span className="w-5 h-px bg-gradient-to-r from-transparent via-[#89AACC] to-transparent" />
+                <span className="text-[11px] text-[#89AACC] font-mono tracking-[0.3em] uppercase font-medium">
                   {project.category}
                 </span>
-                <span className="w-5 h-px bg-gradient-to-r from-transparent via-[#38bdf8] to-transparent" />
+                <span className="w-5 h-px bg-gradient-to-r from-transparent via-[#89AACC] to-transparent" />
               </div>
 
-              {/* Title with Serif & Sans Contrast */}
+              {/* Title with Bold Sans Contrast */}
               <h2 className="minimal-title text-3xl sm:text-5xl md:text-6xl text-white font-normal tracking-tight leading-[1.1] mb-5">
                 {project.title.split(' ').map((word, i, arr) => (
                   <span key={i}>
                     {i === arr.length - 1 ? (
-                      <span className="font-display italic text-white/95 font-normal ml-2">{word}</span>
+                      <span className="font-semibold text-white ml-2">{word}</span>
                     ) : (
                       <span>{word} </span>
                     )}
@@ -386,18 +386,18 @@ export const FeaturedProjectDetail: React.FC<FeaturedProjectDetailProps> = ({
             <div>
               {/* Category eyebrow */}
               <div className="flex items-center gap-3 mb-3.5">
-                <div className="w-6 h-px bg-[#38bdf8]/60" />
-                <span className="text-xs text-[#38bdf8] uppercase tracking-[0.3em] font-medium font-mono">
+                <div className="w-6 h-px bg-[#89AACC]/60" />
+                <span className="text-xs text-[#89AACC] uppercase tracking-[0.3em] font-medium font-mono">
                   {project.category}
                 </span>
               </div>
 
-              {/* Title with Serif Accent */}
+              {/* Title with Bold Sans Accent */}
               <h1 className="text-3xl sm:text-4xl xl:text-5xl text-white font-normal tracking-tight leading-[1.1] mb-4">
                 {project.title.split(' ').map((word, i, arr) => (
                   <span key={i}>
                     {i === arr.length - 1 ? (
-                      <span className="font-display italic text-white/95">{word}</span>
+                      <span className="font-semibold text-white">{word}</span>
                     ) : (
                       <span>{word} </span>
                     )}
@@ -551,7 +551,7 @@ export const FeaturedProjectDetail: React.FC<FeaturedProjectDetailProps> = ({
               />
 
               {/* Top Accent line */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8]/50 to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#89AACC]/50 to-transparent" />
 
               {/* Navigation Arrows */}
               {totalSlides > 1 && (

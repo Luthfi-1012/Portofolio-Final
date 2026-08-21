@@ -183,7 +183,7 @@ export const SelectedWorks: React.FC = () => {
               {/* Heading */}
               <h2 className="text-4xl xl:text-5xl 2xl:text-6xl text-text-primary font-normal tracking-tight leading-[1.08] mb-6">
                 Selected work <br />
-                <span className="font-display italic font-normal">& explorations</span>
+                <span className="font-semibold text-text-primary">& explorations</span>
               </h2>
 
               {/* Subtitle */}
@@ -325,7 +325,7 @@ export const SelectedWorks: React.FC = () => {
             </div>
 
             <h2 className="text-3xl md:text-4xl text-text-primary font-normal tracking-tight">
-              Selected work <span className="font-display italic font-normal">& explorations</span>
+              Selected work <span className="font-semibold text-text-primary">& explorations</span>
             </h2>
 
             <p className="text-sm text-muted mt-2 font-normal">
