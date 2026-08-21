@@ -224,15 +224,15 @@ export const SelectedWorks: React.FC = () => {
                 >
                   <div className="rounded-3xl border border-white/[0.08] bg-[#0e0e14]/90 backdrop-blur-md p-6 xl:p-7 transition-all duration-500 hover:border-white/[0.18] hover:bg-[#12121a]/95 hover:shadow-2xl hover:shadow-black/70">
                     {/* Project Image */}
-                    <div className={`relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/[0.06] mb-6 ${
+                    <div className={`relative aspect-[16/10] rounded-2xl overflow-hidden mb-6 ${
                       project.category.toLowerCase().includes('mobile')
                         ? 'bg-gradient-to-tr from-[#090b10] via-[#0f1420] to-[#0a0d14] flex items-center justify-center p-3'
-                        : 'bg-black/40'
+                        : ''
                     }`}>
                       <img
                         src={project.image}
                         alt={project.title}
-                        className={`transition-transform duration-700 ease-out group-hover/card:scale-[1.03] ${
+                        className={`transition-opacity duration-500 group-hover/card:opacity-90 ${
                           project.category.toLowerCase().includes('mobile')
                             ? 'max-h-full w-auto object-contain rounded-2xl drop-shadow-[0_15px_35px_rgba(0,0,0,0.85)]'
                             : 'w-full h-full object-cover'
@@ -268,7 +268,7 @@ export const SelectedWorks: React.FC = () => {
                       </h3>
 
                       {/* Description */}
-                      <p className="text-[13px] text-white/50 leading-relaxed mb-5 line-clamp-2 max-w-[65ch]">
+                      <p className="text-[13px] text-white/50 leading-relaxed mb-5 line-clamp-2 max-w-[44ch]">
                         {project.description}
                       </p>
 
@@ -343,10 +343,10 @@ export const SelectedWorks: React.FC = () => {
                 onClick={() => handleViewProject(project)}
               >
                 {/* Image */}
-                <div className={`relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/[0.06] mb-5 ${
+                <div className={`relative aspect-[16/10] rounded-2xl overflow-hidden mb-5 ${
                   project.category.toLowerCase().includes('mobile')
                     ? 'bg-gradient-to-tr from-[#090b10] via-[#0f1420] to-[#0a0d14] flex items-center justify-center p-3'
-                    : 'bg-black/40'
+                    : ''
                 }`}>
                   <img
                     src={project.image}
@@ -376,7 +376,7 @@ export const SelectedWorks: React.FC = () => {
                     {project.title}
                   </h3>
 
-                  <p className="text-xs text-white/50 leading-relaxed mb-4 line-clamp-3 max-w-[65ch]">
+                  <p className="text-xs text-white/50 leading-relaxed mb-4 line-clamp-3 max-w-[44ch]">
                     {project.description}
                   </p>
 

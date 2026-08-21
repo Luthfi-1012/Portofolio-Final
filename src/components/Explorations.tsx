@@ -14,25 +14,25 @@ import { CardShaderCanvas } from './CardShaderCanvas';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Custom line-art visual module renderer for each engineering card (flattened spec panel)
+// Custom line-art visual module renderer for each engineering card (clean inline specs)
 const renderCardVisualSnippet = (id: string) => {
   switch (id) {
     case 'tech-1':
     case 'tech-frontend':
       return (
-        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
-          <div className="flex items-center justify-between mb-2">
+        <div className="my-3 py-1.5 font-mono text-xs antialiased space-y-1.5">
+          <div className="flex items-center justify-between">
             <span className="text-white flex items-center gap-1.5 font-semibold tracking-tight">
               <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC] animate-pulse" />
               React 19 · TypeScript Strict
             </span>
-            <span className="text-xs text-white/90 font-mono font-medium">60 FPS</span>
+            <span className="text-xs text-white/80 font-mono">60 FPS</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-1.5 flex-1 rounded-full bg-white/20 overflow-hidden">
               <div className="h-full w-[85%] bg-gradient-to-r from-[#89AACC] to-[#4E85BF] rounded-full" />
             </div>
-            <span className="text-xs text-white font-mono font-semibold">Tailwind UI</span>
+            <span className="text-xs text-white/90 font-mono">Tailwind UI</span>
           </div>
         </div>
       );
@@ -40,14 +40,14 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-2':
     case 'tech-backend':
       return (
-        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[#89AACC] font-bold tracking-tight">POST /api/v1/auth/sanctum</span>
-            <span className="text-xs text-white bg-white/15 px-1.5 py-0.5 rounded font-semibold">200 OK</span>
+        <div className="my-3 py-1.5 font-mono text-xs antialiased space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="text-white font-semibold tracking-tight">POST /api/v1/auth/sanctum</span>
+            <span className="text-xs text-[#89AACC] font-semibold">200 OK</span>
           </div>
-          <div className="text-xs text-white flex items-center justify-between font-medium">
+          <div className="text-xs text-zinc-400 flex items-center justify-between">
             <span>Laravel 11.x · Eloquent ORM</span>
-            <span className="text-white/90 font-mono font-semibold">18ms</span>
+            <span className="text-white/80 font-mono">18ms</span>
           </div>
         </div>
       );
@@ -55,14 +55,14 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-3':
     case 'tech-web3':
       return (
-        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[#89AACC] font-bold truncate tracking-tight">EVM :: 0x71C...3a9F</span>
-            <span className="text-xs text-[#89AACC] bg-[#89AACC]/20 px-1.5 py-0.5 rounded font-semibold">VERIFIED</span>
+        <div className="my-3 py-1.5 font-mono text-xs antialiased space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="text-white font-semibold truncate tracking-tight">EVM :: 0x71C...3a9F</span>
+            <span className="text-xs text-[#89AACC] font-semibold">VERIFIED</span>
           </div>
-          <div className="text-xs text-white flex items-center justify-between font-medium">
+          <div className="text-xs text-zinc-400 flex items-center justify-between">
             <span>Solidity ^0.8.20 · ethers.js</span>
-            <span className="text-white/90 font-semibold">Rise In Certified</span>
+            <span className="text-white/80">Rise In Certified</span>
           </div>
         </div>
       );
@@ -70,14 +70,14 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-4':
     case 'tech-database':
       return (
-        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-white font-bold tracking-tight">users.id <span className="text-[#89AACC]">➔</span> payroll.user_id</span>
-            <span className="text-xs text-white bg-white/15 px-1.5 py-0.5 rounded font-semibold">B-TREE INDEX</span>
+        <div className="my-3 py-1.5 font-mono text-xs antialiased space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="text-white font-semibold tracking-tight">users.id ➔ payroll.user_id</span>
+            <span className="text-xs text-[#89AACC] font-semibold">B-TREE</span>
           </div>
-          <div className="text-xs text-white flex items-center justify-between font-medium">
+          <div className="text-xs text-zinc-400 flex items-center justify-between">
             <span>MySQL 8.0 · PostgreSQL</span>
-            <span className="text-white/90 font-semibold">ACID Compliant</span>
+            <span className="text-white/80">ACID Compliant</span>
           </div>
         </div>
       );
@@ -85,14 +85,14 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-5':
     case 'tech-management':
       return (
-        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[#89AACC] font-bold tracking-tight">Sprint Delivery: 100%</span>
-            <span className="text-xs text-white bg-white/15 px-1.5 py-0.5 rounded font-semibold">PM BOOTCAMP</span>
+        <div className="my-3 py-1.5 font-mono text-xs antialiased space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="text-white font-semibold tracking-tight">Sprint Delivery: 100%</span>
+            <span className="text-xs text-[#89AACC] font-semibold">SCRUM</span>
           </div>
-          <div className="text-xs text-white flex items-center justify-between font-medium">
-            <span>Scrum · BPH HIMSI · Mentoring</span>
-            <span className="text-white/90 font-semibold">10+ Developers</span>
+          <div className="text-xs text-zinc-400 flex items-center justify-between">
+            <span>BPH HIMSI · Mentoring</span>
+            <span className="text-white/80">10+ Developers</span>
           </div>
         </div>
       );
@@ -100,14 +100,14 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-6':
     case 'tech-tools':
       return (
-        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[#89AACC] font-bold tracking-tight">● main ─━─ ● feat/agent</span>
-            <span className="text-xs text-white bg-white/15 px-1.5 py-0.5 rounded font-semibold">VITE HMR 42ms</span>
+        <div className="my-3 py-1.5 font-mono text-xs antialiased space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="text-white font-semibold tracking-tight">● main ─━─ ● feat/agent</span>
+            <span className="text-xs text-[#89AACC] font-semibold">VITE HMR</span>
           </div>
-          <div className="text-xs text-white flex items-center justify-between font-medium">
+          <div className="text-xs text-zinc-400 flex items-center justify-between">
             <span>Git · Postman · AI Workflow</span>
-            <span className="text-white/90 font-semibold">Cursor / Copilot</span>
+            <span className="text-white/80">Copilot / Cursor</span>
           </div>
         </div>
       );

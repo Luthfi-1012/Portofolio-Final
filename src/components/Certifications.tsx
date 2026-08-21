@@ -370,16 +370,16 @@ export const Certifications: React.FC = () => {
                   className="group relative flex flex-col sm:flex-row items-stretch gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-surface/40 hover:bg-surface/70 hover:border-[#89AACC]/40 cursor-pointer transition-all duration-300 overflow-hidden"
                 >
                   {/* Left: Certificate Screenshot Thumbnail */}
-                  <div className="relative w-full sm:w-44 h-36 sm:h-auto rounded-xl sm:rounded-2xl overflow-hidden bg-black/40 shrink-0 flex items-center justify-center">
+                  <div className="relative w-full sm:w-44 h-36 sm:h-auto shrink-0 flex items-center justify-center">
                     <img
                       src={cert.certificateUrl}
                       alt={cert.title}
-                      className="cert-preview-img w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover object-center rounded-xl transition-opacity duration-300 group-hover:opacity-90"
                       loading="lazy"
                     />
                     
                     {/* Subtle gradient vignette overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10 opacity-70 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none" />
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-transparent to-black/10 opacity-70 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none" />
 
                     {/* Magnifier / Quick View pill overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
