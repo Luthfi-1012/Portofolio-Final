@@ -189,18 +189,20 @@ export const CareerTimeline: React.FC<CareerTimelineProps> = ({
 
                 {/* Content card */}
                 <div className="ct-content">
-                  <span
-                    className="ct-period"
-                    style={{ color: accentColor }}
-                  >
-                    {ms.period}
-                    {ms.isCurrent && (
-                      <span className="ct-current-badge">CURRENT</span>
-                    )}
-                  </span>
                   <h3 className="ct-role">{ms.role}</h3>
-                  <p className="ct-company">{ms.company}</p>
-                  <p className="ct-desc">{ms.description}</p>
+                  <div className={`ct-meta flex items-center gap-2 flex-wrap mb-3 font-mono text-xs ${isLeft ? 'md:justify-end' : 'md:justify-start'}`}>
+                    <span className="font-semibold" style={{ color: accentColor }}>
+                      {ms.period}
+                    </span>
+                    <span className="text-muted/40">•</span>
+                    <span className="text-text-primary/70 font-sans font-medium">{ms.company}</span>
+                    {ms.isCurrent && (
+                      <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold border border-[#89AACC]/40 bg-[#89AACC]/10 text-[#89AACC]">
+                        CURRENT
+                      </span>
+                    )}
+                  </div>
+                  <p className="ct-desc max-w-[65ch]">{ms.description}</p>
                 </div>
               </div>
             );

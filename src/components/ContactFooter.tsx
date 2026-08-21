@@ -7,7 +7,6 @@ const HLS_STREAM_URL = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2
 
 export const ContactFooter: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const marqueeRef = useRef<HTMLDivElement | null>(null);
 
   // Initialize background video (flipped vertically)
   useEffect(() => {
@@ -40,27 +39,8 @@ export const ContactFooter: React.FC = () => {
     };
   }, []);
 
-  // GSAP Marquee Animation
-  useEffect(() => {
-    const marquee = marqueeRef.current;
-    if (!marquee) return;
-
-    const ctx = gsap.context(() => {
-      gsap.to(marquee, {
-        xPercent: -50,
-        duration: 40,
-        ease: 'none',
-        repeat: -1,
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
-  const marqueeText = Array(10).fill("BUILDING THE FUTURE • ").join("");
-
   return (
-    <footer id="contact" className="relative bg-bg pt-20 md:pt-28 pb-8 md:pb-12 overflow-hidden border-t border-stroke/40">
+    <footer id="contact" className="relative bg-bg pt-24 md:pt-36 pb-8 md:pb-12 overflow-hidden border-t border-stroke/40">
       
       {/* Flipped HLS Background Video */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -78,16 +58,6 @@ export const ContactFooter: React.FC = () => {
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center">
         
-        {/* GSAP Marquee */}
-        <div className="w-full overflow-hidden mb-16 md:mb-24 py-4 select-none">
-          <div
-            ref={marqueeRef}
-            className="inline-block whitespace-nowrap text-5xl md:text-7xl lg:text-9xl font-bold text-text-primary/15 tracking-tight"
-          >
-            {marqueeText}
-          </div>
-        </div>
-
         {/* CTA Block */}
         <div className="text-center max-w-2xl mx-auto mb-20 md:mb-28">
           <p className="text-xs text-muted uppercase tracking-[0.3em] font-medium mb-4">

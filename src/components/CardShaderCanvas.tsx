@@ -15,54 +15,47 @@ export const hexToRgb01 = (hex: string): [number, number, number] => {
   return [r, g, b];
 };
 
-// Rich, large burning flame palettes matching React Bits Shader Card
+// Cohesive steel blue and slate plasma palettes
 export const FLAME_PALETTES: Record<string, FlameColorPalette> = {
-  // Iconic React Bits Pro Purple Flame
   'default': {
-    core: hexToRgb01('#e879f9'), // Luminous magenta/pink flame crest
-    mid: hexToRgb01('#7c3aed'),  // Electric vivid violet-purple
-    base: hexToRgb01('#2e1065'), // Deep royal violet bottom
+    core: hexToRgb01('#d6e4f0'),
+    mid: hexToRgb01('#89AACC'),
+    base: hexToRgb01('#1e293b'),
   },
   'purple-flame': {
-    core: hexToRgb01('#f5d0fe'),
-    mid: hexToRgb01('#8b5cf6'),
-    base: hexToRgb01('#3b0764'),
+    core: hexToRgb01('#d6e4f0'),
+    mid: hexToRgb01('#89AACC'),
+    base: hexToRgb01('#0f172a'),
   },
   'tech-1': {
-    // Sapphire & Electric Cyan Fire (Frontend)
-    core: hexToRgb01('#7dd3fc'),
-    mid: hexToRgb01('#0284c7'),
-    base: hexToRgb01('#082f49'),
+    core: hexToRgb01('#e2e8f0'),
+    mid: hexToRgb01('#89AACC'),
+    base: hexToRgb01('#0f172a'),
   },
   'tech-2': {
-    // Crimson & Velvet Rose Fire (Backend)
-    core: hexToRgb01('#fda4af'),
-    mid: hexToRgb01('#e11d48'),
-    base: hexToRgb01('#4c0519'),
+    core: hexToRgb01('#d6e4f0'),
+    mid: hexToRgb01('#64748b'),
+    base: hexToRgb01('#0f172a'),
   },
   'tech-3': {
-    // Electric Purple & Amethyst Fire (Web3)
-    core: hexToRgb01('#e879f9'),
-    mid: hexToRgb01('#7c3aed'),
-    base: hexToRgb01('#2e1065'),
+    core: hexToRgb01('#e2e8f0'),
+    mid: hexToRgb01('#89AACC'),
+    base: hexToRgb01('#1e293b'),
   },
   'tech-4': {
-    // Emerald & Jade Ghost Fire (Databases)
-    core: hexToRgb01('#6ee7b7'),
-    mid: hexToRgb01('#059669'),
-    base: hexToRgb01('#022c22'),
+    core: hexToRgb01('#d6e4f0'),
+    mid: hexToRgb01('#4E85BF'),
+    base: hexToRgb01('#0f172a'),
   },
   'tech-5': {
-    // Solar Amber & Gold Fire (Leadership)
-    core: hexToRgb01('#fde68a'),
-    mid: hexToRgb01('#d97706'),
-    base: hexToRgb01('#451a03'),
+    core: hexToRgb01('#e2e8f0'),
+    mid: hexToRgb01('#89AACC'),
+    base: hexToRgb01('#0f172a'),
   },
   'tech-6': {
-    // Cyber Magenta & Violet Fire (Tools & AI)
-    core: hexToRgb01('#f0abfc'),
-    mid: hexToRgb01('#c026d3'),
-    base: hexToRgb01('#4a044e'),
+    core: hexToRgb01('#d6e4f0'),
+    mid: hexToRgb01('#64748b'),
+    base: hexToRgb01('#0f172a'),
   },
 };
 

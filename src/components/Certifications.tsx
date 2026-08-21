@@ -367,36 +367,14 @@ export const Certifications: React.FC = () => {
                   key={cert.id}
                   ref={(el) => { cardsRef.current[index] = el; }}
                   onClick={() => setSelectedCert(cert)}
-                  onMouseEnter={(e) => handleCardEnter(e.currentTarget as HTMLDivElement)}
-                  onMouseLeave={(e) => handleCardLeave(e.currentTarget as HTMLDivElement)}
-                  className="group relative flex flex-col sm:flex-row items-stretch gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-stroke/60 cursor-pointer transition-colors duration-300 will-change-transform overflow-hidden"
-                  style={{
-                    background: 'linear-gradient(145deg, rgba(22,22,35,0.7) 0%, rgba(12,12,20,0.5) 100%)',
-                  }}
+                  className="group relative flex flex-col sm:flex-row items-stretch gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-surface/40 hover:bg-surface/70 hover:border-[#89AACC]/40 cursor-pointer transition-all duration-300 overflow-hidden"
                 >
-                  {/* Hover ambient glow inside card */}
-                  <div
-                    className="card-glow absolute inset-0 rounded-2xl sm:rounded-3xl pointer-events-none opacity-0 transition-opacity duration-300"
-                    style={{
-                      background: `radial-gradient(circle at 20% 20%, ${config.bgGlow}, transparent 70%)`,
-                      boxShadow: `inset 0 1px 0 ${config.color}20, 0 8px 32px ${config.color}08`,
-                    }}
-                  />
-
-                  {/* Highlight border on hover */}
-                  <div
-                    className="absolute inset-0 rounded-2xl sm:rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-                    style={{
-                      border: `1px solid ${config.color}35`,
-                    }}
-                  />
-
                   {/* Left: Certificate Screenshot Thumbnail */}
-                  <div className="relative w-full sm:w-44 h-36 sm:h-auto rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 bg-black/50 shrink-0 flex items-center justify-center">
+                  <div className="relative w-full sm:w-44 h-36 sm:h-auto rounded-xl sm:rounded-2xl overflow-hidden bg-black/40 shrink-0 flex items-center justify-center">
                     <img
                       src={cert.certificateUrl}
                       alt={cert.title}
-                      className="cert-preview-img w-full h-full object-cover object-center transition-transform duration-500 will-change-transform"
+                      className="cert-preview-img w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                     />
                     
@@ -405,8 +383,8 @@ export const Certifications: React.FC = () => {
 
                     {/* Magnifier / Quick View pill overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white text-[11px] font-medium shadow-xl">
-                        <Maximize2 className="w-3 h-3 text-[#89AACC]" />
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-xl">
+                        <Maximize2 className="w-3.5 h-3.5 text-[#89AACC]" />
                         Inspect
                       </span>
                     </div>
@@ -418,36 +396,31 @@ export const Certifications: React.FC = () => {
                       {/* Category Badge & Date */}
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <span
-                          className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider border"
-                          style={{
-                            color: config.color,
-                            borderColor: `${config.color}30`,
-                            backgroundColor: `${config.color}10`,
-                          }}
+                          className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#89AACC]/30 text-[#89AACC] bg-[#89AACC]/10"
                         >
-                          <IconComp className="w-3 h-3" />
+                          <IconComp className="w-3.5 h-3.5" />
                           {config.label}
                         </span>
 
-                        <span className="font-mono text-[11px] text-muted">
+                        <span className="font-mono text-xs text-muted">
                           {cert.date}
                         </span>
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-base sm:text-[17px] font-medium text-text-primary group-hover:text-white transition-colors duration-300 leading-snug line-clamp-2">
+                      <h3 className="text-lg font-medium text-text-primary group-hover:text-white transition-colors duration-300 leading-snug line-clamp-2">
                         {cert.title}
                       </h3>
 
                       {/* Issuer */}
-                      <p className="text-xs text-muted mt-1.5 line-clamp-1">
+                      <p className="text-sm text-muted mt-1.5 line-clamp-1">
                         {cert.issuer}
                       </p>
                     </div>
 
                     {/* Bottom CTA row */}
                     <div className="flex items-center justify-between pt-3 mt-2 border-t border-white/5">
-                      <span className="text-[11px] text-muted/70 group-hover:text-text-primary transition-colors flex items-center gap-1">
+                      <span className="text-xs text-muted/70 group-hover:text-text-primary transition-colors flex items-center gap-1">
                         Click to preview
                       </span>
                       <div

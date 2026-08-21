@@ -125,7 +125,7 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
 
                   {/* Top Slide Badge Indicator */}
                   <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/75 border border-white/20 text-[11px] font-mono font-medium text-white backdrop-blur-md shadow-lg">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/75 border border-white/20 text-xs font-mono font-medium text-white backdrop-blur-md shadow-lg">
                       {currentMedia.type === 'video' ? (
                         <Play className="w-3 h-3 text-[#89AACC] fill-[#89AACC]" />
                       ) : (
@@ -186,7 +186,7 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
                           aria-label={`Go to slide ${sIdx + 1}`}
                         />
                       ))}
-                      <span className="text-[10px] font-mono text-zinc-400 ml-1">
+                      <span className="text-xs font-mono text-zinc-400 ml-1">
                         {currentSlideIndex + 1}/{totalSlides}
                       </span>
                     </div>
@@ -204,7 +204,7 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
                       <div className="w-6 h-6 rounded-lg bg-white/[0.04] border border-white/10 flex items-center justify-center">
                         {getCategoryIcon(project.category)}
                       </div>
-                      <span className="text-[10.5px] sm:text-xs text-[#89AACC] uppercase tracking-[0.2em] font-mono font-medium">
+                      <span className="text-xs text-[#89AACC] uppercase tracking-[0.2em] font-mono font-medium">
                         {project.category}
                       </span>
                     </div>
@@ -219,7 +219,7 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-normal">
+                  <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-normal max-w-[65ch]">
                     {project.description}
                   </p>
                 </div>
@@ -231,7 +231,7 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10.5px] sm:text-xs text-white bg-black/60 border border-white/20 rounded-lg px-2.5 py-1 font-mono font-medium tracking-tight"
+                        className="text-xs text-white bg-black/60 border border-white/20 rounded-lg px-2.5 py-1 font-mono font-medium tracking-tight"
                       >
                         {tag}
                       </span>
@@ -300,11 +300,11 @@ export const ScrollStackItem = forwardRef<HTMLDivElement, ScrollStackItemProps>(
               {/* Modal Header */}
               <div className="mb-4 pr-14">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-[#89AACC] font-semibold">
+                  <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#89AACC] font-semibold">
                     {project.category}
                   </span>
                   <span className="text-zinc-500">•</span>
-                  <span className="text-[11px] font-mono text-zinc-400">
+                  <span className="text-xs font-mono text-zinc-400">
                     Slide {currentSlideIndex + 1} of {totalSlides}
                   </span>
                 </div>

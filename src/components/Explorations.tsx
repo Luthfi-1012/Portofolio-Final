@@ -14,25 +14,25 @@ import { CardShaderCanvas } from './CardShaderCanvas';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Custom line-art visual module renderer for each engineering card
+// Custom line-art visual module renderer for each engineering card (flattened spec panel)
 const renderCardVisualSnippet = (id: string) => {
   switch (id) {
     case 'tech-1':
     case 'tech-frontend':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
+        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
           <div className="flex items-center justify-between mb-2">
             <span className="text-white flex items-center gap-1.5 font-semibold tracking-tight">
               <span className="w-1.5 h-1.5 rounded-full bg-[#89AACC] animate-pulse" />
               React 19 · TypeScript Strict
             </span>
-            <span className="text-[10px] text-white/90 font-mono font-medium">60 FPS</span>
+            <span className="text-xs text-white/90 font-mono font-medium">60 FPS</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-1.5 flex-1 rounded-full bg-white/20 overflow-hidden">
               <div className="h-full w-[85%] bg-gradient-to-r from-[#89AACC] to-[#4E85BF] rounded-full" />
             </div>
-            <span className="text-[10px] text-white font-mono font-semibold">Tailwind UI</span>
+            <span className="text-xs text-white font-mono font-semibold">Tailwind UI</span>
           </div>
         </div>
       );
@@ -40,12 +40,12 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-2':
     case 'tech-backend':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
+        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[#89AACC] font-bold tracking-tight">POST /api/v1/auth/sanctum</span>
-            <span className="text-[10px] text-white bg-white/15 px-1.5 py-0.5 rounded border border-white/25 font-semibold">200 OK</span>
+            <span className="text-xs text-white bg-white/15 px-1.5 py-0.5 rounded font-semibold">200 OK</span>
           </div>
-          <div className="text-[11px] text-white flex items-center justify-between font-medium">
+          <div className="text-xs text-white flex items-center justify-between font-medium">
             <span>Laravel 11.x · Eloquent ORM</span>
             <span className="text-white/90 font-mono font-semibold">18ms</span>
           </div>
@@ -55,12 +55,12 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-3':
     case 'tech-web3':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
+        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[#89AACC] font-bold truncate tracking-tight">EVM :: 0x71C...3a9F</span>
-            <span className="text-[10px] text-[#89AACC] bg-[#89AACC]/20 px-1.5 py-0.5 rounded border border-[#89AACC]/40 font-semibold">VERIFIED</span>
+            <span className="text-xs text-[#89AACC] bg-[#89AACC]/20 px-1.5 py-0.5 rounded font-semibold">VERIFIED</span>
           </div>
-          <div className="text-[11px] text-white flex items-center justify-between font-medium">
+          <div className="text-xs text-white flex items-center justify-between font-medium">
             <span>Solidity ^0.8.20 · ethers.js</span>
             <span className="text-white/90 font-semibold">Rise In Certified</span>
           </div>
@@ -70,12 +70,12 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-4':
     case 'tech-database':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
+        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-white font-bold tracking-tight">users.id <span className="text-[#89AACC]">➔</span> payroll.user_id</span>
-            <span className="text-[10px] text-white bg-white/15 px-1.5 py-0.5 rounded border border-white/30 font-semibold">B-TREE INDEX</span>
+            <span className="text-xs text-white bg-white/15 px-1.5 py-0.5 rounded font-semibold">B-TREE INDEX</span>
           </div>
-          <div className="text-[11px] text-white flex items-center justify-between font-medium">
+          <div className="text-xs text-white flex items-center justify-between font-medium">
             <span>MySQL 8.0 · PostgreSQL</span>
             <span className="text-white/90 font-semibold">ACID Compliant</span>
           </div>
@@ -85,12 +85,12 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-5':
     case 'tech-management':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
+        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[#89AACC] font-bold tracking-tight">Sprint Delivery: 100%</span>
-            <span className="text-[10px] text-white bg-white/15 px-1.5 py-0.5 rounded border border-white/25 font-semibold">PM BOOTCAMP</span>
+            <span className="text-xs text-white bg-white/15 px-1.5 py-0.5 rounded font-semibold">PM BOOTCAMP</span>
           </div>
-          <div className="text-[11px] text-white flex items-center justify-between font-medium">
+          <div className="text-xs text-white flex items-center justify-between font-medium">
             <span>Scrum · BPH HIMSI · Mentoring</span>
             <span className="text-white/90 font-semibold">10+ Developers</span>
           </div>
@@ -100,12 +100,12 @@ const renderCardVisualSnippet = (id: string) => {
     case 'tech-6':
     case 'tech-tools':
       return (
-        <div className="my-4 p-3.5 rounded-2xl bg-black/60 border border-white/20 font-mono text-[11px] antialiased">
+        <div className="my-3.5 py-2.5 px-3 rounded-xl bg-white/[0.04] border-l-2 border-l-[#89AACC] font-mono text-xs antialiased">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[#89AACC] font-bold tracking-tight">● main ─━─ ● feat/agent</span>
-            <span className="text-[10px] text-white bg-white/15 px-1.5 py-0.5 rounded border border-white/25 font-semibold">VITE HMR 42ms</span>
+            <span className="text-xs text-white bg-white/15 px-1.5 py-0.5 rounded font-semibold">VITE HMR 42ms</span>
           </div>
-          <div className="text-[11px] text-white flex items-center justify-between font-medium">
+          <div className="text-xs text-white flex items-center justify-between font-medium">
             <span>Git · Postman · AI Workflow</span>
             <span className="text-white/90 font-semibold">Cursor / Copilot</span>
           </div>
@@ -398,10 +398,10 @@ export const Explorations: React.FC = () => {
                 <div className="relative z-10">
                   {/* Top Module Bar: Numbered identifier + Category Badge */}
                   <div className="flex items-center justify-between gap-3 mb-3">
-                    <span className="text-[10px] font-mono tracking-[0.2em] text-zinc-300 font-medium">
+                    <span className="text-xs font-mono tracking-[0.2em] text-zinc-300 font-medium">
                       0{idx + 1} // MODULE
                     </span>
-                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/20 bg-black/60 text-[#89AACC] font-semibold">
+                    <span className="text-xs uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/20 bg-black/60 text-[#89AACC] font-semibold">
                       {item.badge}
                     </span>
                   </div>
@@ -410,7 +410,7 @@ export const Explorations: React.FC = () => {
                   <h3 className="text-xl font-medium text-white mb-1 tracking-tight group-hover:text-white transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-zinc-300 leading-relaxed font-normal">
+                  <p className="text-xs text-zinc-300 leading-relaxed font-normal max-w-[65ch]">
                     {item.tagline}
                   </p>
 
@@ -422,7 +422,7 @@ export const Explorations: React.FC = () => {
                     {item.skills.map((skill, sIdx) => (
                       <span
                         key={sIdx}
-                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-black/60 border border-white/20 text-white font-medium group-hover:border-white/30 transition-colors"
+                        className="text-xs font-mono px-2.5 py-1 rounded-md bg-black/60 border border-white/20 text-white font-medium group-hover:border-white/30 transition-colors"
                       >
                         {skill.name}
                       </span>
@@ -431,7 +431,7 @@ export const Explorations: React.FC = () => {
 
                   {/* Bottom Action Row */}
                   <div className="flex items-center justify-between pt-3 border-t border-white/15 text-xs text-zinc-300 group-hover:text-white transition-colors">
-                    <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-white font-medium">
+                    <span className="text-xs font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-white font-medium">
                       <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
                       Inspect Details & Roles
                     </span>
@@ -466,10 +466,10 @@ export const Explorations: React.FC = () => {
                 <div className="relative z-10">
                   {/* Top Module Bar: Numbered identifier + Category Badge */}
                   <div className="flex items-center justify-between gap-3 mb-3">
-                    <span className="text-[10px] font-mono tracking-[0.2em] text-zinc-300 font-medium">
+                    <span className="text-xs font-mono tracking-[0.2em] text-zinc-300 font-medium">
                       0{idx + 4} // MODULE
                     </span>
-                    <span className="text-[10px] uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/20 bg-black/60 text-[#89AACC] font-semibold">
+                    <span className="text-xs uppercase font-mono tracking-[0.2em] px-2.5 py-0.5 rounded-full border border-white/20 bg-black/60 text-[#89AACC] font-semibold">
                       {item.badge}
                     </span>
                   </div>
@@ -478,7 +478,7 @@ export const Explorations: React.FC = () => {
                   <h3 className="text-xl font-medium text-white mb-1 tracking-tight group-hover:text-white transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-zinc-300 leading-relaxed font-normal">
+                  <p className="text-xs text-zinc-300 leading-relaxed font-normal max-w-[65ch]">
                     {item.tagline}
                   </p>
 
@@ -490,7 +490,7 @@ export const Explorations: React.FC = () => {
                     {item.skills.map((skill, sIdx) => (
                       <span
                         key={sIdx}
-                        className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-black/60 border border-white/20 text-white font-medium group-hover:border-white/30 transition-colors"
+                        className="text-xs font-mono px-2.5 py-1 rounded-md bg-black/60 border border-white/20 text-white font-medium group-hover:border-white/30 transition-colors"
                       >
                         {skill.name}
                       </span>
@@ -499,7 +499,7 @@ export const Explorations: React.FC = () => {
 
                   {/* Bottom Action Row */}
                   <div className="flex items-center justify-between pt-3 border-t border-white/15 text-xs text-zinc-300 group-hover:text-white transition-colors">
-                    <span className="text-[10.5px] font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-white font-medium">
+                    <span className="text-xs font-mono uppercase tracking-[0.18em] flex items-center gap-1.5 text-white font-medium">
                       <Sparkles className="w-3.5 h-3.5 text-[#89AACC]" />
                       Inspect Details & Roles
                     </span>

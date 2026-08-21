@@ -240,7 +240,7 @@ export const SelectedWorks: React.FC = () => {
                         loading="lazy"
                       />
                       {/* Subtle top accent gradient */}
-                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8]/50 to-transparent" />
+                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#89AACC]/50 to-transparent" />
                       {/* Vignette */}
                       {!project.category.toLowerCase().includes('mobile') && (
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
@@ -253,11 +253,11 @@ export const SelectedWorks: React.FC = () => {
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2.5">
                           <div className="w-4 h-px bg-white/25" />
-                          <span className="text-[11px] text-white/50 uppercase tracking-[0.25em] font-medium">
+                          <span className="text-xs text-white/50 uppercase tracking-[0.25em] font-medium">
                             {project.category}
                           </span>
                         </div>
-                        <span className="text-[11px] text-white/30 tracking-widest font-mono font-medium">
+                        <span className="text-xs text-white/30 tracking-widest font-mono font-medium">
                           {String(index + 1).padStart(2, '0')} / {String(totalProjects).padStart(2, '0')}
                         </span>
                       </div>
@@ -268,7 +268,7 @@ export const SelectedWorks: React.FC = () => {
                       </h3>
 
                       {/* Description */}
-                      <p className="text-[13px] text-white/50 leading-relaxed mb-5 line-clamp-2">
+                      <p className="text-[13px] text-white/50 leading-relaxed mb-5 line-clamp-2 max-w-[65ch]">
                         {project.description}
                       </p>
 
@@ -279,13 +279,13 @@ export const SelectedWorks: React.FC = () => {
                           {project.tags.slice(0, 3).map((tag) => (
                             <span
                               key={tag}
-                              className="px-2.5 py-0.5 text-[10px] uppercase tracking-widest font-medium text-white/60 border border-white/10 rounded-full bg-white/[0.03]"
+                              className="px-2.5 py-0.5 text-xs uppercase tracking-wider font-medium text-white/60 border border-white/10 rounded-full bg-white/[0.03]"
                             >
                               {tag}
                             </span>
                           ))}
                           {project.tags.length > 3 && (
-                            <span className="px-2 py-0.5 text-[10px] uppercase tracking-widest font-medium text-white/35 border border-white/8 rounded-full">
+                            <span className="px-2 py-0.5 text-xs uppercase tracking-wider font-medium text-white/35 border border-white/8 rounded-full">
                               +{project.tags.length - 3}
                             </span>
                           )}
@@ -358,16 +358,16 @@ export const SelectedWorks: React.FC = () => {
                     }`}
                     loading="lazy"
                   />
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#38bdf8]/50 to-transparent" />
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#89AACC]/50 to-transparent" />
                 </div>
 
                 {/* Info */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] text-white/50 uppercase tracking-[0.25em] font-medium">
+                    <span className="text-xs text-white/50 uppercase tracking-[0.25em] font-medium">
                       {project.category}
                     </span>
-                    <span className="text-[10px] text-white/30 tracking-widest font-mono">
+                    <span className="text-xs text-white/30 tracking-widest font-mono">
                       {String(index + 1).padStart(2, '0')} / {String(totalProjects).padStart(2, '0')}
                     </span>
                   </div>
@@ -376,7 +376,7 @@ export const SelectedWorks: React.FC = () => {
                     {project.title}
                   </h3>
 
-                  <p className="text-xs text-white/50 leading-relaxed mb-4 line-clamp-3">
+                  <p className="text-xs text-white/50 leading-relaxed mb-4 line-clamp-3 max-w-[65ch]">
                     {project.description}
                   </p>
 
@@ -385,7 +385,7 @@ export const SelectedWorks: React.FC = () => {
                       {project.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-0.5 text-[9px] uppercase tracking-widest font-medium text-white/60 border border-white/10 rounded-full"
+                          className="px-2 py-0.5 text-xs uppercase tracking-wider font-medium text-white/60 border border-white/10 rounded-full"
                         >
                           {tag}
                         </span>
@@ -397,7 +397,7 @@ export const SelectedWorks: React.FC = () => {
                         e.stopPropagation();
                         handleViewProject(project);
                       }}
-                      className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider text-white font-medium"
+                      className="inline-flex items-center gap-1 text-xs uppercase tracking-wider text-white font-medium"
                     >
                       <span>Explore</span>
                       <ArrowUpRight className="w-3 h-3" />
