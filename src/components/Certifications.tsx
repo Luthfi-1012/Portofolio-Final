@@ -367,7 +367,7 @@ export const Certifications: React.FC = () => {
                   key={cert.id}
                   ref={(el) => { cardsRef.current[index] = el; }}
                   onClick={() => setSelectedCert(cert)}
-                  className="group relative flex flex-col sm:flex-row items-stretch gap-4 p-4 sm:p-5 rounded-2xl sm:rounded-3xl border border-white/[0.08] bg-surface/40 hover:bg-surface/70 hover:border-[#89AACC]/40 cursor-pointer transition-all duration-300 overflow-hidden"
+                  className="group relative flex flex-col sm:flex-row items-stretch gap-4 p-4 sm:p-5 rounded-2xl border border-white/[0.08] bg-surface/40 hover:bg-surface/70 hover:border-[#89AACC]/40 cursor-pointer transition-all duration-300 overflow-hidden"
                 >
                   {/* Left: Certificate Screenshot Thumbnail */}
                   <div className="relative w-full sm:w-44 h-36 sm:h-auto shrink-0 flex items-center justify-center">
@@ -383,7 +383,7 @@ export const Certifications: React.FC = () => {
 
                     {/* Magnifier / Quick View pill overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white text-xs font-medium shadow-xl">
+                      <span className="inline-flex items-center gap-1.5 text-white text-xs font-medium">
                         <Maximize2 className="w-3.5 h-3.5 text-[#89AACC]" />
                         Inspect
                       </span>
@@ -395,9 +395,7 @@ export const Certifications: React.FC = () => {
                     <div>
                       {/* Category Badge & Date */}
                       <div className="flex items-center justify-between gap-2 mb-2">
-                        <span
-                          className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#89AACC]/30 text-[#89AACC] bg-[#89AACC]/10"
-                        >
+                        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#89AACC]">
                           <IconComp className="w-3.5 h-3.5" />
                           {config.label}
                         </span>
@@ -420,14 +418,10 @@ export const Certifications: React.FC = () => {
 
                     {/* Bottom CTA row */}
                     <div className="flex items-center justify-between pt-3 mt-2 border-t border-white/5">
-                      <span className="text-xs text-muted/70 group-hover:text-text-primary transition-colors flex items-center gap-1">
+                      <span className="text-xs text-muted/70 group-hover:text-text-primary transition-colors inline-flex items-center gap-1">
                         Click to preview
                       </span>
-                      <div
-                        className="w-7 h-7 rounded-full flex items-center justify-center border border-white/10 text-muted group-hover:text-text-primary group-hover:border-white/30 group-hover:bg-white/5 transition-all duration-300"
-                      >
-                        <Maximize2 className="w-3.5 h-3.5 transition-transform duration-300 group-hover:scale-110" />
-                      </div>
+                      <Maximize2 className="w-3.5 h-3.5 text-muted group-hover:text-text-primary transition-all duration-300 group-hover:scale-110" />
                     </div>
                   </div>
                 </div>
