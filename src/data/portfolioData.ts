@@ -312,24 +312,24 @@ export const TECH_STACK_CATEGORIES: TechCategory[] = [
   },
   {
     id: 'tech-6',
-    title: 'Modern Tooling & AI Workflow',
-    category: 'Developer Productivity',
-    tagline: 'High-velocity dev setup with AI-assisted acceleration',
+    title: 'Modern Tooling & AI Automation',
+    category: 'Automation & Productivity',
+    tagline: 'High-velocity dev setup, agentic workflows, and n8n pipelines',
     accent: '#c084fc',
-    badge: 'Tools & Workflow',
+    badge: 'AI & Automation',
     rotation: '2deg',
     skills: [
+      { name: 'n8n Automation', tag: 'Pipelines' },
+      { name: 'AI Tool Calling', tag: 'Agentic' },
+      { name: 'Telegram Bot API', tag: 'Bot Logic' },
+      { name: 'Google Sheets CRM', tag: 'Live DB' },
       { name: 'Git & GitHub', tag: 'VCS' },
-      { name: 'Postman', tag: 'API Testing' },
-      { name: 'Vite & npm', tag: 'Build Tools' },
-      { name: 'AI-Assisted Dev', tag: 'Cursor / Copilot' },
-      { name: 'Linux / Bash', tag: 'Environment' },
-      { name: 'Figma / UI Spec', tag: 'Design Handoff' },
+      { name: 'Postman & Webhooks', tag: 'API Testing' },
     ],
-    highlight: 'Leveraging AI-augmented engineering workflows for rapid prototyping and clean refactoring.',
+    highlight: 'Designing agentic n8n pipelines with dynamic tool calling, live spreadsheet synchronization, and automated cron reminders.',
     description:
-      'Experienced in maintaining clean git branching strategies, testing API contracts via Postman, and integrating AI coding tools to optimize daily software engineering output.',
-    projectsUsed: ['All Web Repositories', 'API Integration Testing', 'Collaborative Team Git Workflows'],
+      'Experienced in building intelligent Telegram assistants and business workflow automations using n8n, integrating LLM function calling with external APIs, managing git branching strategies, and automating customer lead lifecycles.',
+    projectsUsed: ['LeadFlow AI Lite CRM', 'LeadFlow CRM Reminder', 'NexaOps IT Bot', 'All Web Repositories'],
   },
 ];
 
@@ -440,6 +440,42 @@ export const SIDE_PROJECTS: SideProject[] = [
     githubUrl: 'https://github.com/Luthfi-1012/Crowdfund-Stellar',
     category: 'Web3 & dApp',
   },
+  {
+    id: 'sp-6',
+    title: 'LeadFlow — Outbound Scheduled CRM Follow-Up Reminder',
+    description:
+      'An automated outbound CRM workflow engineered with n8n and Google Sheets. Periodically scans lead statuses and dispatches personalized Telegram follow-up reminders to accelerate sales pipeline re-engagement.',
+    image: '/Gambar side projects/LeadFlow Reminder.png',
+    media: [
+      {
+        type: 'image',
+        url: '/Gambar side projects/LeadFlow Reminder.png',
+        label: 'n8n Scheduled Outbound Cron Pipeline & Telegram Dispatcher',
+      },
+    ],
+    tags: ['n8n', 'Cron Automation', 'Google Sheets CRM', 'Telegram API', 'Lead Re-engagement'],
+    link: 'https://github.com/Luthfi-1012/LeadFlow-CRM-Reminder',
+    githubUrl: 'https://github.com/Luthfi-1012/LeadFlow-CRM-Reminder',
+    category: 'Workflow Automation',
+  },
+  {
+    id: 'sp-7',
+    title: 'NexaOps — IT Helpdesk FAQ Automation Bot',
+    description:
+      'A Telegram-based frontline IT support triage automation workflow built in n8n. Leverages conditional switch routing to instantly handle incoming helpdesk inquiries, service catalogs, operational hours, and contact escalation.',
+    image: '/Gambar side projects/project automation telegram bot.png',
+    media: [
+      {
+        type: 'image',
+        url: '/Gambar side projects/project automation telegram bot.png',
+        label: 'n8n Conditional Command Switch Router Architecture',
+      },
+    ],
+    tags: ['n8n', 'Telegram Bot', 'Webhook Routing', 'ITSM Helpdesk', 'Automation'],
+    link: 'https://github.com/Luthfi-1012/nexaops-telegram-bot',
+    githubUrl: 'https://github.com/Luthfi-1012/nexaops-telegram-bot',
+    category: 'Workflow Automation',
+  },
 ];
 
 export const STATS: StatItem[] = [
@@ -478,6 +514,34 @@ export interface FeaturedProject {
 }
 
 export const FEATURED_PROJECTS: FeaturedProject[] = [
+  {
+    id: 'fp-leadflow-crm',
+    title: 'LeadFlow AI Lite CRM',
+    category: 'AI Agent & CRM Automation',
+    tagline: 'Agentic Telegram sales assistant with real-time Google Sheets inventory tool calling and automated lead capture.',
+    description:
+      'An intelligent sales and customer relationship automation platform built with n8n and Telegram Bot API. Integrates an AI Agent engine capable of dynamic function calling to query live perfume product catalogs on Google Sheets, conduct personalized consultations, and autonomously capture verified leads into the central CRM.',
+    image: '/gambar featured projects/LeadFlow AI CRM.png',
+    screenshots: [
+      '/gambar featured projects/LeadFlow AI CRM.png',
+    ],
+    tags: ['n8n', 'AI Agent Engine', 'Tool Calling', 'Telegram Bot API', 'Google Sheets API', 'CRM Automation'],
+    roles: ['Workflow Pipeline Architecture', 'AI Tool Calling Engineering', 'Live CRM Integration', 'Chatbot UX Flow'],
+    challenge:
+      'MSMEs like AromaKita struggle with high-volume customer inquiries across messaging channels, manual perfume stock lookup, and delayed lead entry into spreadsheets, causing missed sales conversions.',
+    approach:
+      'Engineered an agentic n8n pipeline combining Telegram webhooks with an AI agent equipped with function-calling tools to read inventory in real time and log customer prospects directly into Google Sheets.',
+    outcome:
+      'Achieved 24/7 instant automated consultation responses, zero-latency stock checking, and 100% autonomous lead capture without requiring manual operator intervention.',
+    whatWeDid: [
+      'Telegram Webhook Trigger & Bidirectional AI Response Pipeline',
+      'AI Agent Engine with Dynamic Function / Tool Calling Capability',
+      'Real-Time Google Sheets Inventory Read & Dynamic Stock Check',
+      'Automated Lead Qualification and Direct CRM Data Ingestion',
+      'Context-Aware Fragrance Recommendation & Sales Consultation Logic',
+    ],
+    githubUrl: 'https://github.com/Luthfi-1012/LeadFlow-AI-Lite-CRM',
+  },
   {
     id: 'fp-toko-online',
     title: 'Toko Online Nusantara',

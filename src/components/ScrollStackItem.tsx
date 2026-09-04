@@ -10,7 +10,8 @@ import {
   X, 
   ChevronLeft, 
   ChevronRight, 
-  Play 
+  Play,
+  Bot
 } from 'lucide-react';
 import type { SideProject } from '../data/portfolioData';
 import { useSmoothScroll } from './SmoothScrollProvider';
@@ -28,11 +29,15 @@ interface ScrollStackItemProps {
 }
 
 const getCategoryIcon = (category: string) => {
-  if (category.toLowerCase().includes('figma')) {
+  const cat = category.toLowerCase();
+  if (cat.includes('figma')) {
     return <PenTool className="w-3.5 h-3.5 text-[#89AACC]" />;
   }
-  if (category.toLowerCase().includes('web3')) {
+  if (cat.includes('web3')) {
     return <Globe className="w-3.5 h-3.5 text-[#89AACC]" />;
+  }
+  if (cat.includes('automation') || cat.includes('workflow') || cat.includes('bot') || cat.includes('ai')) {
+    return <Bot className="w-3.5 h-3.5 text-[#89AACC]" />;
   }
   return <Code2 className="w-3.5 h-3.5 text-[#89AACC]" />;
 };

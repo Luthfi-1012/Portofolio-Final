@@ -131,6 +131,28 @@ const TECH_ITEMS: TechItem[] = [
       </svg>
     ),
   },
+  {
+    name: 'n8n Automation',
+    svg: (
+      <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none">
+        <path d="M4 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0zm10 0a3 3 0 1 0 6 0 3 3 0 0 0-6 0z" fill="#FF6D5A" />
+        <path d="M10 12h4M7 9V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4" stroke="#FF6D5A" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    name: 'AI Agents',
+    svg: (
+      <svg className="w-5 h-5 flex-shrink-0 text-[#89AACC]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 8V4H8" />
+        <rect width="16" height="12" x="4" y="8" rx="2" />
+        <path d="M2 14h2" />
+        <path d="M20 14h2" />
+        <path d="M15 13v2" />
+        <path d="M9 13v2" />
+      </svg>
+    ),
+  },
 ];
 
 export const TechMarquee: React.FC = () => {

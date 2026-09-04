@@ -99,15 +99,16 @@ const renderCardVisualSnippet = (id: string) => {
 
     case 'tech-6':
     case 'tech-tools':
+    case 'tech-automation':
       return (
         <div className="my-3 py-1.5 font-mono text-xs antialiased space-y-1">
           <div className="flex items-center justify-between">
-            <span className="text-white font-semibold tracking-tight">● main ─━─ ● feat/agent</span>
-            <span className="text-xs text-[#89AACC] font-semibold">VITE HMR</span>
+            <span className="text-white font-semibold tracking-tight">n8n Agent ➔ Sheets CRM</span>
+            <span className="text-xs text-[#89AACC] font-semibold">TOOL CALL</span>
           </div>
           <div className="text-xs text-zinc-400 flex items-center justify-between">
-            <span>Git · Postman · AI Workflow</span>
-            <span className="text-white/80">Copilot / Cursor</span>
+            <span>Telegram Bot · Webhooks</span>
+            <span className="text-white/80">Autonomous</span>
           </div>
         </div>
       );

@@ -21,13 +21,13 @@ const ABOUT_DATA = {
   paragraphs: [
     "I'm an active **Information Systems** student at Universitas Bina Sarana Informatika with a **3.78 GPA**, experienced in leading teams as **Project Manager** to successfully deliver IT bootcamp projects. Strongly interested in **Web3** and continuously expanding technical competencies.",
     "I've contributed as a **board member** of the Information Systems Student Association (HIMSI), served as a **speaker** at a Laravel Basic Bootcamp, and led a team through an industry-focused **software development** bootcamp covering workshop, project work, and final presentation.",
-    "I'm accustomed to integrating **AI tools** into daily workflows to improve efficiency and output quality. My tech stack spans **Laravel**, **React.js**, **JavaScript**, and **Tailwind CSS** — always learning, always building.",
+    "I'm accustomed to integrating **AI tools & n8n automations** into daily workflows to improve efficiency and output quality. My tech stack spans **Laravel**, **React.js**, **n8n / AI Agents**, **JavaScript**, and **Tailwind CSS** — always learning, always building.",
   ],
   sideLabel: 'EST. 2023 — JAKARTA',
   stats: [
     { value: 3.78, suffix: '', label: 'CURRENT GPA' },
     { value: 8, suffix: '+', label: 'CERTIFICATIONS' },
-    { value: 5, suffix: '+', label: 'PROJECTS DONE' },
+    { value: 10, suffix: '+', label: 'PROJECTS DONE' },
   ],
   accentColor: '#89AACC',
 };
