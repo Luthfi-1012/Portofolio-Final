@@ -1,44 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Hls from 'hls.js';
 import gsap from 'gsap';
 
 const ROLES = ["Developer", "PM", "Web3", "Leader"];
-const HLS_STREAM_URL = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
+const HERO_VIDEO_URL = "/cosmic-vortex.mp4";
 
 export const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const heroRef = useRef<HTMLDivElement | null>(null);
   const [roleIndex, setRoleIndex] = useState<number>(0);
 
-  // Initialize HLS Video Player
+  // Ensure local MP4 video autoplays reliably across browsers
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    let hls: Hls | null = null;
-
-    if (Hls.isSupported()) {
-      hls = new Hls({
-        enableWorker: true,
-        lowLatencyMode: true,
-      });
-      hls.loadSource(HLS_STREAM_URL);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(() => {});
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = HLS_STREAM_URL;
-      video.addEventListener('loadedmetadata', () => {
-        video.play().catch(() => {});
-      });
-    }
-
-    return () => {
-      if (hls) {
-        hls.destroy();
-      }
-    };
+    video.muted = true;
+    video.play().catch(() => {});
   }, []);
 
   // Cycle role every 2 seconds
@@ -112,22 +89,24 @@ export const Hero: React.FC = () => {
       ref={heroRef}
       className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden bg-transparent text-center px-6"
     >
-      {/* Background Ambient Glow + HLS Video */}
+      {/* Background Ambient Glow + Local Video */}
       <div className="hero-bg-media absolute inset-0 overflow-hidden pointer-events-none z-0 will-change-transform">
         {/* Subtle radial ambient atmosphere */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#89AACC]/10 blur-3xl rounded-full" />
 
         <video
           ref={videoRef}
+          src={HERO_VIDEO_URL}
           autoPlay
           muted
           loop
           playsInline
-          className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2 opacity-65 mix-blend-screen"
+          preload="auto"
+          className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2 opacity-80 mix-blend-screen"
         />
         
         {/* Dark overlay & bottom fade gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#0a0a0f]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/15 to-[#0a0a0f]" />
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/80 to-transparent" />
       </div>
 

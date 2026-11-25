@@ -1,47 +1,21 @@
 import React, { useEffect, useRef } from 'react';
-import Hls from 'hls.js';
 import gsap from 'gsap';
 import { ArrowUpRight } from 'lucide-react';
 
-const HLS_STREAM_URL = "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
+const FOOTER_VIDEO_URL = "/cosmic-vortex.mp4";
 
 export const ContactFooter: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const marqueeRef = useRef<HTMLDivElement | null>(null);
 
-  // Initialize background video (flipped vertically)
+  // Ensure local background video autoplays reliably
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    let hls: Hls | null = null;
-
-    if (Hls.isSupported()) {
-      hls = new Hls({
-        enableWorker: true,
-        lowLatencyMode: true,
-      });
-      hls.loadSource(HLS_STREAM_URL);
-      hls.attachMedia(video);
-      video.muted = true;
-      video.volume = 0;
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(() => {});
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = HLS_STREAM_URL;
-      video.muted = true;
-      video.volume = 0;
-      video.addEventListener('loadedmetadata', () => {
-        video.play().catch(() => {});
-      });
-    }
-
-    return () => {
-      if (hls) {
-        hls.destroy();
-      }
-    };
+    video.muted = true;
+    video.volume = 0;
+    video.play().catch(() => {});
   }, []);
 
   // GSAP Marquee Animation
@@ -66,18 +40,21 @@ export const ContactFooter: React.FC = () => {
   return (
     <footer id="contact" className="relative bg-bg pt-16 md:pt-24 pb-8 md:pb-12 overflow-hidden border-t border-stroke/40">
       
-      {/* Flipped HLS Background Video */}
+      {/* Flipped Local Background Video */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <video
           ref={videoRef}
+          src={FOOTER_VIDEO_URL}
           autoPlay
           muted
           loop
           playsInline
-          className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-50"
+          preload="metadata"
+          className="absolute top-1/2 left-1/2 min-w-full min-h-full object-cover -translate-x-1/2 -translate-y-1/2 scale-y-[-1] opacity-55 mix-blend-screen"
         />
-        {/* Heavier dark overlay */}
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
+        {/* Heavier dark overlay & top fade */}
+        <div className="absolute inset-0 bg-black/55 backdrop-blur-[2px]" />
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#0a0a0f] to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center">
